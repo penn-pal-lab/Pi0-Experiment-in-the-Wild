@@ -16,9 +16,9 @@
     function gtag() {
       dataLayer.push(arguments);
     }
-
+    
     gtag('js', new Date());
-
+    
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
@@ -96,7 +96,7 @@
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>University of Pennsylvania</span>
           </div>
-
+    
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- Paper links -->
@@ -142,7 +142,7 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="static/videos/success/right_fold_up_the_newspaper_2025_03_06_18_23_18.mp4.mp4" type="video/mp4">
+        <source src="static/videos/success/success_novel_fold_newspaper.mp4" type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
         "Fold up the newspaper"
@@ -170,7 +170,7 @@
             We are PAL Group and Daniilidis Group from GRASP Lab at the University of Pennsylvania. As contributors to the 
             <strong>Distributed RObot Interaction Dataset (DROID)</strong> dataset, we are fortunate to have early access to the PI0 model. 
             Our robot setup can be found here. With no training, no finetuning, we just deploy the <em>PI0-FAST-DROID</em> and use it zero-shot. 
-            
+
             [Edward's part]
             XXX, we largely test its performance on a variety of complex tasks, 
             through pi0 into difficult scenes in the wild.
@@ -178,7 +178,7 @@
             The philosophy of our evaluation is: more in-the-wild, less controlled / lab setup. We conduct experiments in a vibe style, 
             where we observe pi0 like biologists observing a new animal - conducting interesting tests, looking for broad, qualitative properties, 
             to encourage others to try out pi0, this amazing foundation model for manipulation.
-
+    
           </p>
           <p>
             In this blog, we share results from <strong>250+ trials</strong> testing Pi0 on a Franka Research 3 robot. 
@@ -192,6 +192,27 @@
     </div>
   </div>
 </section>
+
+<!-- TL;DR Box -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="box has-background-light">
+          <h3 class="title is-4 has-text-centered">TL;DR</h3>
+          <div class="content">
+            <ul class="is-size-5">
+              <li><strong>Overall Success:</strong> 42.3% average task completion across 300+ trials</li>
+              <li><strong>Key Finding:</strong> Pi0 demonstrates impressive vision-language understanding but struggles with spatial reasoning and precise manipulation</li>
+              <li><strong>Bottom Line:</strong> Pi0 works impressively in the wild without fine-tuning, but success depends heavily on instruction phrasing and object familiarity</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- Hero Section -->
 <section class="hero">
@@ -209,15 +230,15 @@
                   </figure>
                 </div>
               </div>
-              
+
               <!-- Second row - robot workspace -->
-              <div class="columns" style="margin-top: 1rem;">
+              <!-- <div class="columns" style="margin-top: 1rem;">
                 <div class="column is-12">
                   <figure class="image" style="height: 60%;">
                     <img src="static/images/robot_workspace.jpg" alt="Robot Workspace">
                   </figure>
                 </div>
-              </div>
+              </div> -->
               
               <!-- Third row - manipulation scene -->
               <div class="columns" style="margin-top: 1rem;">
@@ -249,7 +270,7 @@
           <p>
             Through experiments of Pi0 across diverse manipulation tasks in the GRASP Lab, we observed a wide range of behaviors—remarkable performances, confusing failures, and many quirks. By testing Pi0 in varied environments (e.g., cluttered tables, articulated cabinets, human-involved settings), we concludes three critical insights:
           </p>
-          
+
           <ol>
             <li>
               <strong>Pi0 Works (Mostly)</strong>: It achieves <strong>52% average progress</strong> across tasks, even in unseen environments and objects. However, it can fail in some seemingly simple tasks.
@@ -271,13 +292,117 @@
   </div>
 </section>
 
+
+<!-- Success Video -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Success Cases</h2>
+
+        <!-- Success videos -->
+        <div class="columns is-centered">
+          <!-- Video Grid layout - 2x3 grid for 6 videos -->
+          <div class="column">
+            <div class="columns is-multiline">
+              <!-- Video 1 -->
+              <div class="column is-one-third">
+                <div class="content">
+                  <h3 class="title is-5">Pick and Place</h3>
+                  <div>
+                    <video id="success-video-1" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                      <source src="static/videos/success/success_pickplace_fish_to_box.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="is-size-6">"Place the yellow fish into the purple box"</p>
+                  <p class="is-size-6">Precise placement of camouflage fish into the box</p>
+                </div>
+              </div>
+              
+              <!-- Video 2 -->
+              <div class="column is-one-third">
+                <div class="content">
+                  <h3 class="title is-5">Articulation</h3>
+                  <div>
+                    <video id="success-video-2" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                      <source src="static/videos/success/success_articulation_open_drawer.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="is-size-6">"Open the drawer"</p>
+                  <p class="is-size-6">Opening drawer with multiple pull to make sure fully opened</p>
+                </div>
+              </div>
+              
+              <!-- Video 3 -->
+              <div class="column is-one-third">
+                <div class="content">
+                  <h3 class="title is-5">Human Robot Interaction</h3>
+                  <div>
+                    <video id="success-video-3" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                      <source src="static/videos/success/success_hri_handover_pineapple.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="is-size-6">"Hand the pineapple to the programmer"</p>
+                  <p class="is-size-6">Safe object handover to programmer, even there is wire occlusion from side view</p>
+                </div>
+              </div>
+              
+              <!-- Video 4 -->
+              <div class="column is-one-third">
+                <div class="content">
+                  <h3 class="title is-5">Dexterity</h3>
+                  <div>
+                    <video id="success-video-4" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                      <source src="static/videos/success/success_dexterity_pour_water.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="is-size-6">"Pour water from the silver cup to the pink bowl"</p>
+                  <p class="is-size-6">Pour real water from Latte art vat into the target bowl</p>
+                </div>
+              </div>
+              
+              <!-- Video 5 -->
+              <div class="column is-one-third">
+                <div class="content">
+                  <h3 class="title is-5">Multi-step Task</h3>
+                  <div>
+                    <video id="success-video-5" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                      <source src="static/videos/success/success_multistep_fill_basket.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="is-size-6">"Pick up all the objects into the basket"</p>
+                  <p class="is-size-6">Sequential bagging all the toys into basket</p>
+                </div>
+              </div>
+              
+              <!-- Video 6 -->
+              <div class="column is-one-third">
+                <div class="content">
+                  <h3 class="title is-5">Novel Objects</h3>
+                  <div>
+                    <video id="success-video-6" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                      <source src="static/videos/success/success_novel_fold_newspaper.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="is-size-6">"Fold up the newspaper"</p>
+                  <p class="is-size-6">Handling previously unseen items</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Remarkable Performance Section -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">2.1 Remarkable Performance of PI0</h2>
-        
+
         <!-- Vision-Language Understanding -->
         <h3 class="title is-4">2.1.1 Robust Vision-Language Understanding in Complex Scenes</h3>
         <div class="content has-text-justified">
@@ -293,8 +418,8 @@
           
           <div class="columns is-centered">
             <div class="column is-half">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1tLaaxC68IzNT4BJH32IeyCZ2LcGLbwmF/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Place the plastic bottle into the white cup."</p>
@@ -316,8 +441,8 @@
           
           <div class="columns is-centered">
             <div class="column is-half"> 
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static/videos/success/camflage_yellow_fish.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Place the fish into the red box"</p>
@@ -343,16 +468,16 @@
           
           <div class="columns is-multiline is-centered">
             <div class="column is-half">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1-fOEY1uJaNogzKu6ZEXPgxe3TpNTdAjn/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Pick the pineapple and place it into the basket"</p>
               </div>
             </div>
             <div class="column is-half">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1YJekPOEpUgP-Py6wgQS6T4ObBKZBFcnP/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Place the black knife into the basket"</p>
@@ -376,24 +501,24 @@
           
           <div class="columns is-multiline is-centered">
             <div class="column is-one-third">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1IlHCTNdOOJY_9kRGRQ8WVBvXGedwIS1F/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Remove the pink bowl from the tray"</p>
               </div>
             </div>
             <div class="column is-one-third">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1yI7fC2Y0rYa8p3zNS0jP6BO7_tZcpmck/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Stack the wooden blocks"</p>
               </div>
             </div>
             <div class="column is-one-third">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1KZdBUidv42kgcx5Z_QmFBQ5RFbbkZOsG/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Fold up the newspaper"</p>
@@ -422,13 +547,117 @@
   </div>
 </section>
 
+<!-- Failiure Video -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Failture Case</h2>
+
+        <!-- Failure videos -->
+        <div class="columns is-centered">
+          <!-- Video Grid layout - 2x3 grid for 6 videos -->
+          <div class="column">
+            <div class="columns is-multiline">
+              <!-- Video 1 -->
+              <div class="column is-one-third">
+                <div class="content">
+                  <h3 class="title is-5">OOD Objects</h3>
+                  <div>
+                    <video id="failure-video-1" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                      <source src="static\videos\failure\right_place_the_beaker_into_the_pink_bowl.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="is-size-6"><i>"Place the beaker into the pink bowl"</i></p>
+                  <p class="is-size-6">Cannot find the transparent glass beaker</p>
+                </div>
+              </div>
+              
+              <!-- Video 2 -->
+              <div class="column is-one-third">
+                <div class="content">
+                  <h3 class="title is-5">OOD Background</h3>
+                  <div>
+                    <video id="failure-video-2" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                      <source src="static\videos\failure\upenn_pick_block.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="is-size-6"><i>"Pick the black box on the white box"</i></p>
+                  <p class="is-size-6">Can not handle well with unseen background</p>
+                </div>
+              </div>
+              
+              <!-- Video 3 -->
+              <div class="column is-one-third">
+                <div class="content">
+                  <h3 class="title is-5">Task Misunderstanding</h3>
+                  <div>
+                    <video id="failure-video-3" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                      <source src="static\videos\failure\right_place_the_fish_into_the_basket.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="is-size-6"><i>"place the yellow fish into the basket"</i></p>
+                  <p class="is-size-6">Pick up the wrong object in cluttered scene (25% progress)</p>
+                </div>
+              </div>
+              
+              <!-- Video 4 -->
+              <div class="column is-one-third">
+                <div class="content">
+                  <h3 class="title is-5">Spatial Reasoning</h3>
+                  <div>
+                    <video id="failure-video-4" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                      <source src="static\videos\failure\right_place_the_can_into_the_tray.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="is-size-6"><i>"Place the can into the tray"</i></p>
+                  <p class="is-size-6">Misjudges object position relative to container (19% error)</p>
+                </div>
+              </div>
+              
+              <!-- Video 5 -->
+              <div class="column is-one-third">
+                <div class="content">
+                  <h3 class="title is-5">General Articulation</h3>
+                  <div>
+                    <video id="failure-video-5" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                      <source src="static\videos\failure\video_close_the_right_cabinet_door.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="is-size-6"><i>"Close the right cabinet door"</i></p>
+                  <p class="is-size-6">Fails to open toy kitchen cabinet on the table (0% progress)</p>
+                </div>
+              </div>
+              
+              <!-- Video 6 -->
+              <div class="column is-one-third">
+                <div class="content">
+                  <h3 class="title is-5">Coffee Making</h3>
+                  <div>
+                    <video id="failure-video-6" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                      <source src="static\videos\failure\coffee_pour_coffee_bean_into_grinder.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <p class="is-size-6"><i>"Pour coffee bean into the grinder"</i></p>
+                  <p class="is-size-6">Cannot work with espresso machine (10% progress)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- Problems with PI0 Section -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">2.2 Problem with PI0</h2>
-        
+
         <!-- Early stopping problem -->
         <h3 class="title is-4">Early stopping</h3>
         <div class="content has-text-justified">
@@ -452,8 +681,8 @@
           
           <div class="columns is-centered">
             <div class="column is-half">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1SRhbtZ3SQmRCfPBW-x3u1OS1itCsWiBV/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Pick up the black knife"</p>
@@ -495,16 +724,16 @@
           
           <div class="columns is-multiline is-centered">
             <div class="column is-half">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1Pps_RUP4_6BLYDBaN67GNRZKHDzCS6F1/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Take out the cup under the coffee machine" -> collide top of coffee machine</p>
               </div>
             </div>
             <div class="column is-half">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1w_zXPKHwsjjVeiuc_VfA8WRFURDtcUrz/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Take out the silver cup from the coffee machine" success - grasp the handle beautifully</p>
@@ -548,8 +777,9 @@
           <p>
             The model doesn't actually know where & how to manipulate objects semantically - it can only reproduce patterns from demonstrations without true understanding of object affordances or functional parts. Though scaling up data may solve some scenarios, there are countless edge cases that need to be labeled. We need some more effective representation like autonomous driving met.
           </p>
-          
-          
+
+
+​          
           <p>Potential solutions might involve augmenting behavior cloning with:</p>
           <ul>
             <li>Explicit object-centric representations to identify functional parts</li>
@@ -562,102 +792,6 @@
   </div>
 </section>
 
-<!-- Failiure Video -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Failture Case</h2>
-        
-        <!-- Failure videos -->
-        <div class="columns is-centered">
-          <!-- Video Grid layout - 2x3 grid for 6 videos -->
-          <div class="column">
-            <div class="columns is-multiline">
-              <!-- Video 1 -->
-              <div class="column is-one-third">
-                <div class="content">
-                  <h3 class="title is-5">OOD Objects</h3>
-                  <div class="publication-video">
-                    <video id="failure-video-1" autoplay muted loop playsinline class="publication-video">
-                      <source src="static/videos/ood_failure.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <p class="is-size-6">Struggles with unfamiliar teapot</p>
-                </div>
-              </div>
-              
-              <!-- Video 2 -->
-              <div class="column is-one-third">
-                <div class="content">
-                  <h3 class="title is-5">Ambiguous Instructions</h3>
-                  <div class="publication-video">
-                    <video id="failure-video-2" autoplay muted loop playsinline class="publication-video">
-                      <source src="static/videos/ambiguous_failure.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <p class="is-size-6">Fails to interpret "Fill bowl with objects"</p>
-                </div>
-              </div>
-              
-              <!-- Video 3 -->
-              <div class="column is-one-third">
-                <div class="content">
-                  <h3 class="title is-5">Task Interruption</h3>
-                  <div class="publication-video">
-                    <video id="failure-video-3" autoplay muted loop playsinline class="publication-video">
-                      <source src="static/videos/interruption_failure.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <p class="is-size-6">Stops mid-task after human interaction</p>
-                </div>
-              </div>
-              
-              <!-- Video 4 -->
-              <div class="column is-one-third">
-                <div class="content">
-                  <h3 class="title is-5">Spatial Reasoning</h3>
-                  <div class="publication-video">
-                    <video id="failure-video-4" autoplay muted loop playsinline class="publication-video">
-                      <source src="static/videos/spatial_failure.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <p class="is-size-6">Misjudges object position relative to container</p>
-                </div>
-              </div>
-              
-              <!-- Video 5 -->
-              <div class="column is-one-third">
-                <div class="content">
-                  <h3 class="title is-5">Complex Articulation</h3>
-                  <div class="publication-video">
-                    <video id="failure-video-5" autoplay muted loop playsinline class="publication-video">
-                      <source src="static/videos/stopping-open the drawer.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <p class="is-size-6">Fails to open toy kitchen cabinet</p>
-                </div>
-              </div>
-              
-              <!-- Video 6 -->
-              <div class="column is-one-third">
-                <div class="content">
-                  <h3 class="title is-5">Coffee Making</h3>
-                  <div class="publication-video">
-                    <video id="failure-video-6" autoplay muted loop playsinline class="publication-video">
-                      <source src="static/videos/coffee_failure.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <p class="is-size-6">Cannot pour water into pot (20% success)</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <!-- Quirks Section -->
@@ -666,7 +800,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">2.3 Quirk: Some interesting behavior of pi0</h2>
-        
+
         <h3 class="title is-4">2.3.1 Good quirk:</h3>
         
         <h4 class="title is-5">Quirk: Active Perception & Viewpoint Robustness</h4>
@@ -769,8 +903,8 @@
           
           <div class="columns is-multiline is-centered">
             <div class="column is-half">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static/videos/camera_blocking_experiment.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">Camera blocking experiment</p>
@@ -820,16 +954,16 @@
           
           <div class="columns is-multiline is-centered">
             <div class="column is-half">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1hqsaSnrYvGFGpRQ32yS_JHQoDFPaFMYg/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">Accelerated video of closing the drawer</p>
               </div>
             </div>
             <div class="column is-half">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1DeXayXo3eiZ2MA8bJlsMBxxJ8AB-K7gt/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">Accelerated video of closing the right cabinet door</p>
@@ -881,16 +1015,16 @@
           
           <div class="columns is-multiline is-centered">
             <div class="column is-half">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1vqgYtTTi3lpQyE8hHpvUNNUrZK41_o8R/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">Close the white lid for the toilet (Success)</p>
               </div>
             </div>
             <div class="column is-half">
-              <div class="publication-video">
-                <video autoplay muted loop playsinline class="publication-video">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="https://drive.google.com/file/d/1C6JV3Zbyly8b8YODEYRuhlW7sQlDBMGm/preview" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">Close the toilet (Failure)</p>
@@ -950,7 +1084,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">3. Robot & Model Setup</h2>
-        
+
         <div class="content has-text-justified">
           <p>The following are details of our experiment set up.</p>
         </div>
@@ -1018,7 +1152,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Results & Insights</h2>
-        
+
         <!-- Overall Results -->
         <div class="columns is-centered">
           <div class="column is-10">
@@ -1147,7 +1281,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">The Bigger Picture</h2>
-        
+
         <div class="content">
           <h3 class="title is-4">Why Pi0 Matters</h3>
           
@@ -1210,7 +1344,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Conclusion</h2>
-        
+
         <div class="content has-text-justified">
           <p>Pi0 represents a promising step toward generalist robots, but significant challenges remain. Instruction following and fine-grained tasks still pose considerable difficulties. As foundation models evolve and incorporate more modalities and memory capabilities, we're optimistic about the future—soon, every robotics lab might have a Pi0-like baseline!</p>
           
