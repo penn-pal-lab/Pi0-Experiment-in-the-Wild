@@ -420,23 +420,26 @@
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1tLaaxC68IzNT4BJH32IeyCZ2LcGLbwmF/preview" type="video/mp4">
+                  <source src="static\videos\success\Success_Dropping_Into_Cup.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered">"Place the plastic bottle into the white cup."</p>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static\videos\success\transparent_bottle_place.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Place the plastic bottle into the white cup."</p>
               </div>
             </div>
           </div>
           
-          <p>
-            There's plenty of work in the past in CV, Robotics that does transparent object detection and manipulation. But the nice part here is that we have a data-driven system that does it, without any special logic or care for transparent objects.
-          </p>
-          
-          <p><em>"Pi0's ability to manipulate transparent objects from RGB-only inputs is a leap forward for vision-based robotics."</em></p>
-          
+  
           <p><strong>2. It can grasp an object even when it is camouflaged into a colorful background</strong></p>
           
           <p>
-            PI0 can identify the 'fish' object here even when it is placed on top of a colorful board game. This object is an unusual and difficult shape, and it blends in well to the background, but the model can detect the presence of the object, and its shape, well enough to grasp it.
+            PI0 can identify the 'yellow fish' here even when it is placed on top of a colorful board game. This object has an unusual and difficult shape, and it blends in well with the background, but pi0 detects well with its position, and its shape, well enough to grasp it up.
           </p>
           
           <div class="columns is-centered">
@@ -446,6 +449,14 @@
                   <source src="static/videos/success/camflage_yellow_fish.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Place the fish into the red box"</p>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static/videos/success/Success_Fish.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered">"Place the fish into the purple box"</p>
               </div>
             </div>
           </div>
@@ -461,7 +472,7 @@
           </p>
           
           <p>
-            For more details, please refer to <strong>Section 4.6</strong>, which discusses the experiments on <strong>human-robot interaction</strong>.
+            Here are two side-view videos involving humans in the scene. Please refer to <strong>Section 4.6</strong> for more results on <strong>human-robot interaction</strong>.
           </p>
           
           <p><em>(All videos featuring humans were uploaded with permission from the individuals involved.)</em></p>
@@ -470,7 +481,7 @@
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1-fOEY1uJaNogzKu6ZEXPgxe3TpNTdAjn/preview" type="video/mp4">
+                  <source src="static\videos\success\success_initial_PI0_pineapple.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Pick the pineapple and place it into the basket"</p>
               </div>
@@ -485,7 +496,12 @@
             </div>
           </div>
           
-          <p><em>"Pi0's ability to handle transparency, clutter and distractors hints at a future where robots see the world as humans do—through semantics, not just pixels."</em></p>
+
+          <p>
+            There's plenty of work in the past in CV, Robotics that does transparent object detection and manipulation. But the nice part here is that we have a data-driven system that does it, without any special logic or care for transparent objects.
+          </p>
+          <p><em>"Pi0's ability to handle transparency and clutter hints at a future where robots see the world as humans do—through semantics, not just pixels."</em></p>
+          
         </div>
         
         <!-- High Frequency Dexterity -->
@@ -519,9 +535,9 @@
             <div class="column is-one-third">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1KZdBUidv42kgcx5Z_QmFBQ5RFbbkZOsG/preview" type="video/mp4">
+                  <source src="static\videos\success\success_fold_the_cloth_from_left_to_right.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Fold up the newspaper"</p>
+                <p class="is-size-6 has-text-centered">"Fold the cloth from left to right"</p>
               </div>
             </div>
           </div>
@@ -541,6 +557,10 @@
           <p>
             More interestingly, the policy behaves similar to diffusion policy, as shown below, it could recover from failures and retry tasks that initially failed.
           </p>
+
+          
+
+
         </div>
       </div>
     </div>
@@ -553,7 +573,9 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Failture Case</h2>
-
+        <p class="has-text-justified" style="color: #666; font-style: italic;">
+          Pi0 demonstrates very impressive robustness across different lights, locations and tasks. However, it do exist some weakness, here is some examples on its cons:
+        </p>
         <!-- Failure videos -->
         <div class="columns is-centered">
           <!-- Video Grid layout - 2x3 grid for 6 videos -->
