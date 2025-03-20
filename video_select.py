@@ -23,7 +23,7 @@ def extract_left_view(input_path):
     
     # Create VideoWriter for output
     left_width = width // 2  # Assuming the video is split exactly in half
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    fourcc = cv2.VideoWriter_fourcc(*'avc1')
     out = cv2.VideoWriter(output_path, fourcc, fps, (left_width, height))
     
     # Process frames
@@ -45,7 +45,10 @@ def extract_left_view(input_path):
     print(f"Left view extracted and saved to: {output_path}")
 
 if __name__ == "__main__":
-    input_video = r"static\videos\failure\right_pick_up_the_pokeball_and_put_it_in_the_bowl.mp4"
+
+    # input_video = r"static\videos\failure\right_pick_up_the_pokeball_and_put_it_in_the_bowl.mp4"
+    input_video = r"static\videos\success\right_Close_the_capsule_lid_of_the_coffee_machine.mp4"
+
     extract_left_view(input_video)
 
 # get left piece of the video

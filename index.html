@@ -167,22 +167,19 @@
             like pick-and-place, articulation, dexterity and human robot interaction. But how well does it actually perform in the wild?
           </p>
           <p>
-            We are PAL Group and Daniilidis Group from GRASP Lab at the University of Pennsylvania. As contributors to the 
+            We are from GRASP Lab at the University of Pennsylvania. As contributors to the 
             <strong>Distributed RObot Interaction Dataset (DROID)</strong> dataset, we are fortunate to have early access to the PI0 model. 
-            Our robot setup can be found here. With no training, no finetuning, we just deploy the <em>PI0-FAST-DROID</em> and use it zero-shot. 
-
-            [Edward's part]
-            XXX, we largely test its performance on a variety of complex tasks, 
-            through pi0 into difficult scenes in the wild.
-            
-            The philosophy of our evaluation is: more in-the-wild, less controlled / lab setup. We conduct experiments in a vibe style, 
-            where we observe pi0 like biologists observing a new animal - conducting interesting tests, looking for broad, qualitative properties, 
-            to encourage others to try out pi0, this amazing foundation model for manipulation.
-    
+            Our robot setup can be found <a href="https://droid-dataset.github.io/droid/docs/hardware-setup">here</a>. With no training, 
+            no finetuning, we just deploy the <em>PI0-FAST-DROID</em> and use it zero-shot. In order to build upon this powerful model, 
+            we largely test its performance on a variety of complex tasks, through pi0 into difficult scenes in the wild.
           </p>
           <p>
-            In this blog, we share results from <strong>250+ trials</strong> testing Pi0 on a Franka Research 3 robot. 
+            Similar to <a href="https://en.wikipedia.org/wiki/Vibe_coding">Vibe Coding</a>, the philosophy of our evaluation is: more in-the-wild, less controlled / lab setup. We observe pi0 like biologists observing a new animal - conducting interesting tests, looking for broad, qualitative properties. The aim is to encourage others to try out pi0, such an open-source, amazing foundation model for manipulation.
+          </p>
+          <p>
+            In this blog, we share results from <strong>300+ trials</strong> testing Pi0 on a Franka Research 3 robot. 
             We explore its strengths, unexpected quirks, and limitations—and what this means for the future of imitation learning.
+            For detailed metrics and analysis, see our <a href="#results">Results & Insights</a> section.
           </p>
           <p>
             <strong>Key words:</strong> pi0, VLAs, Manipulation, Robot Learning, Imitation Learning.
@@ -214,42 +211,42 @@
 </section>
 
 
-<!-- Hero Section -->
+<!-- Teaser Images Section -->
 <section class="hero">
   <div class="container" style="width: 50%; max-width: 50%;">
-    <div class="hero-body">
+    <div class="hero-body" style="padding: 1.5rem 1.5rem;">
       <div class="columns is-centered">
         <div class="column">
           <div class="content">
-            <!-- First row - lab setup -->
-            <div class="columns">
-              <!-- Left side with lab_setup and robot_workspace -->
-              <div class="column is-12">
-                  <figure class="image" style="height: 60%;">
-                    <img src="static/images/lab_setup.jpg" alt="GRASP Lab Setup">
-                  </figure>
-                </div>
+            <!-- First row - three images side by side -->
+            <div class="columns is-vcentered is-gapless" style="margin-bottom: 1rem;">
+              <div class="column is-one-third">
+                <figure class="image" style="margin: 0;">
+                  <img src="static/images/lab_setup.jpg" alt="GRASP Lab Setup" style="object-fit: cover; height: 200px; width: 100%;">
+                </figure>
               </div>
-
-              <!-- Second row - robot workspace -->
-              <!-- <div class="columns" style="margin-top: 1rem;">
-                <div class="column is-12">
-                  <figure class="image" style="height: 60%;">
-                    <img src="static/images/robot_workspace.jpg" alt="Robot Workspace">
-                  </figure>
-                </div>
-              </div> -->
-              
-              <!-- Third row - manipulation scene -->
-              <div class="columns" style="margin-top: 1rem;">
-                <div class="column is-12">
-                  <figure class="image">
-                    <img src="static/images/wild-newsppaper.png" alt="Manipulation Scene">
-                  </figure>
-                </div>
+              <div class="column is-one-third">
+                <figure class="image" style="margin: 0;">
+                  <img src="static/images/robot_workspace.jpg" alt="Robot Workspace" style="object-fit: cover; height: 200px; width: 100%;">
+                </figure>
               </div>
+              <div class="column is-one-third">
+                <figure class="image" style="margin: 0;">
+                  <img src="static/images/lab_setup_2.jpg" alt="Levine Setup 2" style="object-fit: cover; height: 200px; width: 100%;">
+                </figure>
+              </div>
+            </div>
             
-            <p class="has-text-centered">
+            <!-- Second row - manipulation scene (full width) -->
+            <div class="columns is-centered" style="margin-top: 0.5rem;">
+              <div class="column is-12">
+                <figure class="image">
+                  <img src="static/images/wild-newsppaper.png" alt="Three Camera View" style="width: 100%;">
+                </figure>
+              </div>
+            </div>
+            
+            <p class="has-text-centered" style="margin-top: 1rem;">
               Our evaluation setup at GRASP Lab, showing the robot workspace, test objects, and typical manipulation scenes.
             </p>
           </div>
@@ -268,12 +265,12 @@
         <h2 class="title is-3">Key Findings</h2>
         <div class="content has-text-justified">
           <p>
-            Through experiments of Pi0 across diverse manipulation tasks in the GRASP Lab, we observed a wide range of behaviors—remarkable performances, confusing failures, and many quirks. By testing Pi0 in varied environments (e.g., cluttered tables, articulated cabinets, human-involved settings), we concludes three critical insights:
+            Through experiments across diverse manipulation tasks in the <a href="https://facilities.upenn.edu/maps/locations/levine-hall-melvin-and-claire-weiss-tech-house">Levine Hall</a> at Penn Engineering School, we observed a wide range of behaviors—remarkable performances, confusing failures, and many quirks. By testing Pi0 in varied environments (e.g., cluttered tables, articulated cabinets, human-involved settings), we concludes three critical insights:
           </p>
 
           <ol>
             <li>
-              <strong>Pi0 Works (Mostly)</strong>: It achieves <strong>52% average progress</strong> across tasks, even in unseen environments and objects. However, it can fail in some seemingly simple tasks.
+              <strong>Pi0 Works (Mostly)</strong>: It achieves <strong>42.3% average progress</strong> across diverse, hard tasks, even in unseen environments and objects. However, it also fails in some seemingly simple tasks.
             </li>
             <li>
               <strong>Prompt Engineering Matters</strong>: While Pi0 is good at vision-action grounding, its <strong>performance drops 20~100%</strong> based on instruction phrasing. You need to carefully prompt it to make it work in some condition.
@@ -284,13 +281,38 @@
           </ol>
           
           <p>
-            Below, we unpack each finding with video examples and analysis. For detailed metrics, see Section 4: Results.
+            Below, we unpack each finding with video examples and analysis. For detailed metrics, see <a href="#results">Section 4: Results</a>.
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
+<!-- Hero Images -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <figure class="image">
+          <div class="columns">
+            <div class="column is-half">
+              <img src="static/images/OverallResult.png" alt="Scatter plot showing performance distribution">
+            <figcaption style="text-align: center;">Performance across 300+ trials (42.3% average progress)</figcaption>
+            </div>
+            <div class="column is-half">
+              <img src="static/images/worldcloud.png" alt="Word cloud visualization">
+            <figcaption style="text-align: center;">Word cloud of task instructions</figcaption>
+          </div>
+
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 <!-- Success Video -->
@@ -381,11 +403,11 @@
                   <h3 class="title is-5">Novel Objects</h3>
                   <div>
                     <video id="success-video-6" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                      <source src="static/videos/success/success_novel_fold_newspaper.mp4" type="video/mp4">
+                      <source src="static/videos/success/right_Close_the_capsule_lid_of_the_coffee_machine_left.mp4" type="video/mp4">
                     </video>
                   </div>
-                  <p class="is-size-6">"Fold up the newspaper"</p>
-                  <p class="is-size-6">Handling previously unseen items</p>
+                  <p class="is-size-6">"Close the capsule lid of the coffee machine"</p>
+                  <p class="is-size-6">Handling previously unseen device</p>
                 </div>
               </div>
             </div>
@@ -407,7 +429,7 @@
         <h3 class="title is-4">2.1.1 Robust Vision-Language Understanding in Complex Scenes</h3>
         <div class="content has-text-justified">
           <p>
-            Powered by <strong>PaliGemma</strong> (Google DeepMind's 3B VLM) as its vision encoder, Pi0 demonstrates robust scene comprehension and adaptability. Despite relying solely on uncalibrated monocular RGB inputs (224×224 pixels after compression), it can handle very challenging objects and environments like transparent, camouflaged and novel items. Showing the potential of End2End VLA in precision, closed loop control.
+            Powered by <strong>PaliGemma</strong> (Google DeepMind's 3B VLM) as its vision encoder (<a href="https://arxiv.org/abs/2407.07726">Beyer etc, 2024</a>), Pi0 demonstrates robust scene comprehension and adaptability. Despite relying solely on uncalibrated monocular RGB inputs (224×224 pixels after compression), it can handle very challenging objects and environments like transparent, camouflaged and novel items. Showing the potential of End2End VLA in precision, closed loop control.
           </p>
           
           <p><strong>1. It can grasp transparent object</strong></p>
@@ -454,7 +476,7 @@
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="static/videos/success/Success_Fish.mp4" type="video/mp4">
+                  <source src="static\videos\success\success_pickplace_fish_to_box.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Place the fish into the purple box"</p>
               </div>
@@ -468,7 +490,7 @@
           </p>
           
           <p>
-            We believe there are two reasons for pi0's robustness to human movement. First, the pre-trained VLM backbone of Pi0 is trained on human-involved images, so humans are in-distribution. Next, from our occlusion experiments in <strong>Section 2.3.1</strong>, the policy seems to prioritize the wrist camera's images during pick-and-place tasks, so distractors in the side-view camera seem to minimally affect the policy.
+            We believe there are two reasons for pi0's robustness to human movement. First, the pre-trained VLM backbone of Pi0 is trained on human-involved images (<a href="https://aclanthology.org/P18-1238/">Sharma et al., 2018</a>, <a href="https://aclanthology.org/2022.naacl-main.142/">Changpinyo et al., 2022a</a>, <a href="https://storage.googleapis.com/openimages/web/factsfigures_v7.html">Kuznetsova et al. 2020</a>), so humans are in-distribution. Next, from our occlusion experiments in <strong>Section 2.3.1</strong>, the policy seems to prioritize the wrist camera's images during pick-and-place tasks, so distractors in the side-view camera seem to minimally affect the policy.
           </p>
           
           <p>
@@ -489,18 +511,20 @@
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1YJekPOEpUgP-Py6wgQS6T4ObBKZBFcnP/preview" type="video/mp4">
+                  <source src="static\videos\success\success_hand_the_pineapple_to_the_outstretched_hand.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Place the black knife into the basket"</p>
+                <p class="is-size-6 has-text-centered">"Hand the pineapple to the outstretched hand"</p>
               </div>
             </div>
           </div>
-          
+            
 
           <p>
             There's plenty of work in the past in CV, Robotics that does transparent object detection and manipulation. But the nice part here is that we have a data-driven system that does it, without any special logic or care for transparent objects.
           </p>
-          <p><em>"Pi0's ability to handle transparency and clutter hints at a future where robots see the world as humans do—through semantics, not just pixels."</em></p>
+          <p class="box has-background-grey-lighter has-text-centered is-italic">
+            "Pi0's ability to handle transparency, clutter and distractors hints at a future where robots see the world as humans do—through semantics, not just pixels."
+          </p>
           
         </div>
         
@@ -508,7 +532,7 @@
         <h3 class="title is-4">2.1.2 High frequency dexterity of robot policy</h3>
         <div class="content has-text-justified">
           <p>
-            Even though pretrained on massive datasets, Pi0 can perform high-frequency, closed-loop control up to 50Hz. Despite a <strong>90ms-300ms delay</strong> introduced by HTTP connections between our laptop and the GPU server, Pi0 achieves real-time responsiveness. It can do precise manipulation of complex objects like newspapers, T-shirts, and articulated tools.
+            Even though pretrained on massive datasets, Pi0 can perform high-frequency, closed-loop control up to 50Hz. Despite a <strong>90ms-300ms delay</strong> introduced by HTTP connections between robot and the GPU server (<a href="https://x.com/svlevine/status/1886822326274285709">Sergey, 2025</a>), Pi0 achieves real-time responsiveness. It can do precise manipulation of complex objects like newspapers, T-shirts, and milk frothing pitcher.
           </p>
           
           <p>
@@ -519,7 +543,7 @@
             <div class="column is-one-third">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1IlHCTNdOOJY_9kRGRQ8WVBvXGedwIS1F/preview" type="video/mp4">
+                  <source src="static\videos\success\left_remove_the_pink_bowl_from_the_tray.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Remove the pink bowl from the tray"</p>
               </div>
@@ -527,7 +551,7 @@
             <div class="column is-one-third">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1yI7fC2Y0rYa8p3zNS0jP6BO7_tZcpmck/preview" type="video/mp4">
+                  <source src="static\videos\success\left_stack_the_wooden_blocks.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Stack the wooden blocks"</p>
               </div>
@@ -543,7 +567,7 @@
           </div>
           
           <p>
-            According to the PI0 paper and pi0-FAST, we think the dexterity stems from its flow matching architecture. Recently there are some efforts to fasten VLA with 7B VLM encoder. We look forward to more strong models running at a higher frequency!
+            According to the PI0 paper and pi0-FAST (<a href="https://www.pi.website/blog/pi0">Kevin etc, 2024</a>, <a href="https://www.pi.website/research/fast">Karl etc, 2025</a>), we think the dexterity stems from its flow matching architecture. Recently there are some efforts to run VLA with 7B VLM encoder at 50Hz (<a href="https://arxiv.org/pdf/2502.19645">Kim etc, 2025</a>), which is very impressive. We look forward to more large models running at a higher frequency! 
           </p>
         </div>
         
@@ -558,8 +582,18 @@
             More interestingly, the policy behaves similar to diffusion policy, as shown below, it could recover from failures and retry tasks that initially failed.
           </p>
 
-          
+          <div class="columns is-multiline is-centered">
+            <div class="column is-one-third">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static\videos\success\pick_banana.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered">"Pick up the banana"</p>
+              </div>
+            </div>
+          </div>
 
+          
 
         </div>
       </div>
@@ -681,139 +715,106 @@
         <h2 class="title is-3">2.2 Problem with PI0</h2>
 
         <!-- Early stopping problem -->
-        <h3 class="title is-4">Early stopping</h3>
+        <h3 class="title is-4">2.2.1 Early stopping</h3>
         <div class="content has-text-justified">
           <p>
-            A common failure case is the robot freezing in the middle of execution, due to the policy outputting stop commands prematurely.
-            For example, in the opening drawer test, the robot stops after its gripper grasped drawer handle. 
-            It seems the action is to stop and wait. However, the scene is static, so the robot will just keep stopping until human intervention. 
-            If we move the side view camera, or we move the robot base a bit, the policy will start to get out of 'local optimum', keep trying to complete the given task.
+            One common failure case is that policy may <strong>freeze unexpectedly during execution</strong>, leaving tasks incomplete until human intervention. 
+            This behavior comes from two interrelated factors: semantic ambiguity and autoregressive action decoding limitations.
           </p>
+
+          <h4 class="title is-5">Root Causes</h4>
           
-          <p>There are two type of reasons causing stopping:</p>
-          
-          <p><strong>1. Stop by semantic understanding</strong></p>
+          <p><strong>1. Semantic Misalignment</strong></p>
           <p>
-            The robot's language capabilities are limited. When it does not understand a command, it gets stuck.
-           In some experiments, we found that the object we wanted to test was out of the vocabulary of the robot, 
-           causing it to stop moving for the rest of the episode. We directly evaluated the robot's ability to choose between
-           two objects based solely on the text description, and found that it often failed to pick between the two objects. 
-           The robot would move in between the two objects, and then fail to move any further.
+            Pi0 lacks LLM-like commonsense reasoning to infer unfamiliar object categories. When it does not understand a command, it gets stuck. 
+            In some experiments, we found that some objects were out of distribution(OOD), causing early stopping.
           </p>
           
           <div class="columns is-centered">
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1SRhbtZ3SQmRCfPBW-x3u1OS1itCsWiBV/preview" type="video/mp4">
+                  <source src="static/videos/failure/Fail_Gun_Stuck.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Pick up the black knife"</p>
+                <p class="is-size-6 has-text-centered">"Place the gun into the blue box" - Pi0 stops because it can't recognize which object is 'gun'</p>
               </div>
             </div>
           </div>
           
-          <p><strong>2. Stop by frame prediction</strong></p>
-          <p>
-            Stuck is caused by 'Autoregressive' fashion of PI0 --- a core problem with this framework. The model falls into 'local optimum' for that frame, i.e. stop and wait. Also, when pi0 receives a command it doesn't understand, like out of distribution(OOD) objects. It will also halt. Take the toy gun pick-and-place task as example, it stops because it can't recognize which object is 'gun', and thus treats the scene as complicated.
-          </p>
+          <p><strong>2. Autoregressive Local Optima</strong></p>
+          <ul>
+            <li><strong>Case</strong>: "Open the drawer" → stops after grasping the handle.</li>
+            <li><strong>Behavior</strong>: Pi0 assumes the task is complete once the handle is gripped, failing to infer multi-step articulation.</li>
+            <li><strong>Why</strong>: The model predicts actions frame-by-frame without memory of prior steps.</li>
+          </ul>
           
+          <p><strong>3. Token Decoding Edge Cases</strong></p>
           <p>
-            One thing interesting is how pi0 learns 'stop/terminate state' from demonstration, some of which ending may be some tasks' middle point. In the ablation study below, we test how pi0 behaves when we move the side view camera during policy inference. It seems the side view camera greatly affects the initial observation and termination condition. When the robot executes a task and goes back to its initial position to stop, if the side view camera is moved, then the robot arm will move to set itself into another ending position.
+            During inference, pi0 will throw out this error: <code>Error decoding tokens: cannot reshape array of size 79 into shape (8)</code>
           </p>
-          
           <p>
-            In our understanding, STOPPING phenomena could be potentially because of pi0's autoregressive prediction behavior. PI0-FAST-DROID generates an action trunk at 15 Hz, it keeps requesting the 3B VLA with 2 current images (wrist + side view) and text instruction. For each query, the robot is in fact open-loop control; it doesn't encode history / past observations / past action into current reasoning. But the query is fast enough for following action to recover from failure, reaching a dynamic, adaptive planning over spatial and temporal closed-loop control. But this nature also makes long-horizon manipulation, like tasks involving history particularly hard for pi0 to learn, which leaves much space for research.
+            According to our discussion on <a href="https://github.com/Physical-Intelligence/openpi/issues/373">Github Issue#373</a>, sometimes the policy decoded mis-shaped actions occasionally during inference. 
+            In official implementation, <strong>pi0-fast-droid</strong> defaults to "no-motion" in these cases. Since as the robot continues querying the policy, 
+            the error gets skipped on subsequent queries, allowing the robot to quickly recover and continue decoding correctly-shaped outputs.
           </p>
         </div>
         
         <!-- Imprecise spatial reasoning -->
-        <h3 class="title is-4">Imprecise spatial reasoning</h3>
+        <h3 class="title is-4">2.2.2 Imprecise spatial reasoning</h3>
         <div class="content has-text-justified">
           <p>
-            Pi0 often struggles with spatial reasoning over height. For example, when asked to pick up an object and place it into a container, the policy can not lift the object high enough to clear the height of the container. This suggests the drawback of vision-based autoregressive VLA: it does not have a metrically accurate method to estimate the distance between gripper and surrounding environment. As shown in the video below, the robot seems to think the gripper is high enough, and so it pushes the destination object. If the robot were able to accurately estimate the size of the object that it holds, and that of the gap between the height of the object and the bowl, and understand that it must increase the gap, it could complete the task successfully.
+            Pi0 often struggles with spatial reasoning over height. For example, when asked to pick up an object and place it into a container, 
+            the policy cannot lift the object high enough to clear the height of the container. This suggests the drawback of vision-based 
+            autoregressive VLA: it does not have a metrically accurate method to estimate the distance between gripper and surrounding environment.
           </p>
-          
+
+          <div class="columns is-centered">
+            <div class="column is-half">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static/videos/problems/Pushing_Bowl_Fail.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered">"Place the plastic bottle into the pink bowl" - Pi0 fails to lift high enough</p>
+              </div>
+            </div>
+          </div>
+
           <p>
-            We also tried to prompt pi0 to raise the gripper higher. But it didn't learn on this, making it easy to collide with the container.
-            When pi0 is asked to operate with an articulation object, it becomes even harder for it to estimate the distance from the side view camera, causing frequent collisions. This is particularly worth noting when the robot is intersecting with humans. As it doesn't have an explicit constraint map, it will tend to hit / grasp the user's hand, which is unsafe and hurt per force.
+            We also tried to prompt pi0 to raise the gripper higher, but it didn't learn on this, making it easy to collide with containers.
+            When pi0 is asked to operate with articulated objects, it becomes even harder for it to estimate the distance from the side view camera, 
+            causing frequent collisions. This is particularly concerning when the robot is interacting with humans, as it doesn't have an explicit 
+            constraint map and may hit/grasp the user's hand, which is unsafe.
           </p>
-          
-          <p>Please refer to section 4.6 for more information.</p>
-          
+
           <p>
-            What's more, when Pi0 is required to manipulate a new, household appliance, it will tend to collide the device or stop during inference trials. As shown below, it seems not compilable with the Coffee Machine in our lab. For more videos, please refer to section 4.7 result for more details on it.
+            What's more, when Pi0 is required to manipulate household appliances, it tends to collide with the device or stop during inference trials. 
+            As shown below with our coffee machine examples:
           </p>
-          
+
           <div class="columns is-multiline is-centered">
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1Pps_RUP4_6BLYDBaN67GNRZKHDzCS6F1/preview" type="video/mp4">
+                  <source src="static/videos/failure/coffee_take_out_the_cup_under_the_coffee_machine.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Take out the cup under the coffee machine" -> collide top of coffee machine</p>
+                <p class="is-size-6 has-text-centered">"Take out the cup under the coffee machine" → collides with top of machine</p>
               </div>
             </div>
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1w_zXPKHwsjjVeiuc_VfA8WRFURDtcUrz/preview" type="video/mp4">
+                  <source src="static/videos/failure/coffee_take_out_the_silver_cup_from_the_coffee_machine.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Take out the silver cup from the coffee machine" success - grasp the handle beautifully</p>
+                <p class="is-size-6 has-text-centered">"Take out the silver cup from the coffee machine" → succeeds by grasping handle</p>
               </div>
             </div>
           </div>
-          
+
           <p>
-            One possible solution is to involve concepts like Vox map and planning constraint. Depth camera is also very helpful to implement collision avoidance.
+            One possible solution is to involve concepts like Vox map and planning constraints. Depth cameras would also be very helpful             to implement collision avoidance.
           </p>
         </div>
         
-        <!-- Sensitivity to Distribution Shift -->
-        <h3 class="title is-4">Sensitivity to Distribution Shift</h3>
-        <div class="content has-text-justified">
-          <p><strong>1. Orientation of objects significantly affects performance</strong></p>
-          
-          <p>
-            Initial condition of both objects & robot could cause success rate change a lot. As shown below, when the spam can is parallel to the viewer, the robot fails consistently. When perpendicular, it succeeds consistently. This orientation bias likely stems from the distribution of demonstrations in the training data, where certain viewpoints were overrepresented.
-          </p>
-          
-          <p>
-            We test in which angle could robot open the cabinet door. It seems 45 degree is a sweet spot.
-          </p>
-          
-          <p><strong>2. Grasps at awkward spots on some objects, resulting in drops</strong></p>
-          
-          <p>
-            There is no built-in, geometry-aware grasp detection system. This highlights a fundamental limitation of behavior cloning approaches like Pi0.
-          </p>
-          
-          <ul>
-            <li>
-              <strong>Demonstration Bias</strong>: The policy shows clear preferences for grasping objects in ways that mirror the training demonstrations, even when those aren't optimal for the current scenario. For example, we observed pi0 attempts to pick up cups from their edges rather than their handle. And the policy tends to grasp marker pens even if they are not requested to. The policy actually is trying to "pick up the most familiar object" it saw in the dataset. (Like in DROID, marker pen takes 16.1% of all the objects.)
-            </li>
-            <li>
-              <strong>Distribution Mismatch</strong>: When objects appear in positions or orientations underrepresented in the training data, performance drops dramatically. This covariate shift is a well-known weakness of behavior cloning - the policy hasn't learned to recover from states outside its training distribution.
-            </li>
-          </ul>
-          
-          <p>
-            The model doesn't actually know where & how to manipulate objects semantically - it can only reproduce patterns from demonstrations without true understanding of object affordances or functional parts. Though scaling up data may solve some scenarios, there are countless edge cases that need to be labeled. We need some more effective representation like autonomous driving met.
-          </p>
-
-
-​          
-          <p>Potential solutions might involve augmenting behavior cloning with:</p>
-          <ul>
-            <li>Explicit object-centric representations to identify functional parts</li>
-            <li>Adversarial training to improve robustness to distribution shifts</li>
-            <li>Incorporating physical priors about stable grasps and object affordances</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 
 <!-- Quirks Section -->
@@ -823,9 +824,8 @@
       <div class="column is-full-width">
         <h2 class="title is-3">2.3 Quirk: Some interesting behavior of pi0</h2>
 
-        <h3 class="title is-4">2.3.1 Good quirk:</h3>
         
-        <h4 class="title is-5">Quirk: Active Perception & Viewpoint Robustness</h4>
+        <h4 class="title is-5">Quirk 1: Active Perception & Viewpoint Robustness</h4>
         <div class="content has-text-justified">
           <p>
             One of the most frequently asked questions on Pi0 is, how robust it is when the sensory inputs are disrupted? We did several tests about blocking the camera, the object and moving the side view camera. Here's what we learned.
@@ -935,9 +935,9 @@
           </div>
         </div>
         
-        <h3 class="title is-4">2.3.2 Bad quirk:</h3>
+
         
-        <h4 class="title is-5">Quirk 1: Opening > Closing</h4>
+        <h4 class="title is-5">Quirk 2: Opening > Closing</h4>
         <div class="content has-text-justified">
           <p>
             Pi0 exhibits unexpected behaviors when interacting with articulated objects (e.g., drawers, cabinets), Pi0 achieves higher success rates when <strong>opening</strong> articulated objects (e.g., drawers) compared to <strong>closing</strong> them.
@@ -978,17 +978,17 @@
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1hqsaSnrYvGFGpRQ32yS_JHQoDFPaFMYg/preview" type="video/mp4">
+                  <source src="static\videos\success\close_the_drawer.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">Accelerated video of closing the drawer</p>
+                <p class="is-size-6 has-text-centered"> "Close the drawer"</p>
               </div>
             </div>
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1DeXayXo3eiZ2MA8bJlsMBxxJ8AB-K7gt/preview" type="video/mp4">
+                  <source src="static\videos\success\close_the_right_cabinet_door.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">Accelerated video of closing the right cabinet door</p>
+                <p class="is-size-6 has-text-centered"> "Close the right cabinet door"</p>
               </div>
             </div>
           </div>
@@ -998,7 +998,7 @@
           </p>
         </div>
         
-        <h4 class="title is-5">Quirk 2: Language Specificity Matters</h4>
+        <h4 class="title is-5">Quirk 3: Language Specificity Matters</h4>
         <div class="content has-text-justified">
           <p>
             Pi0's performance can be improved after tuning its instruction. Like this examples:
@@ -1039,7 +1039,7 @@
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1vqgYtTTi3lpQyE8hHpvUNNUrZK41_o8R/preview" type="video/mp4">
+                  <source src="static\videos\success\close_the_white_lid_of_the_toilet.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">Close the white lid for the toilet (Success)</p>
               </div>
@@ -1047,7 +1047,7 @@
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="https://drive.google.com/file/d/1C6JV3Zbyly8b8YODEYRuhlW7sQlDBMGm/preview" type="video/mp4">
+                  <source src="static\videos\failure\close_the_toilet.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">Close the toilet (Failure)</p>
               </div>
@@ -1067,7 +1067,28 @@
           </ul>
         </div>
         
-        <h4 class="title is-5">Quirk 3: What will pi0 do if there is no specific language goal?</h4>
+        
+        <!-- The Power of Prompts -->
+        <div class="box">
+          <h4 class="title is-5">The Power of Prompts</h4>
+          <div class="columns">
+            <div class="column is-half">
+              <div class="content">
+                <p>Pi0's 3B language model is very sensitive to phrasing:</p>
+                <ul>
+                  <li><strong>Good:</strong> "Put A into B" → Clear spatial logic → 80% success</li>
+                  <li><strong>Bad:</strong> "Fill B with A" → Ambiguous → 20% lower success</li>
+                </ul>
+                <p>Example:</p>
+                <ul>
+                  <li>"Close the toilet" → 0% success</li>
+                  <li>"Close the white lid of the toilet" → 100% success</li>
+                </ul>
+              </div>
+            </div>
+            
+        <!-- Quirk 4 -->
+        <h4 class="title is-5">Quirk 4: What will pi0 do if there is no specific language goal?</h4>
         <div class="content has-text-justified">
           <p>
             With no language goal, the robot will try to pick up the most familiar object within dataset based on RGB image.
@@ -1126,7 +1147,7 @@
           </ul>
           
           <figure class="image">
-            <img src="static/images/robot_setup.jpg" alt="Robot setup">
+            <img src="static/images/robot.png" alt="Robot setup">
           </figure>
         </div>
         
@@ -1248,7 +1269,7 @@
               <div class="content">
                 <p><strong>Strengths:</strong></p>
                 <ul>
-                  <li>Object handovers ("Give the pineapple to the programmer") - 78% success</li>
+                  <li>Object handovers - 46.67% success</li>
                   <li>Following a moving human - 65% success</li>
                 </ul>
                 <p><strong>Weaknesses:</strong></p>
@@ -1258,32 +1279,68 @@
                 </ul>
               </div>
             </div>
+      
             <div class="column is-4">
-              <figure class="image">
-                <img src="static/images/human_interaction_chart.jpg" alt="Chart showing human interaction performance">
-              </figure>
+              <div class="columns is-multiline">
+                <div class="column is-12">
+                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                    <source src="static\videos\success\human_3_Pick up the pineapple and give it to the programmer.mp4" type="video/mp4">
+                  </video>
+                  <p class="is-size-6 has-text-centered">"Give the pineapple to the programmer"</p>
+                </div>
+                <div class="column is-12">
+                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                    <source src="static\videos\failure\human_7_Pick up the whiteboard eraser and give it to the programmer.mp4" type="video/mp4">
+                  </video>
+                  <p class="is-size-6 has-text-centered">"Give the whiteboard eraser to the programmer"</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        
+
+        <!-- Coffee Machine -->
+        <div class="box">
+          <h4 class="title is-5">Coffee Machine (8.00% Success)</h4>
+          <div class="columns">
+            <div class="column is-8">
+              <div class="content">
+                <p><strong>Capsule Coffee Machine:</strong></p>
+                <ul>
+                  <li>Close the capsule lid of coffee machine - 50% success</li>
+                  <li>Pick up the capsule from the coffee machine - 0% success</li>
+                  <li>Place the capsule into the coffee machine - 0% success</li>
+
+                </ul>
+                <p><strong>Espresso Coffee Machine:</strong></p>
+                <ul>
+                  <li>Pick up the coffee portafilter - 0% success</li>
+                  <li>Pour the coffee into the cup - 0% success</li>
+                  <li>Pick up the silver milk frothing pitcher- 33% success</li>
+                </ul>
+              </div>
+            </div>
+            <div class="column is-4">
+              <div class="columns">
+                <div class="column is-half">
+                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                    <source src="static/videos/failure/coffee_failure.mp4" type="video/mp4">
+                  </video>
+                  <p class="is-size-6 has-text-centered">"Place the capsule into the coffee machine"</p>
+                </div>
+                <div class="column is-half">
+                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                    <source src="static/videos/right_Close_the_capsule_lid_of_the_coffee_machine.mp4" type="video/mp4">
+                  </video>
+                  <p class="is-size-6 has-text-centered">"Close the capsule lid of the coffee machine"</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         
-        <!-- The Power of Prompts -->
-        <div class="box">
-          <h4 class="title is-5">The Power of Prompts</h4>
-          <div class="columns">
-            <div class="column is-half">
-              <div class="content">
-                <p>Pi0's 3B language model is very sensitive to phrasing:</p>
-                <ul>
-                  <li><strong>Good:</strong> "Put A into B" → Clear spatial logic → 80% success</li>
-                  <li><strong>Bad:</strong> "Fill B with A" → Ambiguous → 20% lower success</li>
-                </ul>
-                <p>Example:</p>
-                <ul>
-                  <li>"Close the toilet" → 0% success</li>
-                  <li>"Close the white lid of the toilet" → 100% success</li>
-                </ul>
-              </div>
-            </div>
             <div class="column is-half">
               <figure class="image">
                 <img src="static/images/instruction_word_cloud.jpg" alt="Word cloud of instructions used in testing">
@@ -1391,6 +1448,45 @@
   </div>
 </section>
 
+<!-- Citation TODO change site-->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Citation</h2>
+        <div class="content has-text-justified">
+          <p>If you find this evaluation useful for your research, please consider citing our repository:</p>
+          <pre><code>@misc{pi0-experiment-wild,
+  author = {PAL Research Group},
+  title = {Pi0 Experiment in the Wild},
+  year = {2024},
+  publisher = {GitHub},
+  url = {https://github.com/penn-pal-lab/Pi0-Experiment-in-the-Wild}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Conclusion Image -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="content has-text-centered">
+          <figure class="image">
+            <img src="static/images/robot_workspace.jpg" alt="Robot Workspace">
+            <figcaption>Our robot workspace setup used for evaluating Pi0.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
@@ -1398,6 +1494,7 @@
       <p>
         <strong>Pi0 Evaluation</strong> by <a href="https://www.seas.upenn.edu/~dineshj/pennpal/index.html">PAL Research Group</a>, GRASP Lab, University of Pennsylvania.
       </p>
+      
       <p>
         The website template is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
       </p>
