@@ -162,24 +162,13 @@
         <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
           <p>
-            Pi0 is a state-of-the-art vision-language-action (VLA) model designed for general-purpose robotic manipulation. 
-            Built on internet-scale pre-training and the Open X-Embodiment dataset, Pi0 promises versatility across tasks 
-            like pick-and-place, articulation, dexterity and human robot interaction. But how well does it actually perform in the wild?
+            Pi0 is a state-of-the-art vision-language-action (VLA) model designed for general-purpose robotic manipulation, trained on internet-scale data and the Open X-Embodiment dataset. While Pi0 promises versatility across tasks like pick-and-place, articulation, dexterity and human robot interaction, we ask: how does it perform when released in the wild?
           </p>
           <p>
-            We are from GRASP Lab at the University of Pennsylvania. As contributors to the 
-            <strong>Distributed RObot Interaction Dataset (DROID)</strong> dataset, we are fortunate to have early access to the PI0 model. 
-            Our robot setup can be found <a href="https://droid-dataset.github.io/droid/docs/hardware-setup">here</a>. With no training, 
-            no finetuning, we just deploy the <em>PI0-FAST-DROID</em> and use it zero-shot. In order to build upon this powerful model, 
-            we largely test its performance on a variety of complex tasks, through pi0 into difficult scenes in the wild.
+            Just like how users rank LLMs by chatting about arbitrary topics in Chatbot Arena, we subject Pi0 to "vibe checks" through unstructured real-world experimentation. Users interact with the policies on a whim - improvising tasks, altering camera angles, rearranging objects, and probing edge cases. By embracing the high entropy of ad-hoc human testing, we stress-test the policy's generalization capabilities, while discovering interesting phenomena that structured evaluations may miss.
           </p>
           <p>
-            Similar to <a href="https://en.wikipedia.org/wiki/Vibe_coding">Vibe Coding</a>, the philosophy of our evaluation is: more in-the-wild, less controlled / lab setup. We observe pi0 like biologists observing a new animal - conducting interesting tests, looking for broad, qualitative properties. The aim is to encourage others to try out pi0, such an open-source, amazing foundation model for manipulation.
-          </p>
-          <p>
-            In this blog, we share results from <strong>300+ trials</strong> testing Pi0 on a Franka Research 3 robot. 
-            We explore its strengths, unexpected quirks, and limitations—and what this means for the future of imitation learning.
-            For detailed metrics and analysis, see our <a href="#results">Results & Insights</a> section.
+            Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. We found the setup of Pi0 to be very close to the experience of using open-source LLMs today - download the checkpoint and deploy, with no additional environment-specific instrumentation required (e.g. camera calibration, controller tuning, demo collection, etc.). We summarize our discoveries over 300+ trials of Pi0 below, exploring its strengths, limitations, unexpected quirks, and its implications for the future of robot learning. We hope that it inspires others to try out Pi0 for themselves!
           </p>
           <p>
             <strong>Key words:</strong> pi0, VLAs, Manipulation, Robot Learning, Imitation Learning.
@@ -1086,7 +1075,7 @@
                 </ul>
               </div>
             </div>
-            
+        </div>  
         <!-- Quirk 4 -->
         <h4 class="title is-5">Quirk 4: What will pi0 do if there is no specific language goal?</h4>
         <div class="content has-text-justified">
@@ -1121,12 +1110,146 @@
   </div>
 </section> 
 
+
+<!-- Future Directions -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">The Bigger Picture</h2>
+
+        <div class="content">
+          <h3 class="title is-4">Why Pi0 Matters</h3>
+          
+          <div class="columns">
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5">Generalization</h4>
+                <p>Pi0 shows decent zero-shot performance across a wide range of tasks. For centuries, humans have had a strong desire to build a generalist agent system that could work in the wild, going out of the robotics lab and assisting our daily life. With the rapid development of VLAs model, the existence of Pi0 marks a milestone for robotics research.</p>
+              </div>
+            </div>
+            
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5">Scalability</h4>
+                <p>FAST tokenizer enables 5x faster training, which is an impressive milestone and turning point for VLA research. The effective utilization of data implies that what matters to robots is not only the scaling size of dataset, but also the representation's expressiveness.</p>
+              </div>
+            </div>
+            
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5">Open Source Impact</h4>
+                <p>The open-sourcing of Pi0 is very intuitive and warm-hearted for the whole robotics industry. The impact not only lies in that every lab gets a very powerful manipulation baseline, but it will also push and extend the horizon of research in manipulation problems.</p>
+              </div>
+            </div>
+          </div>
+          
+          <h3 class="title is-4">Future Directions</h3>
+          
+          <div class="columns">
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5">Better Language Grounding</h4>
+                <p>As discussed in their new work "Hi Robot", VLA's language understanding ability could be enhanced via a two-tiered inference framework. However, as we saw in our examples, the 3B VLM backbone may still suffer from instruction following & generalization across language axes.</p>
+              </div>
+            </div>
+            
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5">Force Feedback Integration</h4>
+                <p>Current models rely primarily on visual input. Incorporating force feedback could help with tasks requiring delicate pressure control and improve interaction with varied surfaces.</p>
+              </div>
+            </div>
+            
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5">Memory Modules</h4>
+                <p>Currently, Pi0's autoregressive paradigm has achieved great success, but lacking history/memory capabilities is a significant limitation. Future models will likely incorporate explicit memory mechanisms to maintain task state across interruptions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Conclusion -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Conclusion</h2>
+
+        <div class="content has-text-justified">
+          <p>Pi0 represents a promising step toward generalist robots, but significant challenges remain. Instruction following and fine-grained tasks still pose considerable difficulties. As foundation models evolve and incorporate more modalities and memory capabilities, we're optimistic about the future—soon, every robotics lab might have a Pi0-like baseline!</p>
+          
+          <div class="buttons is-centered mt-5">
+            <a href="#" class="button is-link is-medium">
+              <span class="icon">
+                <i class="fas fa-table"></i>
+              </span>
+              <span>Explore Full Results</span>
+            </a>
+            
+            <a href="#" class="button is-success is-medium">
+              <span class="icon">
+                <i class="fas fa-video"></i>
+              </span>
+              <span>Watch Full Videos</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Citation TODO change site-->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Citation</h2>
+        <div class="content has-text-justified">
+          <p>If you find this evaluation useful for your research, please consider citing our repository:</p>
+          <pre><code>@misc{pi0-experiment-wild,
+  author = {PAL Research Group},
+  title = {Pi0 Experiment in the Wild},
+  year = {2024},
+  publisher = {GitHub},
+  url = {https://github.com/penn-pal-lab/Pi0-Experiment-in-the-Wild}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Conclusion Image -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="content has-text-centered">
+          <figure class="image">
+            <img src="static/images/robot_workspace.jpg" alt="Robot Workspace">
+            <figcaption>Our robot workspace setup used for evaluating Pi0.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- Robot & Model Setup Section -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">3. Robot & Model Setup</h2>
+        <h2 class="title is-3">Appendix A: Our Robot & Model Setup</h2>
 
         <div class="content has-text-justified">
           <p>The following are details of our experiment set up.</p>
@@ -1194,7 +1317,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Results & Insights</h2>
+        <h2 class="title is-3">Appendix B: Detailed Results for Each Task</h2>
 
         <!-- Overall Results -->
         <div class="columns is-centered">
@@ -1348,138 +1471,6 @@
               </figure>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Future Directions -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">The Bigger Picture</h2>
-
-        <div class="content">
-          <h3 class="title is-4">Why Pi0 Matters</h3>
-          
-          <div class="columns">
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Generalization</h4>
-                <p>Pi0 shows decent zero-shot performance across a wide range of tasks. For centuries, humans have had a strong desire to build a generalist agent system that could work in the wild, going out of the robotics lab and assisting our daily life. With the rapid development of VLAs model, the existence of Pi0 marks a milestone for robotics research.</p>
-              </div>
-            </div>
-            
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Scalability</h4>
-                <p>FAST tokenizer enables 5x faster training, which is an impressive milestone and turning point for VLA research. The effective utilization of data implies that what matters to robots is not only the scaling size of dataset, but also the representation's expressiveness.</p>
-              </div>
-            </div>
-            
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Open Source Impact</h4>
-                <p>The open-sourcing of Pi0 is very intuitive and warm-hearted for the whole robotics industry. The impact not only lies in that every lab gets a very powerful manipulation baseline, but it will also push and extend the horizon of research in manipulation problems.</p>
-              </div>
-            </div>
-          </div>
-          
-          <h3 class="title is-4">Future Directions</h3>
-          
-          <div class="columns">
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Better Language Grounding</h4>
-                <p>As discussed in their new work "Hi Robot", VLA's language understanding ability could be enhanced via a two-tiered inference framework. However, as we saw in our examples, the 3B VLM backbone may still suffer from instruction following & generalization across language axes.</p>
-              </div>
-            </div>
-            
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Force Feedback Integration</h4>
-                <p>Current models rely primarily on visual input. Incorporating force feedback could help with tasks requiring delicate pressure control and improve interaction with varied surfaces.</p>
-              </div>
-            </div>
-            
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Memory Modules</h4>
-                <p>Currently, Pi0's autoregressive paradigm has achieved great success, but lacking history/memory capabilities is a significant limitation. Future models will likely incorporate explicit memory mechanisms to maintain task state across interruptions.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Conclusion -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Conclusion</h2>
-
-        <div class="content has-text-justified">
-          <p>Pi0 represents a promising step toward generalist robots, but significant challenges remain. Instruction following and fine-grained tasks still pose considerable difficulties. As foundation models evolve and incorporate more modalities and memory capabilities, we're optimistic about the future—soon, every robotics lab might have a Pi0-like baseline!</p>
-          
-          <div class="buttons is-centered mt-5">
-            <a href="#" class="button is-link is-medium">
-              <span class="icon">
-                <i class="fas fa-table"></i>
-              </span>
-              <span>Explore Full Results</span>
-            </a>
-            
-            <a href="#" class="button is-success is-medium">
-              <span class="icon">
-                <i class="fas fa-video"></i>
-              </span>
-              <span>Watch Full Videos</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Citation TODO change site-->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Citation</h2>
-        <div class="content has-text-justified">
-          <p>If you find this evaluation useful for your research, please consider citing our repository:</p>
-          <pre><code>@misc{pi0-experiment-wild,
-  author = {PAL Research Group},
-  title = {Pi0 Experiment in the Wild},
-  year = {2024},
-  publisher = {GitHub},
-  url = {https://github.com/penn-pal-lab/Pi0-Experiment-in-the-Wild}
-}</code></pre>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Conclusion Image -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <div class="content has-text-centered">
-          <figure class="image">
-            <img src="static/images/robot_workspace.jpg" alt="Robot Workspace">
-            <figcaption>Our robot workspace setup used for evaluating Pi0.</figcaption>
-          </figure>
         </div>
       </div>
     </div>
