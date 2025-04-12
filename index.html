@@ -517,17 +517,24 @@
           
         </div>
         
-        <!-- High Frequency Dexterity -->
-        <h3 class="title is-4">2.1.2 High frequency dexterity of robot policy</h3>
+
+        <!-- Meta Learning: pi0 is an FSM -->
+        <h3 class="title is-4">2.1.2 Meta Learning: pi0 is an Finite State Machine</h3>
         <div class="content has-text-justified">
           <p>
-            Even though pretrained on massive datasets, Pi0 can perform high-frequency, closed-loop control up to 50Hz. Despite a <strong>90ms-300ms delay</strong> introduced by HTTP connections between robot and the GPU server (<a href="https://x.com/svlevine/status/1886822326274285709">Sergey, 2025</a>), Pi0 achieves real-time responsiveness. It can do precise manipulation of complex objects like newspapers, T-shirts, and milk frothing pitcher.
+            Based on our observations, pi0 demonstrates a notable ability to implicitly learn patterns from data. Its behavior shows state transitions among abstract behavioral states.
           </p>
-          
           <p>
-            Here are some impressive cases demonstrating the dexterity and precision of pi0. Notice all videos in this blog are <strong>uncut and unedited</strong> from the ZED 2 camera at <strong>1x speed</strong>.
+            <strong>Search→ Reach→ Grasp→ Transport → Release→ Reset/Terminal.</strong>
+          </p>
+          <p>
+            Remarkably, pi0 is an autoregressive model without explicit memory or historical state encoding. It is amazing that such an FSM pattern is entirely distilled from data. As shown below, even if pi0 doesn't know how to manipulate an object, it will try to explore and get close to the affordance area. The wrist camera will then decide whether it should Grasp or not.
+          </p>
+          <p>
+            More interestingly, pi0 learns how to terminate a task. Like the pick-and-place demo shown below, if the policy treats the robot as finished placing objects into the bowl, then it will go back to initial position and reset with no action. However, this could also cause Early Stopping Problems. Please refer to <a href="#early-stopping">section 2.2.1</a> for more details.
           </p>
           
+          <!-- Existing video grid -->
           <div class="columns is-multiline is-centered">
             <div class="column is-one-third">
               <div>
@@ -555,8 +562,8 @@
             </div>
           </div>
           
-          <p>
-            According to the PI0 paper and pi0-FAST (<a href="https://www.pi.website/blog/pi0">Kevin etc, 2024</a>, <a href="https://www.pi.website/research/fast">Karl etc, 2025</a>), we think the dexterity stems from its flow matching architecture. Recently there are some efforts to run VLA with 7B VLM encoder at 50Hz (<a href="https://arxiv.org/pdf/2502.19645">Kim etc, 2025</a>), which is very impressive. We look forward to more large models running at a higher frequency! 
+          <p class="box has-background-grey-lighter has-text-centered is-italic">
+            “Pi0’s FSM pattern indicates it is a strong meta learning algorithm being able to generalize across environments with pretrained data.”
           </p>
         </div>
         
