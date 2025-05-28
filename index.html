@@ -66,8 +66,11 @@
           <a class="navbar-item" href="https://grasp.upenn.edu/">
             GRASP Lab
           </a>
-          <a class="navbar-item" href="https://droid-dataset.github.io/droid/">
-            DROID Dataset
+          <a class="navbar-item" href="https://www.seas.upenn.edu/~dineshj/pennpal/index.html">
+            PAL Research Group
+          </a>
+          <a class="navbar-item" href="https://www.cis.upenn.edu/~kostas/">
+            Daniilidis Research Group
           </a>
         </div>
       </div>
@@ -85,16 +88,20 @@
           <h1 class="title is-1 publication-title">Evaluating Pi0 in the Wild @ GRASP Lab: Strengths, Problems, and the Future of Generalist Robot Policies</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://everloom-129.github.io/">Jie Wang</a><sup>1,*</sup>,</span>
+              <a href="https://everloom-129.github.io/">Jie Wang</a><sup>*</sup>,</span>
             <span class="author-block">
-              <a href="#">Matthew Leonard</a><sup>1</sup>,</span>
+              <a href="https://www.grasp.upenn.edu/people/matthew-leonard/">Matthew Leonard</a>,</span>
             <span class="author-block">
-              <a href="https://edwardshu.com/">Edward S. Hu</a><sup>1</sup>
+              <a href="https://www.cis.upenn.edu/~kostas/">Kostas Daniilidis</a>,</span>
+            <span class="author-block">
+              <a href="https://www.seas.upenn.edu/~dineshj/">Dinesh Jayaraman</a>,</span>
+            <span class="author-block">
+              <a href="https://edwardshu.com/">Edward S. Hu</a><sup>†</sup>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Pennsylvania</span>
+            <span class="author-block">GRASP Lab, University of Pennsylvania</span>
           </div>
     
           <div class="column has-text-centered">
@@ -171,7 +178,7 @@
             Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. We found the setup of Pi0 to be very close to the experience of using open-source LLMs today - download the checkpoint and deploy, with no additional environment-specific instrumentation required (e.g. camera calibration, controller tuning, demo collection, etc.). We summarize our discoveries over 300+ trials of Pi0 below, exploring its strengths, limitations, unexpected quirks, and its implications for the future of robot learning. We hope that it inspires others to try out Pi0 for themselves!
           </p>
           <p>
-            <strong>Key words:</strong> pi0, VLAs, Manipulation, Robot Learning, Imitation Learning.
+            <strong>Key words: Evaluation, pi0, VLAs, Manipulation, Robot Learning, Imitation Learning. </strong> 
           </p>
         </div>
       </div>
@@ -190,7 +197,7 @@
             <ul class="is-size-5">
               <li><strong>Overall Success:</strong> 42.3% average task completion across 300+ trials</li>
               <li><strong>Key Finding:</strong> Pi0 demonstrates impressive vision-language understanding but struggles with spatial reasoning and precise manipulation</li>
-              <li><strong>Bottom Line:</strong> Pi0 works impressively in the wild without fine-tuning, but success depends heavily on instruction phrasing and object familiarity</li>
+              <li><strong>Bottom Line:</strong> Pi0 works impressively in the wild without fine-tuning, but success depends heavily on prompt engineering and object familiarity</li>
             </ul>
           </div>
         </div>
@@ -213,12 +220,12 @@
                 <figure class="image" style="margin: 0;">
                   <img src="static/images/lab_setup.jpg" alt="GRASP Lab Setup" style="object-fit: cover; height: 200px; width: 100%;">
                 </figure>
-              </div>
+    </div>
               <div class="column is-one-third">
                 <figure class="image" style="margin: 0;">
                   <img src="static/images/robot_workspace.jpg" alt="Robot Workspace" style="object-fit: cover; height: 200px; width: 100%;">
                 </figure>
-              </div>
+  </div>
               <div class="column is-one-third">
                 <figure class="image" style="margin: 0;">
                   <img src="static/images/lab_setup_2.jpg" alt="Levine Setup 2" style="object-fit: cover; height: 200px; width: 100%;">
@@ -244,17 +251,15 @@
     </div>
   </div>
 </section>
-
-
 <!-- Key Findings Section -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Key Findings</h2>
+        <h2 class="title is-3">2. Key Findings</h2>
         <div class="content has-text-justified">
           <p>
-            Through experiments across diverse manipulation tasks in the <a href="https://facilities.upenn.edu/maps/locations/levine-hall-melvin-and-claire-weiss-tech-house">Levine Hall</a> at Penn Engineering School, we observed a wide range of behaviors—remarkable performances, confusing failures, and many quirks. By testing Pi0 in varied environments (e.g., cluttered tables, articulated cabinets, human-involved settings), we concludes three critical insights:
+            Through experiments across diverse manipulation tasks in the <a href="https://facilities.upenn.edu/maps/locations/levine-hall-melvin-and-claire-weiss-tech-house">Levine Hall</a> 403 & 457 at Penn Engineering School, we observed a wide range of behaviors—remarkable performances, confusing failures, and many quirks. By testing Pi0 in varied environments (e.g., cluttered tables, articulated cabinets, human-involved settings), we have derived three critical insights:
           </p>
 
           <ol>
@@ -262,22 +267,49 @@
               <strong>Pi0 Works (Mostly)</strong>: It achieves <strong>42.3% average progress</strong> across diverse, hard tasks, even in unseen environments and objects. However, it also fails in some seemingly simple tasks.
             </li>
             <li>
-              <strong>Prompt Engineering Matters</strong>: While Pi0 is good at vision-action grounding, its <strong>performance drops 20~100%</strong> based on instruction phrasing. You need to carefully prompt it to make it work in some condition.
+              <strong>Prompt Engineering Matters</strong>: While Pi0 is good at vision-action grounding, its performance drops <strong>20~100%</strong> based on instruction phrasing. You need to carefully prompt it to make it work in some condition.
             </li>
             <li>
-              <strong>Unexpected Quirks</strong>: Pi0 can recover from failures, handle moving humans in the scene, but struggles with <strong>mid-task freezing, collision avoidance, and fine-grained manipulation</strong>.
+              <strong>Unexpected Quirks</strong>: Pi0 can recover from failures, and handle moving humans in the scene, but struggles with <strong>mid-task freezing, collision avoidance, and fine-grained manipulation etc.</strong>
             </li>
           </ol>
           
           <p>
-            Below, we unpack each finding with video examples and analysis. For detailed metrics, see <a href="#results">Section 4: Results</a>.
+            Below, we unpack each finding with video examples and analysis.
+          </p>
+
+          <h3 class="title is-4">Evaluation: Progress Score through Vibe Testing</h3>
+          
+          <p>
+            Evaluating large generalist robot policies like <strong>pi0</strong> remains an open challenge. Unlike classical robotics benchmarks, these models operate across diverse tasks and environments, often in open-ended settings with no binary notion of success.
+          </p>
+
+          <p>
+            In our blog, we adopt a <strong>progress score</strong> as the main evaluation signal, which is <strong>loosely inspired by the "vibe testing" rubric</strong> proposed in the <a href="https://arxiv.org/abs/2403.04132">ChatbotArena(Chiang, etc, 2024)</a>, (<a href="https://www.interconnects.ai/p/chatbotarena-the-future-of-llm-evaluation">Lambert 2024</a>). This method has also been used in recent works such as the pi0 and pi0-FAST papers. During evaluation, we assign a continuous score from 0 to 100 to each policy rollout, reflecting the <strong>fraction of the commanded task successfully completed</strong>. For instance, a drawer-closing task might score:
+          </p>
+
+          <ul>
+            <li><strong>30</strong>: if the robot approached and touched the drawer handle</li>
+            <li><strong>70</strong>: if it pulled the drawer halfway closed</li>
+            <li><strong>100</strong>: if the drawer was fully shut confidently</li>
+          </ul>
+
+          <p>
+            These scores are inherently subjective and noisy, but practical: we strive to remain <strong>consistent across trials</strong>, and use them as <strong>noisy but informative approximations of task completion</strong>.
+          </p>
+
+          <p>
+            This scalar scoring allows us to still assess trends, failure modes, and emerging capabilities across our experiments. As the field matures, we believe more standardized, benchmark-driven evaluation methods for generalist policies will emerge. For now, <strong>vibe-informed progress scores</strong> are a reasonable and transparent compromise.
+          </p>
+
+          <p>
+            For more details, see <a href="#appendix">Appendix B: Results</a>.
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- Hero Images -->
 <section class="section">
@@ -289,14 +321,39 @@
             <div class="column is-half">
               <img src="static/images/OverallResult.png" alt="Scatter plot showing performance distribution">
             <figcaption style="text-align: center;">Performance across 300+ trials (42.3% average progress)</figcaption>
-            </div>
+          </div>
             <div class="column is-half">
               <img src="static/images/worldcloud.png" alt="Word cloud visualization">
             <figcaption style="text-align: center;">Word cloud of task instructions</figcaption>
-          </div>
+        </div>
 
           </div>
         </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Disclaimer Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="box has-background-warning-light">
+          <h3 class="title is-4">Disclaimer</h3>
+          <div class="content has-text-justified">
+            <p>
+              Our evaluations were conducted using the <strong>π₀-FAST-DROID</strong> model, specifically on <strong>DROID robot setups</strong>. While the model supports prompt-based control, its <strong><i>"LLM-like-download-and-prompt"</i></strong> functionality is currently limited to <strong>embodiments similar to those seen during training</strong>—particularly setups included in the <strong>Distributed RObot Interaction Dataset (DROID)</strong>.
+            </p>
+            <p> 
+              The evaluation is conducted from Feb. 22 to March.22, with a focus on limited environment and tasks type. Please check the Appendix section for more details on results. 
+            </p>
+            <p>
+              PAL Research Group also contributed data to the DROID dataset in late 2023, making our setup more in-distribution. However, our setup has changed significantly since late 2023 - signficant environmental changes like camera positions, robot height and calibration, new objects, lighting, etc.All results, observations, and analyses presented in this blog are based solely on  <strong>our own rollouts</strong>, and <strong>do not reflect any official performance</strong> guarantees from the model authors or dataset maintainers.
+            </p>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -323,11 +380,11 @@
                   <div>
                     <video id="success-video-1" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                       <source src="static/videos/success/success_pickplace_fish_to_box.mp4" type="video/mp4">
-                    </video>
-                  </div>
+      </video>
+    </div>
                   <p class="is-size-6">"Place the yellow fish into the purple box"</p>
                   <p class="is-size-6">Precise placement of camouflage fish into the box</p>
-                </div>
+  </div>
               </div>
               
               <!-- Video 2 -->
@@ -434,16 +491,16 @@
                   <source src="static\videos\success\Success_Dropping_Into_Cup.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Place the plastic bottle into the white cup."</p>
-              </div>
-            </div>
+        </div>
+      </div>
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static\videos\success\transparent_bottle_place.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Place the plastic bottle into the white cup."</p>
-              </div>
-            </div>
+    </div>
+  </div>
           </div>
           
   
@@ -453,24 +510,24 @@
             PI0 can identify the 'yellow fish' here even when it is placed on top of a colorful board game. This object has an unusual and difficult shape, and it blends in well with the background, but pi0 detects well with its position, and its shape, well enough to grasp it up.
           </p>
           
-          <div class="columns is-centered">
+    <div class="columns is-centered">
             <div class="column is-half"> 
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static/videos/success/camflage_yellow_fish.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Place the fish into the red box"</p>
-              </div>
-            </div>
+          </div>
+        </div>
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static\videos\success\success_pickplace_fish_to_box.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Place the fish into the purple box"</p>
-              </div>
-            </div>
-          </div>
+      </div>
+    </div>
+  </div>
           
           <p><strong>3. It is robust to human activity in the input</strong></p>
           
@@ -493,10 +550,10 @@
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static\videos\success\success_initial_PI0_pineapple.mp4" type="video/mp4">
-                </video>
+      </video>
                 <p class="is-size-6 has-text-centered">"Pick the pineapple and place it into the basket"</p>
-              </div>
-            </div>
+    </div>
+  </div>
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
@@ -613,17 +670,17 @@
             <div class="columns is-multiline">
               <!-- Video 1 -->
               <div class="column is-one-third">
-                <div class="content">
+          <div class="content">
                   <h3 class="title is-5">OOD Objects</h3>
                   <div>
                     <video id="failure-video-1" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                       <source src="static\videos\failure\right_place_the_beaker_into_the_pink_bowl.mp4" type="video/mp4">
                     </video>
-                  </div>
+          </div>
                   <p class="is-size-6"><i>"Place the beaker into the pink bowl"</i></p>
                   <p class="is-size-6">Cannot find the transparent glass beaker</p>
-                </div>
-              </div>
+        </div>
+      </div>
               
               <!-- Video 2 -->
               <div class="column is-one-third">
@@ -633,10 +690,10 @@
                     <video id="failure-video-2" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                       <source src="static\videos\failure\upenn_pick_block.mp4" type="video/mp4">
                     </video>
-                  </div>
+    </div>
                   <p class="is-size-6"><i>"Pick the black box on the white box"</i></p>
                   <p class="is-size-6">Can not handle well with unseen background</p>
-                </div>
+  </div>
               </div>
               
               <!-- Video 3 -->
@@ -660,11 +717,11 @@
                   <div>
                     <video id="failure-video-4" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                       <source src="static\videos\failure\right_place_the_can_into_the_tray.mp4" type="video/mp4">
-                    </video>
-                  </div>
+      </video>
+    </div>
                   <p class="is-size-6"><i>"Place the can into the tray"</i></p>
                   <p class="is-size-6">Misjudges object position relative to container (19% error)</p>
-                </div>
+  </div>
               </div>
               
               <!-- Video 5 -->
@@ -771,9 +828,9 @@
                   <source src="static/videos/problems/Pushing_Bowl_Fail.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Place the plastic bottle into the pink bowl" - Pi0 fails to lift high enough</p>
-              </div>
-            </div>
-          </div>
+      </div>
+    </div>
+  </div>
 
           <p>
             We also tried to prompt pi0 to raise the gripper higher, but it didn't learn on this, making it easy to collide with containers.
@@ -794,23 +851,23 @@
                   <source src="static/videos/failure/coffee_take_out_the_cup_under_the_coffee_machine.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Take out the cup under the coffee machine" → collides with top of machine</p>
-              </div>
-            </div>
+          </div>
+        </div>
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static/videos/failure/coffee_take_out_the_silver_cup_from_the_coffee_machine.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Take out the silver cup from the coffee machine" → succeeds by grasping handle</p>
-              </div>
-            </div>
-          </div>
+      </div>
+    </div>
+  </div>
 
           <p>
             One possible solution is to involve concepts like Vox map and planning constraints. Depth cameras would also be very helpful             to implement collision avoidance.
           </p>
-        </div>
-        
+    </div>
+
 
 
 <!-- Quirks Section -->
@@ -926,10 +983,10 @@
                   <source src="static/videos/camera_blocking_experiment.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">Camera blocking experiment</p>
-              </div>
-            </div>
-          </div>
         </div>
+      </div>
+    </div>
+  </div>
         
 
         
@@ -947,7 +1004,7 @@
               <ul>
                 <li><strong>Behavior</strong>: Pi0 grasps the handle, attempts complex maneuvers (e.g., twisting), and often fails to align with the articulation axis.</li>
                 <li><strong>Result</strong>: <strong>60% success rate</strong> for opening vs. <strong>35% for closing</strong> (see video).</li>
-              </ul>
+            </ul>
             </li>
             <li>
               <strong>Toy Cabinet or Real Drawer on table Challenge</strong>:
@@ -977,17 +1034,17 @@
                   <source src="static\videos\success\close_the_drawer.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered"> "Close the drawer"</p>
-              </div>
-            </div>
+          </div>
+        </div>
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static\videos\success\close_the_right_cabinet_door.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered"> "Close the right cabinet door"</p>
-              </div>
-            </div>
-          </div>
+      </div>
+    </div>
+  </div>
           
           <p>
             For unfamiliar, toy-like cabinet doors, the closing becomes even harder. As pi0 is never trained on this articulation object, and it may tend to stop as it never learns how to close this type of object.
@@ -1036,10 +1093,10 @@
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static\videos\success\close_the_white_lid_of_the_toilet.mp4" type="video/mp4">
-                </video>
+      </video>
                 <p class="is-size-6 has-text-centered">Close the white lid for the toilet (Success)</p>
-              </div>
-            </div>
+    </div>
+  </div>
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
@@ -1115,7 +1172,7 @@
       </div>
     </div>
   </div>
-</section> 
+</section>
 
 
 <!-- Future Directions -->
@@ -1125,7 +1182,7 @@
       <div class="column is-full-width">
         <h2 class="title is-3">The Bigger Picture</h2>
 
-        <div class="content">
+          <div class="content">
           <h3 class="title is-4">Why Pi0 Matters</h3>
           
           <div class="columns">
@@ -1133,8 +1190,8 @@
               <div class="content">
                 <h4 class="title is-5">Generalization</h4>
                 <p>Pi0 shows decent zero-shot performance across a wide range of tasks. For centuries, humans have had a strong desire to build a generalist agent system that could work in the wild, going out of the robotics lab and assisting our daily life. With the rapid development of VLAs model, the existence of Pi0 marks a milestone for robotics research.</p>
-              </div>
-            </div>
+          </div>
+        </div>
             
             <div class="column">
               <div class="content">
@@ -1279,7 +1336,7 @@
           <figure class="image">
             <img src="static/images/robot.png" alt="Robot setup">
           </figure>
-        </div>
+      </div>
         
         <h3 class="title is-4">3.2 Computing</h3>
         <div class="content has-text-justified">
@@ -1317,7 +1374,7 @@
       </div>
     </div>
   </div>
-</section> 
+</section>
 
 <!-- Results Section -->
 <section class="section">
@@ -1346,19 +1403,19 @@
                   </figure>
                 </div>
                 <div class="column is-half">
-                  <div class="content">
+          <div class="content">
                     <p>Across our 240+ test trials, Pi0 achieved varying degrees of success:</p>
                     <ul>
                       <li><strong>Complete Success:</strong> 38%</li>
                       <li><strong>Partial Success:</strong> 28%</li>
                       <li><strong>Complete Failure:</strong> 34%</li>
-                    </ul>
+            </ul>
                     <p>We observed that performance varied significantly based on task type, environmental conditions, and most importantly, the phrasing of instructions.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
         </div>
         
         <!-- Task Specific Results -->
@@ -1415,15 +1472,15 @@
                 <div class="column is-12">
                   <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                     <source src="static\videos\success\human_3_Pick up the pineapple and give it to the programmer.mp4" type="video/mp4">
-                  </video>
+      </video>
                   <p class="is-size-6 has-text-centered">"Give the pineapple to the programmer"</p>
-                </div>
+    </div>
                 <div class="column is-12">
                   <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                     <source src="static\videos\failure\human_7_Pick up the whiteboard eraser and give it to the programmer.mp4" type="video/mp4">
                   </video>
                   <p class="is-size-6 has-text-centered">"Give the whiteboard eraser to the programmer"</p>
-                </div>
+  </div>
               </div>
             </div>
 
@@ -1495,9 +1552,9 @@
       
       <p>
         The website template is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
-      </p>
-    </div>
-  </div>
+          </p>
+        </div>
+      </div>
 </footer>
 
 </body>
