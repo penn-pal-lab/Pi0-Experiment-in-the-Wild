@@ -251,6 +251,7 @@
     </div>
   </div>
 </section>
+
 <!-- Key Findings Section -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -320,7 +321,7 @@
           <div class="columns">
             <div class="column is-half">
               <img src="static/images/OverallResult.png" alt="Scatter plot showing performance distribution">
-            <figcaption style="text-align: center;">Performance across 300+ trials (42.3% average progress)</figcaption>
+            <figcaption style="text-align: center;">Overall result of each task type. The left is the relationship between score and number of trials, the right is the progress rate on each task. </figcaption>
           </div>
             <div class="column is-half">
               <img src="static/images/worldcloud.png" alt="Word cloud visualization">
@@ -475,10 +476,10 @@
         <h3 class="title is-4">2.1.1 Robust Vision-Language Understanding in Complex Scenes</h3>
         <div class="content has-text-justified">
           <p>
-            Powered by <strong>PaliGemma</strong> (Google DeepMind's 3B VLM) as its vision encoder (<a href="https://arxiv.org/abs/2407.07726">Beyer etc, 2024</a>), Pi0 demonstrates robust scene comprehension and adaptability. Despite relying solely on uncalibrated monocular RGB inputs (224×224 pixels after compression), it can handle very challenging objects and environments like transparent, camouflaged and novel items. Showing the potential of End2End VLA in precision, closed loop control.
+            Powered by <strong>PaliGemma</strong> (Google DeepMind's 3B VLM) as its vision encoder (<a href="https://arxiv.org/abs/2407.07726">Beyer etc, 2024</a>), Pi0 demonstrates robust scene comprehension and adaptability. Despite relying solely on uncalibrated monocular RGB inputs (224x224 pixels after compression), it can handle very challenging objects and environments like transparent, camouflaged and novel items. Showing the potential of End2End VLA in precision, closed loop control.
           </p>
           
-          <p><strong>1. It can grasp transparent object</strong></p>
+          <p><strong>1. It can grasp transparent objects</strong></p>
           
           <p>
             PI0 is capable of identifying and manipulating transparent objects, as shown below. It picks up the bottle with a stable grasp, aligns it to the small cup, and precisely drops it in. Many traditional grasp detection techniques require an accurate 2D or 3D reconstruction of the scene, and transparent objects can cause issues in reconstruction accuracy. This makes it all the more impressive that the model can detect transparent objects solely from uncalibrated, mono-RGB views from the wrist camera and one side view camera.
@@ -502,8 +503,7 @@
     </div>
   </div>
           </div>
-          
-  
+
           <p><strong>2. It can grasp an object even when it is camouflaged into a colorful background</strong></p>
           
           <p>
@@ -532,17 +532,17 @@
           <p><strong>3. It is robust to human activity in the input</strong></p>
           
           <p>
-            During experiments, there were many scenarios where the side-view camera captured humans moving around in the background. However, pi0 was still focused on the task, keeping the robotic arm's movements focused on object manipulation.
+            During evaluation, there were many times where the side-view camera captured humans moving around in the background. However, pi0 can always focus on its task, keeping the robotic arm's movements focused on object manipulation.
           </p>
           
           <p>
-            We believe there are two reasons for pi0's robustness to human movement. First, the pre-trained VLM backbone of Pi0 is trained on human-involved images (<a href="https://aclanthology.org/P18-1238/">Sharma et al., 2018</a>, <a href="https://aclanthology.org/2022.naacl-main.142/">Changpinyo et al., 2022a</a>, <a href="https://storage.googleapis.com/openimages/web/factsfigures_v7.html">Kuznetsova et al. 2020</a>), so humans are in-distribution. Next, from our occlusion experiments in <strong>Section 2.3.1</strong>, the policy seems to prioritize the wrist camera's images during pick-and-place tasks, so distractors in the side-view camera seem to minimally affect the policy.
+            We believe there are two reasons for pi0's robustness to human movement. First, the pre-trained VLM backbone of Pi0 is trained on human-involved images (<a href="https://aclanthology.org/P18-1238/">Sharma et al., 2018</a>, <a href="https://aclanthology.org/2022.naacl-main.142/">Changpinyo et al., 2022a</a>, <a href="https://storage.googleapis.com/openimages/web/factsfigures_v7.html">Kuznetsova et al. 2020</a>), so humans are in-distribution. Next, as our occlusion experiments in <strong>Section 2.3.1</strong>, the policy seems to prioritize the wrist camera's images during pick-and-place tasks, so distractors in the side-view camera seem to minimally affect the policy.
           </p>
           
           <p>
-            Here are two side-view videos involving humans in the scene. Please refer to <strong>Section 4.6</strong> for more results on <strong>human-robot interaction</strong>.
+            Here are two side-view videos involving humans in the scene. Please refer to <strong>Appendix B.6</strong> for more experiments on <strong>human-robot interaction</strong>.
           </p>
-          
+
           <p><em>(All videos featuring humans were uploaded with permission from the individuals involved.)</em></p>
           
           <div class="columns is-multiline is-centered">
@@ -574,23 +574,29 @@
           
         </div>
         
-
-        <!-- Meta Learning: pi0 is an FSM -->
-        <h3 class="title is-4">2.1.2 Meta Learning: pi0 is an Finite State Machine</h3>
+        <!-- Behavioral Structure: pi0 is an FSM -->
+        <h3 class="title is-4">2.1.2 Behavioral Structure: pi0 Exhibits FSM-like Patterns</h3>
         <div class="content has-text-justified">
           <p>
-            Based on our observations, pi0 demonstrates a notable ability to implicitly learn patterns from data. Its behavior shows state transitions among abstract behavioral states.
-          </p>
-          <p>
-            <strong>Search→ Reach→ Grasp→ Transport → Release→ Reset/Terminal.</strong>
-          </p>
-          <p>
-            Remarkably, pi0 is an autoregressive model without explicit memory or historical state encoding. It is amazing that such an FSM pattern is entirely distilled from data. As shown below, even if pi0 doesn't know how to manipulate an object, it will try to explore and get close to the affordance area. The wrist camera will then decide whether it should Grasp or not.
-          </p>
-          <p>
-            More interestingly, pi0 learns how to terminate a task. Like the pick-and-place demo shown below, if the policy treats the robot as finished placing objects into the bowl, then it will go back to initial position and reset with no action. However, this could also cause Early Stopping Problems. Please refer to <a href="#early-stopping">section 2.2.1</a> for more details.
+            Through our experiments, we observed that <strong>pi0 exhibits behavior resembling a Finite State Machine (FSM)</strong> across a wide range of manipulation tasks. Despite being an <strong>autoregressive model without explicit memory or state encoding</strong>, pi0 often transitions through intuitive behavioral phases such as:
           </p>
           
+          <p>
+            <strong>Search → Reach → Grasp → Transport → Release → Reset/Idle</strong>
+          </p>
+
+          <p>
+            What's remarkable is that this structure <strong>emerges naturally from the data</strong> rather than being explicitly modeled — suggesting that pi0 learns consistent <strong>task execution priors</strong> across environments. For instance, even when pi0 is unfamiliar with an object or task, it often <strong>proactively explores</strong> near affordance-rich areas using its wrist camera to decide whether to grasp or not.
+          </p>
+
+          <p>
+            In certain trials, we also observed <strong>reset-like behaviors</strong>: if pi0 perceives the task as complete (e.g., after placing an item into a bowl), it may <strong>return to its home configuration and idle</strong>. While this often indicates a well-formed task boundary, it can also lead to <strong>early stopping /freeze issues</strong>, especially in multi-object scenes — see <strong>Section 2.2.1</strong> for analysis of early stopping failure cases.
+          </p>
+
+          <p>
+            <em>While this FSM-like sequencing might suggest an implicit temporal abstraction mechanism, we caution against framing pi0 having 'memory' or 'history'. These patterns may reflect properties of the task distribution (e.g., Markovian, short-horizon tasks), rather than indicating explicit task inference or memory.</em>
+          </p>
+        </div>
           <!-- Existing video grid -->
           <div class="columns is-multiline is-centered">
             <div class="column is-one-third">
@@ -620,7 +626,7 @@
           </div>
           
           <p class="box has-background-grey-lighter has-text-centered is-italic">
-            “Pi0’s FSM pattern indicates it is a strong meta learning algorithm being able to generalize across environments with pretrained data.”
+            “Pi0's FSM pattern indicates it is a strong meta learning algorithm being able to generalize across environments with pretrained data.”
           </p>
         </div>
         
@@ -1203,7 +1209,9 @@
             <div class="column">
               <div class="content">
                 <h4 class="title is-5">Open Source Impact</h4>
-                <p>The open-sourcing of Pi0 is very intuitive and warm-hearted for the whole robotics industry. The impact not only lies in that every lab gets a very powerful manipulation baseline, but it will also push and extend the horizon of research in manipulation problems.</p>
+                <p>The open-sourcing of Pi0 will be very useful and inspiring for the whole robotics industry. The impact not only is that every lab gets a very powerful manipulation baseline, but it will also push the horizon robotics manipulation capabilities with a large scale framework that somehow work in the wild. As stated in this  <a href="https://arxiv.org/abs/2409.09491">paper</a>, a fair comparison, beyond simple success rate, may benefit the problem scoping, allowing robotics research to grow as fast as computer vision and general artificial intelligence (<a href="https://arxiv.org/abs/2409.09491">Kress-Gazit etc, 2024</a>).
+                  
+                </p>
               </div>
             </div>
           </div>
@@ -1214,21 +1222,29 @@
             <div class="column">
               <div class="content">
                 <h4 class="title is-5">Better Language Grounding</h4>
-                <p>As discussed in their new work "Hi Robot", VLA's language understanding ability could be enhanced via a two-tiered inference framework. However, as we saw in our examples, the 3B VLM backbone may still suffer from instruction following & generalization across language axes.</p>
+                <p>As discussed in PI's new work "Hi Robot", VLA's language understanding ability could be enhanced via a two-tiered inference framework. However, as we saw in our use cases, the 3B VLM backbone may still suffer from instruction following & generalization across language axes.</p>
               </div>
             </div>
             
             <div class="column">
               <div class="content">
-                <h4 class="title is-5">Force Feedback Integration</h4>
-                <p>Current models rely primarily on visual input. Incorporating force feedback could help with tasks requiring delicate pressure control and improve interaction with varied surfaces.</p>
+                <h4 class="title is-5">Force Feedback</h4>
+                <p> Current models rely primarily on visual input. Incorporating force feedback could help with tasks requiring delicate pressure control and improve interaction with varied surfaces. For example, to plug in a coffee handle into an espresso machine requires a sense of force direction, it may not be solvable without force sensing. </p>
+              </div>
+            </div>
+
+
+            <div class="column">
+              <div class="content">
+                <h4 class="title is-5">Active Perception</h4>
+                <p>Although pi0 exhibits certain active perception ability, its searching ability is still limited to a short range of wrist camera. Adding a module to help it explore the surrounding environment could be a useful direction to augment existing generalist policies.</p>
               </div>
             </div>
             
             <div class="column">
               <div class="content">
                 <h4 class="title is-5">Memory Modules</h4>
-                <p>Currently, Pi0's autoregressive paradigm has achieved great success, but lacking history/memory capabilities is a significant limitation. Future models will likely incorporate explicit memory mechanisms to maintain task state across interruptions.</p>
+                <p>Currently, Pi0's memory-less system has achieved great success, but lacking history/memory is a significant limitation. Future models will likely incorporate explicit memory mechanisms to maintain task state across interruptions.</p>
               </div>
             </div>
           </div>
@@ -1246,7 +1262,7 @@
         <h2 class="title is-3">Conclusion</h2>
 
         <div class="content has-text-justified">
-          <p>Pi0 represents a promising step toward generalist robots, but significant challenges remain. Instruction following and fine-grained tasks still pose considerable difficulties. As foundation models evolve and incorporate more modalities and memory capabilities, we're optimistic about the future—soon, every robotics lab might have a Pi0-like baseline!</p>
+          <p>Pi0 represents a promising step toward generalist robots policies, but  challenges remain. <strong>Instruction following and fine-grained tasks are still very challenging </strong> As foundation models evolve, we're optimistic—soon, every robotics lab might have a Pi0-like baseline, and we will get some strong VLA for real-world generalization!</p>
           
           <div class="buttons is-centered mt-5">
             <a href="#" class="button is-link is-medium">
@@ -1268,6 +1284,32 @@
     </div>
   </div>
 </section>
+
+<!-- Acknowledgments -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Acknowledgments</h2>
+        <div class="content has-text-justified">
+          <p>
+            We thank Will Liang, Hungju Wang, Sam Wang for their help in setting up the pi0 environment. We also thank Kaustubh Sridhar, Tianyou Wang, Ian, Ethan Yu, Tim Song and Yiqian Li for their help in doing experiments.
+          </p>
+          <p>
+            We thank Junyao Shi, Aurora Qian, Leon Kim and Jason Ma for the suggestions on how to evaluate a generalist manipulation policy.
+          </p>
+          <p>
+            We are also grateful to Karl Pertsch from Physical Intelligence for comments on the blog draft.
+          </p>
+          <p>
+            This work is independently conducted within PennPAL Group and Daniilidis Group under GRASP Lab.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- Citation TODO change site-->
 <section class="section">
@@ -1342,7 +1384,7 @@
         <div class="content has-text-justified">
           <p><strong>GPU Server:</strong></p>
           <ul>
-            <li><strong>GPUs:</strong> 1× NVIDIA RTX A6000 (48GB VRAM)</li>
+            <li><strong>GPUs:</strong> 1x NVIDIA RTX A6000 (48GB VRAM)</li>
             <li><strong>CUDA Version:</strong> 12.3</li>
             <li><strong>Usage:</strong> VLA model inference.</li>
           </ul>
@@ -1359,13 +1401,10 @@
         <div class="content has-text-justified">
           <ul>
             <li><strong>Vision-Language Model</strong>: <em>Paligemma 3B</em> for spatial and semantic understanding.</li>
-            <li><strong>Action Expert</strong>: Build upon <em>Transfusion</em> + <em>Playground V3</em> for high-frequency control.</li>
+            <li><strong>FAST+</strong>: Frequency-space Action Sequence Tokenization (FAST), a universal robot action tokenizer, trained on 1M real robot action trajectories. It can be used as a black-box tokenizer for a wide range of robot action sequences, with diverse action spaces and control frequencies.
             <li><strong>Training Data</strong>: Pretrained on π cross-embodiment robot dataset & Open X-Embodiment, fine tuned on DROID dataset.</li>
           </ul>
-          <!-- TODO: add as left and right -->
-          <figure class="image">
-            <img src="static/images/pi0_architecture.jpg" alt="Pi0 Architecture">
-          </figure>
+          
           <figure class="image">
             <img src="static/images/dataset.jpg" alt="Large scale robotics data for pretraining">
             <figcaption>Dataset used for pretraining pi0</figcaption>
