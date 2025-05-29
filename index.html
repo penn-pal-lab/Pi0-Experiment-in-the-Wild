@@ -470,10 +470,10 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">2.1 Remarkable Performance of PI0</h2>
+        <h2 class="title is-3">3. Remarkable Performance of PI0</h2>
 
         <!-- Vision-Language Understanding -->
-        <h3 class="title is-4">2.1.1 Robust Vision-Language Understanding in Complex Scenes</h3>
+        <h3 class="title is-4">3.1 Robust Vision-Language Understanding in Complex Scenes</h3>
         <div class="content has-text-justified">
           <p>
             Powered by <strong>PaliGemma</strong> (Google DeepMind's 3B VLM) as its vision encoder (<a href="https://arxiv.org/abs/2407.07726">Beyer etc, 2024</a>), Pi0 demonstrates robust scene comprehension and adaptability. Despite relying solely on uncalibrated monocular RGB inputs (224x224 pixels after compression), it can handle very challenging objects and environments like transparent, camouflaged and novel items. Showing the potential of End2End VLA in precision, closed loop control.
@@ -575,7 +575,7 @@
         </div>
         
         <!-- Behavioral Structure: pi0 is an FSM -->
-        <h3 class="title is-4">2.1.2 Behavioral Structure: pi0 Exhibits FSM-like Patterns</h3>
+        <h3 class="title is-4">3.2 Behavioral Structure: pi0 Exhibits FSM-like Patterns</h3>
         <div class="content has-text-justified">
           <p>
             Through our experiments, we observed that <strong>pi0 exhibits behavior resembling a Finite State Machine (FSM)</strong> across a wide range of manipulation tasks. Despite being an <strong>autoregressive model without explicit memory or state encoding</strong>, pi0 often transitions through intuitive behavioral phases such as:
@@ -590,7 +590,7 @@
           </p>
 
           <p>
-            In certain trials, we also observed <strong>reset-like behaviors</strong>: if pi0 perceives the task as complete (e.g., after placing an item into a bowl), it may <strong>return to its home configuration and idle</strong>. While this often indicates a well-formed task boundary, it can also lead to <strong>early stopping /freeze issues</strong>, especially in multi-object scenes — see <strong>Section 2.2.1</strong> for analysis of early stopping failure cases.
+            In certain trials, we also observed <strong>reset-like behaviors</strong>: if pi0 perceives the task as complete (e.g., after placing an item into a bowl), it may <strong>return to its home configuration and idle</strong>. While this often indicates a well-formed task boundary, it can also lead to <strong>early stopping /freeze issues</strong>, especially in multi-object scenes — see <strong>Section 4.1</strong> for analysis of early stopping failure cases.
           </p>
 
           <p>
@@ -631,7 +631,7 @@
         </div>
         
         <!-- Failure Recovery -->
-        <h3 class="title is-4">2.1.3 Failure recovery and generalization</h3>
+        <h3 class="title is-4">3.3 Failure recovery and generalization</h3>
         <div class="content has-text-justified">
           <p>
             One key difference between the pi0 and other models is: it can work in the wild, without online data collection, without calibration, without much position tuning on the policy, we can let it run on our franka robot directly.
@@ -771,10 +771,10 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">2.2 Problem with PI0</h2>
+        <h2 class="title is-3">4. Problem with PI0</h2>
 
         <!-- Early stopping problem -->
-        <h3 class="title is-4">2.2.1 Early stopping</h3>
+        <h3 class="title is-4">4.1 Early stopping</h3>
         <div class="content has-text-justified">
           <p>
             One common failure case is that policy may <strong>freeze unexpectedly during execution</strong>, leaving tasks incomplete until human intervention. 
@@ -819,7 +819,7 @@
         </div>
         
         <!-- Imprecise spatial reasoning -->
-        <h3 class="title is-4">2.2.2 Imprecise spatial reasoning</h3>
+        <h3 class="title is-4">4.2 Imprecise spatial reasoning</h3>
         <div class="content has-text-justified">
           <p>
             Pi0 often struggles with spatial reasoning over height. For example, when asked to pick up an object and place it into a container, 
@@ -881,10 +881,195 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">2.3 Quirk: Some interesting behavior of pi0</h2>
+        <h2 class="title is-3">5. Quirk: Some interesting behavior of pi0</h2>
 
-        
-        <h4 class="title is-5">Quirk 1: Active Perception & Viewpoint Robustness</h4>
+        <h4 class="title is-5">Quirk 1: Prompt Engineering Matters</h4>
+        <div class="content has-text-justified">
+          <p>
+            Pi0's performance heavily depends on language specificity and prompt engineering. Let's look at two interesting aspects:
+          </p>
+
+          <h5 class="title is-6">1.1 You need to tune your prompt carefully to operate the robot</h5>
+          
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>Instruction</th>
+                <th>Success Rate</th>
+                <th>Behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><em>"Close the toilet"</em></td>
+                <td>0%</td>
+                <td>Wanders aimlessly, unable to localize the target.</td>
+              </tr>
+              <tr>
+                <td><em>"Close the white lid of the toilet"</em></td>
+                <td>100%</td>
+                <td>Precise alignment and execution.</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <p><strong>Why This Happens</strong>:</p>
+          
+          <ul>
+            <li>Vague instructions (e.g., <em>"toilet"</em>) force Pi0 to guess the target sub-component.</li>
+            <li>Specificity (e.g., <em>"white lid"</em>) aligns with PaliGemma's object-part grounding capability.</li>
+            <li>Pi0 freezes or fails when instructions contain typos, grammatical errors, or ambiguous phrasing.</li>
+          </ul>
+
+          <div class="columns is-multiline is-centered">
+            <div class="column is-half">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static\videos\success\close_the_white_lid_of_the_toilet.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered">Close the white lid for the toilet (Success)</p>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static\videos\failure\close_the_toilet.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered">Close the toilet (Failure)</p>
+              </div>
+            </div>
+          </div>
+
+          <h5 class="title is-6">1.2 Pi0 Behavior Without Language Goals</h5>
+          
+          <p>
+            When given no specific language instruction, Pi0 defaults to interacting with the most familiar objects from its training data:
+          </p>
+
+          <ul>
+            <li>Given nonsense text like <em>"dgbfzjkfhjilawhdfkAWHDKLWHADFiQAWFHqawipfjcasklfmdc"</em>, it picks up marker pens</li>
+            <li>Given <em>"xxx"</em>, it reaches for blocks repeatedly</li>
+          </ul>
+
+          <p>
+            This behavior stems from dataset biases - for example, marker pens comprise 16.67% of objects in the DROID dataset, making them a frequent default choice.
+          </p>
+
+          <div class="box">
+            <h5 class="title is-6">Key Implications</h5>
+            <p>These language quirks highlight important areas for improvement:</p>
+            <ul>
+              <li><strong>Language Model Limitations:</strong> Pi0's 3B language model lacks the robustness of larger LLMs</li>
+              <li><strong>Dataset Dependencies:</strong> Default behaviors are heavily influenced by training data distribution</li>
+              <li><strong>Prompt Engineering:</strong> Success often requires careful instruction crafting</li>
+            </ul>
+          </div>
+        </div>
+
+
+        <h4 class="title is-5">Quirk 2: Visual Robustness</h4>
+        <div class="content has-text-justified">
+          <p>
+            One of the most frequently asked questions on Pi0 is, how robust it is when the sensory inputs are disrupted? We did several tests on blocking the camera and the object. Here's what we found.
+          </p>
+
+          <h5 class="title is-6">Camera Blocking Experiments</h5>
+          
+          <p><strong>Setup</strong>:</p>
+          <ul>
+            <li><strong>Task</strong>: "Pick up the pink object and place it into the bowl."</li>
+            <li><strong>Cameras</strong>: Side-view (primary) + wrist-mounted (secondary).</li>
+            <li><strong>Blocking Scenarios</strong>: Partial/full occlusion of one or both cameras.</li>
+          </ul>
+
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th>Blocking Type</th>
+                <th>Success Rate</th>
+                <th>Behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>No Block</strong></td>
+                <td>100%</td>
+                <td>Flawless execution. Picks pink object, attempts secondary objects.</td>
+              </tr>
+              <tr>
+                <td><strong>Block Side Camera Mid-Trial</strong></td>
+                <td>50%</td>
+                <td>Relies on wrist cam. Gripper misalignment → partial success.</td>
+              </tr>
+              <tr>
+                <td><strong>Block Wrist Camera Entirely</strong></td>
+                <td>0%</td>
+                <td>Frozen—no recovery.</td>
+              </tr>
+              <tr>
+                <td><strong>Block Both Cameras Initially → Unblock Mid-Trial</strong></td>
+                <td>70%</td>
+                <td>Chaotic exploration → stabilizes after unblocking.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h5 class="title is-6">Key Observations</h5>
+          <ul>
+            <li><strong>Active Perception</strong>:
+              <ul>
+                <li>When the side camera is blocked, Pi0 uses its wrist camera to retry grasps ("hand-eye coordination").</li>
+                <li>Example: In Trial 3 (side camera blocked), Pi0 adjusted its gripper position twice to finally secure the pink object.</li>
+              </ul>
+            </li>
+            <li><strong>Viewpoint Robustness</strong>:
+              <ul>
+                <li>Pi0 tolerates shifted camera angles mid-task.</li>
+                <li>Blocking then unblocking cameras triggered exploratory movements (e.g., sweeping the arm to re-localize objects).</li>
+              </ul>
+            </li>
+            <li><strong>Failure Modes</strong>:
+              <ul>
+                <li>Total wrist camera blockage → robot freezes (no fallback perception).</li>
+                <li>Over-reliance on initial frames: If objects shift after blocking, Pi0 struggles to update its spatial model.</li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="columns is-multiline is-centered">
+            <div class="column is-half">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static\videos\success\close_the_drawer.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered"> "Close the drawer"</p>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static\videos\success\close_the_right_cabinet_door.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered"> "Close the right cabinet door"</p>
+              </div>
+            </div>
+          </div>
+
+          <h5 class="title is-6">Object Blocking Experiment</h5>
+          <p><strong>Setup</strong>:</p>
+          <ul>
+            <li><strong>Task</strong>: "Pick up the red box."</li>
+            <li><strong>Occlusion Levels</strong>: None (fully visible), 50% occluded, 100% occluded.</li>
+            <li><strong>Behavior Metrics</strong>: Success rate, recovery attempts, and failure modes.</li>
+          </ul>
+
+          <p>
+            We sought to determine how the robot would respond when the target of its task was occluded. When the box was fully visible, the robot would succeed. When it was 50% occluded, the robot would generally succeed, sometimes moving the occluding object to get a better view or grasp of the target. When fully occluded, the robot would become confused and stop. During one fully occluded trial, the robot knocked over the occluder and the red box, revealing more information about the location of the target but making it impossible to proceed with a good grasp.
+          </p>
+        </div>
+
+
+        <h4 class="title is-5">Quirk 3: Active Perception & Viewpoint Robustness</h4>
         <div class="content has-text-justified">
           <p>
             One of the most frequently asked questions on Pi0 is, how robust it is when the sensory inputs are disrupted? We did several tests about blocking the camera, the object and moving the side view camera. Here's what we learned.
@@ -996,185 +1181,6 @@
         
 
         
-        <h4 class="title is-5">Quirk 2: Opening > Closing</h4>
-        <div class="content has-text-justified">
-          <p>
-            Pi0 exhibits unexpected behaviors when interacting with articulated objects (e.g., drawers, cabinets), Pi0 achieves higher success rates when <strong>opening</strong> articulated objects (e.g., drawers) compared to <strong>closing</strong> them.
-          </p>
-          
-          <p><strong>Examples</strong>:</p>
-          
-          <ul>
-            <li>
-              <strong>Task</strong>: "Close the drawer."
-              <ul>
-                <li><strong>Behavior</strong>: Pi0 grasps the handle, attempts complex maneuvers (e.g., twisting), and often fails to align with the articulation axis.</li>
-                <li><strong>Result</strong>: <strong>60% success rate</strong> for opening vs. <strong>35% for closing</strong> (see video).</li>
-            </ul>
-            </li>
-            <li>
-              <strong>Toy Cabinet or Real Drawer on table Challenge</strong>:
-              <ul>
-                <li><strong>Task</strong>: "Close the toy kitchen cabinet."</li>
-                <li><strong>Behavior</strong>: Pi0 freezes or pushes randomly when it is required to manipulate with articulated objects on table.</li>
-                <li><strong>Result</strong>: <strong>0% success rate</strong> (see video).</li>
-              </ul>
-            </li>
-          </ul>
-          
-          <p><strong>Possible Cause</strong>:</p>
-          
-          <ul>
-            <li>Pi0's training data prioritizes <strong>opening actions</strong> (common in datasets like DROID).</li>
-            <li>Closing requires precise backward articulation, which the model struggles to infer from RGB-only inputs.</li>
-          </ul>
-          
-          <p>
-            In general, closing things is much easier than opening. While pi0 tends to execute some more fancy actions to "close one thing". Like the robot will firstly grasp the drawer handle, then try to close it. While the closing task could be generally easy to move along the articulation axis.
-          </p>
-          
-          <div class="columns is-multiline is-centered">
-            <div class="column is-half">
-              <div>
-                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="static\videos\success\close_the_drawer.mp4" type="video/mp4">
-                </video>
-                <p class="is-size-6 has-text-centered"> "Close the drawer"</p>
-          </div>
-        </div>
-            <div class="column is-half">
-              <div>
-                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="static\videos\success\close_the_right_cabinet_door.mp4" type="video/mp4">
-                </video>
-                <p class="is-size-6 has-text-centered"> "Close the right cabinet door"</p>
-      </div>
-    </div>
-  </div>
-          
-          <p>
-            For unfamiliar, toy-like cabinet doors, the closing becomes even harder. As pi0 is never trained on this articulation object, and it may tend to stop as it never learns how to close this type of object.
-          </p>
-        </div>
-        
-        <h4 class="title is-5">Quirk 3: Language Specificity Matters</h4>
-        <div class="content has-text-justified">
-          <p>
-            Pi0's performance can be improved after tuning its instruction. Like this examples:
-          </p>
-          
-          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-            <thead>
-              <tr>
-                <th>Instruction</th>
-                <th>Success Rate</th>
-                <th>Behavior</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><em>"Close the toilet"</em></td>
-                <td>0%</td>
-                <td>Wanders aimlessly, unable to localize the target.</td>
-              </tr>
-              <tr>
-                <td><em>"Close the white lid of the toilet"</em></td>
-                <td>100%</td>
-                <td>Precise alignment and execution.</td>
-              </tr>
-            </tbody>
-          </table>
-          
-          <p><strong>Why This Happens</strong>:</p>
-          
-          <ul>
-            <li>Vague instructions (e.g., <em>"toilet"</em>) force Pi0 to guess the target sub-component.</li>
-            <li>Specificity (e.g., <em>"white lid"</em>) aligns with PaliGemma's object-part grounding capability.</li>
-          </ul>
-          
-          <p><strong>Video Examples</strong>:</p>
-          
-          <div class="columns is-multiline is-centered">
-            <div class="column is-half">
-              <div>
-                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="static\videos\success\close_the_white_lid_of_the_toilet.mp4" type="video/mp4">
-      </video>
-                <p class="is-size-6 has-text-centered">Close the white lid for the toilet (Success)</p>
-    </div>
-  </div>
-            <div class="column is-half">
-              <div>
-                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="static\videos\failure\close_the_toilet.mp4" type="video/mp4">
-                </video>
-                <p class="is-size-6 has-text-centered">Close the toilet (Failure)</p>
-              </div>
-            </div>
-          </div>
-          
-          <p>
-            On the contrary, Pi0 freezes or fails when instructions contain <strong>typos, grammatical errors, or ambiguous phrasing</strong>.
-          </p>
-          
-          <p><strong>Example</strong>:</p>
-          
-          <ul>
-            <li><strong>Instruction</strong>: <em>"Close the tiolet"</em> (misspelled).</li>
-            <li><strong>Behavior</strong>: Robot hesitates, then picks up the nearest familiar object (e.g., a marker pen).</li>
-            <li><strong>Implication</strong>: Pi0 lacks the linguistic robustness of LLMs like GPT-4, failing to infer intent from context.</li>
-          </ul>
-        </div>
-        
-        
-        <!-- The Power of Prompts -->
-        <div class="box">
-          <h4 class="title is-5">The Power of Prompts</h4>
-          <div class="columns">
-            <div class="column is-half">
-              <div class="content">
-                <p>Pi0's 3B language model is very sensitive to phrasing:</p>
-                <ul>
-                  <li><strong>Good:</strong> "Put A into B" → Clear spatial logic → 80% success</li>
-                  <li><strong>Bad:</strong> "Fill B with A" → Ambiguous → 20% lower success</li>
-                </ul>
-                <p>Example:</p>
-                <ul>
-                  <li>"Close the toilet" → 0% success</li>
-                  <li>"Close the white lid of the toilet" → 100% success</li>
-                </ul>
-              </div>
-            </div>
-        </div>  
-        <!-- Quirk 4 -->
-        <h4 class="title is-5">Quirk 4: What will pi0 do if there is no specific language goal?</h4>
-        <div class="content has-text-justified">
-          <p>
-            With no language goal, the robot will try to pick up the most familiar object within dataset based on RGB image.
-          </p>
-          
-          <p>Examples:</p>
-          <ul>
-            <li>Pick up the mark pen and move back and forth</li>
-            <li>Reach the block back and forth</li>
-          </ul>
-          
-          <p>
-            Here, mark pen takes 16.67% of the DROID dataset. Fine tuning on DROID may increase the probability of associating image with action to pick-and-place it.
-          </p>
-          
-          <h5 class="title is-6">Why This Matters</h5>
-          
-          <p>
-            These quirks highlight critical limitations in Pi0's <strong>spatial reasoning</strong> and <strong>language grounding</strong>, emphasizing the need for:
-          </p>
-          
-          <ol>
-            <li><strong>Expanded Articulation Datasets</strong>: Covering closing actions and OOD objects.</li>
-            <li><strong>Language Model Upgrades</strong>: Integrating LLMs for better instruction parsing.</li>
-            <li><strong>Force Feedback Integration</strong>: Enabling tactile-based correction during manipulation.</li>
-          </ol>
-        </div>
       </div>
     </div>
   </div>
@@ -1186,10 +1192,10 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">The Bigger Picture</h2>
+        <h2 class="title is-3">6. The Bigger Picture</h2>
 
           <div class="content">
-          <h3 class="title is-4">Why Pi0 Matters</h3>
+          <h3 class="title is-4">6.1 Why Pi0 Matters</h3>
           
           <div class="columns">
             <div class="column">
@@ -1216,15 +1222,15 @@
             </div>
           </div>
           
-          <h3 class="title is-4">Future Directions</h3>
+          <h3 class="title is-4">6.2 Future Directions</h3>
           
-          <div class="columns">
+          <!-- <div class="columns">
             <div class="column">
               <div class="content">
                 <h4 class="title is-5">Better Language Grounding</h4>
                 <p>As discussed in PI's new work "Hi Robot", VLA's language understanding ability could be enhanced via a two-tiered inference framework. However, as we saw in our use cases, the 3B VLM backbone may still suffer from instruction following & generalization across language axes.</p>
               </div>
-            </div>
+            </div> -->
             
             <div class="column">
               <div class="content">
@@ -1259,7 +1265,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Conclusion</h2>
+        <h2 class="title is-3">7. Conclusion</h2>
 
         <div class="content has-text-justified">
           <p>Pi0 represents a promising step toward generalist robots policies, but  challenges remain. <strong>Instruction following and fine-grained tasks are still very challenging </strong> As foundation models evolve, we're optimistic—soon, every robotics lab might have a Pi0-like baseline, and we will get some strong VLA for real-world generalization!</p>
@@ -1285,12 +1291,42 @@
   </div>
 </section>
 
+<!-- References -->
+<section class="section" id="references">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">8. References</h2>
+        <div class="content">
+          Place holder for more papers TODO fix
+          <div class="csl-bib-body">
+            <div class="csl-entry">
+              Driess, D., Xia, Z., Ha, L., Kaplan, A., Huang, H., Hausman, K., Ichter, B., Fox, D., & Levine, S. (2024). 
+              <span class="paper-title">Pi0: Prompting in the Wild Enables Zero-Shot Robot Manipulation.</span>
+              <span class="paper-conference">arXiv preprint arXiv:2401.08744.</span>
+              <a href="https://arxiv.org/abs/2401.08744">[Paper]</a>
+              <a href="https://pi-zero.github.io/">[Project Page]</a>
+            </div>
+            <div class="csl-entry">
+              Xia, Z., Driess, D., Ha, L., Kaplan, A., Huang, H., Hausman, K., Ichter, B., Fox, D., & Levine, S. (2024).
+              <span class="paper-title">DROID: Embodied Compositional Tasks Driven by Language Models.</span>
+              <span class="paper-conference">arXiv preprint arXiv:2401.08745.</span>
+              <a href="https://arxiv.org/abs/2401.08745">[Paper]</a>
+              <a href="https://droid-dataset.github.io/">[Project Page]</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Acknowledgments -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Acknowledgments</h2>
+        <h2 class="title is-3">9. Acknowledgments</h2>
         <div class="content has-text-justified">
           <p>
             We thank Will Liang, Hungju Wang, Sam Wang for their help in setting up the pi0 environment. We also thank Kaustubh Sridhar, Tianyou Wang, Ian, Ethan Yu, Tim Song and Yiqian Li for their help in doing experiments.
@@ -1567,12 +1603,6 @@
           </div>
         </div>
         
-            <div class="column is-half">
-              <figure class="image">
-                <img src="static/images/instruction_word_cloud.jpg" alt="Word cloud of instructions used in testing">
-                <figcaption>Instruction word cloud used in our evaluations</figcaption>
-              </figure>
-            </div>
           </div>
         </div>
       </div>
