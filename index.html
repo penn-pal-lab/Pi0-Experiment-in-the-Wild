@@ -96,24 +96,40 @@
             <span class="author-block">
               <a href="https://www.seas.upenn.edu/~dineshj/">Dinesh Jayaraman</a>,</span>
             <span class="author-block">
-              <a href="https://edwardshu.com/">Edward S. Hu</a><sup>†</sup>
+              <a href="https://edwardshu.com/">Edward S. Hu</a> 
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block">GRASP Lab, University of Pennsylvania</span>
           </div>
-    
+          <!-- TODO ADD formal note -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Published:June 1, 2025</span> 
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">*Corresponding author: tonyw3@seas.upenn.edu</span> 
+          </div>
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- Paper links -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://arxiv.org/abs/2501.09747" target="_blank"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
                   <span>Pi0-FAST Paper</span>
+                </a>
+              </span> -->
+              <!-- Paper links -->
+              <span class="link-block">
+                <a href="https://www.physicalintelligence.company/blog" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>PI Research Papers</span>
                 </a>
               </span>
               <span class="link-block">
@@ -125,14 +141,15 @@
                   <span>DROID Dataset</span>
                 </a>
               </span>
+
               <!-- GitHub link -->
               <span class="link-block">
-                <a href="https://github.com/Physical-Intelligence/openpi" target="_blank"
-                   class="external-link button is-normal is-rounded is-dark">
+                <a href="https://www.physicalintelligence.company/blog" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Pi Website</span>
+                  <span>OpenPI Github Repo</span>
                   </a>
               </span>
             </div>
@@ -160,7 +177,7 @@
 
 
 
-
+<!-- TODO for Edward -->
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract -->
@@ -172,7 +189,7 @@
             Pi0 is a state-of-the-art vision-language-action (VLA) model designed for general-purpose robotic manipulation, trained on internet-scale data and the Open X-Embodiment dataset. While Pi0 promises versatility across tasks like pick-and-place, articulation, dexterity and human robot interaction, we ask: how does it perform when released in the wild?
           </p>
           <p>
-            Just like how users rank LLMs by chatting about arbitrary topics in Chatbot Arena, we subject Pi0 to "vibe checks" through unstructured real-world experimentation. Users interact with the policies on a whim - improvising tasks, altering camera angles, rearranging objects, and probing edge cases. By embracing the high entropy of ad-hoc human testing, we stress-test the policy's generalization capabilities, while discovering interesting phenomena that structured evaluations may miss.
+            Just like how users rank LLMs by chatting about arbitrary topics in <a href="https://huggingface.co/spaces/lmarena-ai/chatbot-arena-leaderboard">Chatbot Arena</a>, we subject Pi0 to "vibe checks" through unstructured real-world experimentation. Users interact with the policies on a whim - improvising tasks, altering camera angles, rearranging objects, and probing edge cases. By embracing the high entropy of ad-hoc human testing, we stress-test the policy's generalization capabilities, while discovering interesting phenomena that structured evaluations may miss.
           </p>
           <p>
             Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. We found the setup of Pi0 to be very close to the experience of using open-source LLMs today - download the checkpoint and deploy, with no additional environment-specific instrumentation required (e.g. camera calibration, controller tuning, demo collection, etc.). We summarize our discoveries over 300+ trials of Pi0 below, exploring its strengths, limitations, unexpected quirks, and its implications for the future of robot learning. We hope that it inspires others to try out Pi0 for themselves!
@@ -206,6 +223,7 @@
   </div>
 </section>
 
+<!-- TODO for Edward: phrase Bottom Line, the statement is weird -->
 
 <!-- Teaser Images Section -->
 <section class="hero">
@@ -286,21 +304,22 @@
           </p>
 
           <p>
-            In our blog, we adopt a <strong>progress score</strong> as the main evaluation signal, which is <strong>loosely inspired by the "vibe testing" rubric</strong> proposed in the <a href="https://arxiv.org/abs/2403.04132">ChatbotArena(Chiang, etc, 2024)</a>, (<a href="https://www.interconnects.ai/p/chatbotarena-the-future-of-llm-evaluation">Lambert 2024</a>). This method has also been used in recent works such as the pi0 and pi0-FAST papers. During evaluation, we assign a continuous score from 0 to 100 to each policy rollout, reflecting the <strong>fraction of the commanded task successfully completed</strong>. For instance, a drawer-closing task might score:
+            In our blog, we adopt a <strong>progress score</strong> as the main evaluation signal, which is <strong>loosely inspired by the "vibe testing" rubric</strong> proposed in the <a href="https://arxiv.org/abs/2403.04132">ChatbotArena(Chiang, etc, 2024)</a>, (<a href="https://www.interconnects.ai/p/chatbotarena-the-future-of-llm-evaluation">Lambert 2024</a>). This method has also been used in recent works such as the pi0 and pi0-FAST papers. During evaluation, we assign a continuous score from 0 to 100 to each policy rollout, reflecting the <strong>fraction of the commanded task successfully completed</strong>. For instance, a <strong>newspaper-folding</strong> task might score:
           </p>
 
           <ul>
-            <li><strong>30</strong>: if the robot approached and touched the drawer handle</li>
-            <li><strong>70</strong>: if it pulled the drawer halfway closed</li>
-            <li><strong>100</strong>: if the drawer was fully shut confidently</li>
+            <li><strong>25</strong>: if the robot approached and grasp a side of newspaper.</li>
+            <li><strong>50</strong>: if it fold up the newspaper in correct articulation direction.</li>
+            <li><strong>75</strong>: if the newspaper is partially fold up.</li>
+            <li><strong>100</strong>: if the newspaper is fold neatly in half.</li>
           </ul>
 
           <p>
-            These scores are inherently subjective and noisy, but practical: we strive to remain <strong>consistent across trials</strong>, and use them as <strong>noisy but informative approximations of task completion</strong>.
+            These scores are inherently subjective and noisy, but practical for generalist policy evaluation: we try to remain <strong>consistent across trials</strong>, and use them as <strong>noisy but informative approximations of task completion</strong>.
           </p>
 
           <p>
-            This scalar scoring allows us to still assess trends, failure modes, and emerging capabilities across our experiments. As the field matures, we believe more standardized, benchmark-driven evaluation methods for generalist policies will emerge. For now, <strong>vibe-informed progress scores</strong> are a reasonable and transparent compromise.
+            This scalar scoring allows us to quickly assess success modes, failure modes, and emerging capabilities across the experiments. With the development of robotics evaluation, we believe more standardized, benchmark-driven evaluation methods for generalist policies will emerge. For now, <strong>vibe-informed progress scores</strong> are a reasonable and transparent compromise.
           </p>
 
           <p>
@@ -499,7 +518,7 @@
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static\videos\success\transparent_bottle_place.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Place the plastic bottle into the white cup."</p>
+                <p class="is-size-6 has-text-centered">"Place the plastic bottle into the bowl."</p>
         </div>
       </div>
           </div>
@@ -581,8 +600,8 @@
             Through our experiments, we observed that <strong>pi0 exhibits behavior resembling a Finite State Machine (FSM)</strong> across a wide range of manipulation tasks. Despite being an <strong>autoregressive model without explicit memory or state encoding</strong>, pi0 often transitions through intuitive behavioral phases such as:
           </p>
           
-          <p>
-            <strong>Search → Reach → Grasp → Transport → Release → Reset/Idle</strong>
+          <p style="text-align: center;">
+            <strong>Search → Reach → Grasp → Transfer → Release → Reset → Idle</strong>
           </p>
 
           <p>
@@ -631,31 +650,47 @@
         </div>
         
         <!-- Failure Recovery -->
-        <h3 class="title is-4">3.3 Failure recovery and generalization</h3>
+        <!-- <h3 class="title is-4">3.3 Failure recovery and generalization</h3>
         <div class="content has-text-justified">
           <p>
-            One key difference between the pi0 and other models is: it can work in the wild, without online data collection, without calibration, without much position tuning on the policy, we can let it run on our franka robot directly.
+            One key difference between the pi0 and other open source VLA models are: it can work in the wild, without online data fine-tuning, without calibration, without much position tuning on the policy, we can let it run on our franka robot directly.
           </p>
           
           <p>
-            More interestingly, the policy behaves similar to diffusion policy, as shown below, it could recover from failures and retry tasks that initially failed.
+            More interestingly, the VLA behaves similar to diffusion policy, as shown below, it could recover from failures and retry tasks that initially failed.
           </p>
 
           <div class="columns is-multiline is-centered">
             <div class="column is-one-third">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="static\videos\success\pick_banana.mp4" type="video/mp4">
+                  <source src="static\videos\success\3.3place_the_pen_into_pen_holder.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Pick up the banana"</p>
+                <p class="is-size-6 has-text-centered">"Place the pen into pen holder"</p>
+              </div>
+              <div>
+            </div>
+     
+          </div>
+          </div>
+
+          <div class="columns is-multiline is-centered">
+            <div class="column is-full">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static\videos\success\3.3_fold_up_the_newspaper_from_right_side.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered">"Fold up the newspaper from left side"</p>
               </div>
             </div>
           </div>
-
           
 
-        </div>
+
+        </div> -->
       </div>
+
+      
     </div>
   </div>
 </section>
@@ -676,17 +711,17 @@
             <div class="columns is-multiline">
               <!-- Video 1 -->
               <div class="column is-one-third">
-          <div class="content">
+                <div class="content">
                   <h3 class="title is-5">OOD Objects</h3>
                   <div>
                     <video id="failure-video-1" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                      <source src="static\videos\failure\right_place_the_beaker_into_the_pink_bowl.mp4" type="video/mp4">
+                      <source src="static\videos\failure\4_failure_pour_the_water_from_teapot_into_bowl.mp4" type="video/mp4">
                     </video>
-          </div>
-                  <p class="is-size-6"><i>"Place the beaker into the pink bowl"</i></p>
-                  <p class="is-size-6">Cannot find the transparent glass beaker</p>
-        </div>
-      </div>
+                  </div>
+                  <p class="is-size-6"><i>"Pour water from teapot into bowl"</i></p>
+                  <p class="is-size-6">Cannot manipulate a new glass teapot (0% success rate)</p>
+                </div>
+              </div>
               
               <!-- Video 2 -->
               <div class="column is-one-third">
@@ -696,10 +731,10 @@
                     <video id="failure-video-2" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                       <source src="static\videos\failure\upenn_pick_block.mp4" type="video/mp4">
                     </video>
-    </div>
+                  </div>
                   <p class="is-size-6"><i>"Pick the black box on the white box"</i></p>
-                  <p class="is-size-6">Can not handle well with unseen background</p>
-  </div>
+                  <p class="is-size-6">Can not handle well with unseen background (0% success rate)</p>
+                </div>
               </div>
               
               <!-- Video 3 -->
@@ -712,7 +747,7 @@
                     </video>
                   </div>
                   <p class="is-size-6"><i>"place the yellow fish into the basket"</i></p>
-                  <p class="is-size-6">Pick up the wrong object in cluttered scene (25% progress)</p>
+                  <p class="is-size-6">Pick up the wrong object in cluttered scene (25% success rate)</p>
                 </div>
               </div>
               
@@ -723,11 +758,11 @@
                   <div>
                     <video id="failure-video-4" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                       <source src="static\videos\failure\right_place_the_can_into_the_tray.mp4" type="video/mp4">
-      </video>
-    </div>
+                    </video>
+                  </div>
                   <p class="is-size-6"><i>"Place the can into the tray"</i></p>
-                  <p class="is-size-6">Misjudges object position relative to container (19% error)</p>
-  </div>
+                  <p class="is-size-6">Misjudges object position relative to container (30% success rate)</p>
+                </div>
               </div>
               
               <!-- Video 5 -->
@@ -740,7 +775,7 @@
                     </video>
                   </div>
                   <p class="is-size-6"><i>"Close the right cabinet door"</i></p>
-                  <p class="is-size-6">Fails to open toy kitchen cabinet on the table (0% progress)</p>
+                  <p class="is-size-6">Fails to open toy kitchen cabinet on the table (0% success rate)</p>
                 </div>
               </div>
               
@@ -754,7 +789,7 @@
                     </video>
                   </div>
                   <p class="is-size-6"><i>"Pour coffee bean into the grinder"</i></p>
-                  <p class="is-size-6">Cannot work with espresso machine (10% progress)</p>
+                  <p class="is-size-6">Cannot work with espresso machine (0% success rate)</p>
                 </div>
               </div>
             </div>
@@ -781,99 +816,210 @@
             This behavior comes from two interrelated factors: semantic ambiguity and autoregressive action decoding limitations.
           </p>
 
-          <h4 class="title is-5">Root Causes</h4>
-          
-          <p><strong>1. Semantic Misalignment</strong></p>
-          <p>
-            Pi0 lacks LLM-like commonsense reasoning to infer unfamiliar object categories. When it does not understand a command, it gets stuck. 
-            In some experiments, we found that some objects were out of distribution(OOD), causing early stopping.
-          </p>
-          
-          <div class="columns is-centered">
-            <div class="column is-half">
+
+          <!-- 3 video examples of early stopping -->
+          <div class="columns is-multiline is-centered">
+            <div class="column is-one-third">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="static/videos/failure/Fail_Gun_Stuck.mp4" type="video/mp4">
+                  <source src="static\videos\problems\4.1_hand_the_pineapple_to_human.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Place the gun into the blue box" - Pi0 stops because it can't recognize which object is 'gun'</p>
+                <p class="is-size-6 has-text-centered">"Hand the pineapple to human"</p>
+              </div>
+            </div>
+            <div class="column is-one-third">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static\videos\problems\4.1_open the drawer.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered">"Open the drawer"</p>
+              </div>
+            </div>
+            <div class="column is-one-third">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static\videos\problems\4.1_pour coffee bean into the coffee grinder.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered">"Pour coffee bean into the coffee grinder"</p>
               </div>
             </div>
           </div>
+
+
           
-          <p><strong>2. Autoregressive Local Optima</strong></p>
+          <h4 class="title is-5">Possible Causes</h4>
+          
+          <p><strong>1. VLA doesn't understand the instruction</strong></p>
+          <p>
+            Pi0 lacks LLM-like commonsense reasoning to infer unfamiliar object categories. When it does not understand a command, it gets stuck. 
+            In some experiments, we found that some objects / instructions are out of distribution(OOD), causing early stopping.
+          </p>
+          
+          
+          <p><strong>2. VLAs are based on Markov Assumption, but World is not MDP</strong></p>
+          <p> 
+            pi0 is a <strong>memory-less</strong> policy, meaning its next action depends only on the current observation—not past actions. When tasks involve <strong>subtle temporal dependencies</strong>, this behavior can cause <strong>valid-looking but incomplete behavior</strong>.
+
+          </p>
           <ul>
             <li><strong>Case</strong>: "Open the drawer" → stops after grasping the handle.</li>
-            <li><strong>Behavior</strong>: Pi0 assumes the task is complete once the handle is gripped, failing to infer multi-step articulation.</li>
-            <li><strong>Why</strong>: The model predicts actions frame-by-frame without memory of prior steps.</li>
+            <li><strong>Behavior</strong>: Pi0 grasps the handle, then does nothing. The output actions are very small. </li>
           </ul>
+          <p>
+            VLA assumes task completion after the initial grasp, unaware that <strong>drawer articulation is a multi-step process</strong>. Pi0 always picks the most likely (mode) action. It is the failure you'd expect when the Markovian property does not hold for a given task. If the majority of training data in a given context (e.g. robot in home position, grasped drawer handle) corresponds to no motion, pi0 will always output "zero joint velocity"—and get stuck.
+          </p>
           
-          <p><strong>3. Token Decoding Edge Cases</strong></p>
-          <p>
-            During inference, pi0 will throw out this error: <code>Error decoding tokens: cannot reshape array of size 79 into shape (8)</code>
-          </p>
-          <p>
-            According to our discussion on <a href="https://github.com/Physical-Intelligence/openpi/issues/373">Github Issue#373</a>, sometimes the policy decoded mis-shaped actions occasionally during inference. 
-            In official implementation, <strong>pi0-fast-droid</strong> defaults to "no-motion" in these cases. Since as the robot continues querying the policy, 
-            the error gets skipped on subsequent queries, allowing the robot to quickly recover and continue decoding correctly-shaped outputs.
-          </p>
-        </div>
+          
+
         
+          <div class="columns">
+            <div class="column is-half">
+              <p><strong>3. Token Decoding Edge Cases</strong></p>
+              <p>
+                During inference, pi0 will throw out this error: <code>Error decoding tokens: cannot reshape array of size 79 into shape (8)</code>
+              </p>
+              <p>
+                According to our discussion on <a href="https://github.com/Physical-Intelligence/openpi/issues/373">Github Issue#373</a>, sometimes the policy decoded mis-shaped actions occasionally during inference. 
+                In official implementation, <strong>pi0-fast-droid</strong> defaults to "no-motion" in these cases. Since as the robot continues querying the policy, 
+                the error gets skipped on subsequent queries, allowing the robot to quickly recover and continue decoding correctly-shaped outputs.
+              </p>
+              <p><em style="color: red;">Warning: Don't kill PI0 Inference Server when early stops, be careful the robot may continue moving before server restarts!</em></p>
+            </div>
+            <div class="column is-half">
+              <div>
+                <img src="static/images/eval_Articulation_open the upper drawer_visualization.png" alt="Drawer articulation visualization" width="100%" style="border-radius: 10px;">
+                <p class="is-size-6 has-text-centered">A visualization of Robot Joint and Gripper state of early stops</p>
+              </div>
+            </div>
+          </div>
+        
+        </div> <!-- End of 4.1 -->
+
+
+
+
+
         <!-- Imprecise spatial reasoning -->
-        <h3 class="title is-4">4.2 Imprecise spatial reasoning</h3>
+      <h3 class="title is-4">4.2 Imprecise spatial reasoning</h3>
         <div class="content has-text-justified">
           <p>
-            Pi0 often struggles with spatial reasoning over height. For example, when asked to pick up an object and place it into a container, 
-            the policy cannot lift the object high enough to clear the height of the container. This suggests the drawback of vision-based 
-            autoregressive VLA: it does not have a metrically accurate method to estimate the distance between gripper and surrounding environment.
+            Pi0 often struggles with spatial reasoning over height. For example, when asked to pick up an object and place it into a container, the policy cannot lift the object high enough to clear the height of the container. This suggests the drawback of <strong>vision-based policies</strong>: it does not have a metrically accurate method to know the distance between gripper and surrounding environment. 
           </p>
 
-          <div class="columns is-centered">
+          <div class="columns">
+            <div class="column is-half">
+              <p>
+              As shown here, the robot seems to think the gripper is high enough, and so it pushes the destination container. If the policy are provided with <strong>Camera sensor</strong>, then it should be able to accurately estimate the size of the object that it holds, and that of the gap between the height of the object and the bowl, and understand that it must increase the gap, it could complete the task successfully.
+              </p>
+            </div>
+
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static/videos/problems/Pushing_Bowl_Fail.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Place the plastic bottle into the pink bowl" - Pi0 fails to lift high enough</p>
-      </div>
-    </div>
-  </div>
+                <p class="is-size-6 has-text-centered">"Place the plastic bottle into the pink bowl" - Pi0 fails to lift high enough and always collide</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="columns">
+          <div class="column is-half">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static/videos/problems/4.2_touch_the_index_finger_of_the_outstretched_hand.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered">"Touch the index finger of outstretched hand" - Pi0 correctly touch, but with gripper force</p>
+              </div>
+            </div>
+            <div class="column is-half">
+              <p>
+                We also tried to prompt pi0 to raise the gripper higher. Like "raise the bottle high enough / up 10cm to avoid collision...". But it didn't learn on them.
+                When pi0 is asked to operate with an articulation object, it becomes even harder for it to estimate the distance from the side view camera, causing frequent collisions. This is particularly worth noting when the robot is intersecting with humans. As it doesn't have any safety constraint,  it will accidentally hit / grasp the user's hand, which can be hurt!. 
+              </p>
+            </div>
+          </div>
 
           <p>
-            We also tried to prompt pi0 to raise the gripper higher, but it didn't learn on this, making it easy to collide with containers.
-            When pi0 is asked to operate with articulated objects, it becomes even harder for it to estimate the distance from the side view camera, 
-            causing frequent collisions. This is particularly concerning when the robot is interacting with humans, as it doesn't have an explicit 
-            constraint map and may hit/grasp the user's hand, which is unsafe.
-          </p>
-
-          <p>
-            What's more, when Pi0 is required to manipulate household appliances, it tends to collide with the device or stop during inference trials. 
-            As shown below with our coffee machine examples:
+            What's more, when Pi0 is required to manipulate a new household appliance, it will tend to collide with the device or stop during inference trials. As shown below, pi0 can not use the Coffee Machine in our lab.
           </p>
 
           <div class="columns is-multiline is-centered">
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="static/videos/failure/coffee_take_out_the_cup_under_the_coffee_machine.mp4" type="video/mp4">
+                  <source src="static/videos/problems/4.3_take_out_the_cup_under_the_coffee_machine.mp4" type="video/mp4">
                 </video>
                 <p class="is-size-6 has-text-centered">"Take out the cup under the coffee machine" → collides with top of machine</p>
-          </div>
-        </div>
+              </div>
+            </div>
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="static/videos/failure/coffee_take_out_the_silver_cup_from_the_coffee_machine.mp4" type="video/mp4">
+                  <source src="static/videos/problems/4.3_raise the lever of coffee machine.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Take out the silver cup from the coffee machine" → succeeds by grasping handle</p>
-      </div>
-    </div>
-  </div>
+                <p class="is-size-6 has-text-centered">"Raise the lever of coffee machine" → didn't understand where is lever.</p>
+              </div>
+            </div>
+          </div>
 
           <p>
-            One possible solution is to involve concepts like Vox map and planning constraints. Depth cameras would also be very helpful             to implement collision avoidance.
+            One possible solution is to involve concepts like Vox map and planning constraints. Depth cameras would also be very helpful to implement collision avoidance.
           </p>
-    </div>
+        </div>
 
+      <h3 class="title is-4">4.3 Sensitivity to Distribution Shift</h3>
+        <div class="content has-text-justified">
+          <p>
+            It is well-known that most robot policies are sensitive to distribution shifts. Change the camera slightly or the initial position of the objects and the success rate can plummet. We found that Pi0 displays some robustness to perturbations, but performance can be dramatically improved by moving the test distribution closer to the training dataset.
+          </p>
+
+          <h5 class="title is-6">1. Orientation of objects significantly affects performance</h5>
+          
+          <div class="columns is-multiline is-centered">
+            <div class="column is-half">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static/videos/problems/4.3_place_the_can_into_red_tray.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered">"Place the can into the red tray" - Success rate varies with can orientation</p>
+              </div>
+            </div>
+            <div class="column is-half">
+              <p>
+                As shown, when the spam can is parallel to the viewer, the robot fails consistently. When perpendicular, it succeeds consistently. This orientation bias likely stems from the distribution of demonstrations in the training data, where certain viewpoints were overrepresented.
+              </p>
+            </div>
+          </div>
+
+          <h5 class="title is-6">2. Grasps at awkward spots on some objects</h5>
+          
+          <p>
+            There is no built-in, geometry-aware grasp detection system. This highlights fundamental limitations:
+          </p>
+
+          <ul>
+            <li><strong>Demonstration Bias:</strong> The policy shows clear preferences for grasping objects in ways that mirror the training demonstrations, even when those aren't optimal for the current scenario. For example, we observed pi0 attempts to pick up cups from their edges rather than their handles.</li>
+            <li><strong>Distribution Mismatch:</strong> When objects appear in positions or orientations underrepresented in the training data, performance drops dramatically. This covariate shift is a well-known weakness of behavior cloning - the policy hasn't learned to recover from states outside its training distribution.</li>
+          </ul>
+
+          <p>
+            The model doesn't actually know where & how to manipulate objects semantically - it can only reproduce patterns from demonstrations without true understanding of object affordances or functional parts. Though scaling up data may solve some scenarios, there are countless edge cases that need to be labeled.
+          </p>
+
+          <p>
+            Potential solutions might involve augmenting behavior cloning with:
+          </p>
+
+          <ul>
+            <li>Explicit object-centric representations to identify functional parts</li>
+            <li>Adversarial training to improve robustness to distribution shifts</li>
+            <li>Incorporating physical priors about stable grasps and object affordances</li>
+          </ul>
+        </div>
+    </div>
+    
+</section>
 
 
 <!-- Quirks Section -->
@@ -1214,9 +1360,11 @@
             
             <div class="column">
               <div class="content">
-                <h4 class="title is-5">Open Source Impact</h4>
-                <p>The open-sourcing of Pi0 will be very useful and inspiring for the whole robotics industry. The impact not only is that every lab gets a very powerful manipulation baseline, but it will also push the horizon robotics manipulation capabilities with a large scale framework that somehow work in the wild. As stated in this  <a href="https://arxiv.org/abs/2409.09491">paper</a>, a fair comparison, beyond simple success rate, may benefit the problem scoping, allowing robotics research to grow as fast as computer vision and general artificial intelligence (<a href="https://arxiv.org/abs/2409.09491">Kress-Gazit etc, 2024</a>).
+                <h4 class="title is-5">Open Source</h4>
+                <p>The open-sourcing of Pi0 will be very useful and inspiring for the whole robotics industry. The impact not only is that every lab gets a very powerful manipulation baseline, but it will also push the horizon robotics manipulation capabilities with a large scale framework that somehow work in the wild. 
                   
+                  <!-- As stated in this  <a href="https://arxiv.org/abs/2409.09491">paper</a>, a fair comparison, beyond simple success rate, may benefit the problem scoping, allowing robotics research to grow as fast as computer vision and general artificial intelligence (<a href="https://arxiv.org/abs/2409.09491">Kress-Gazit etc, 2024</a>).
+                   -->
                 </p>
               </div>
             </div>
