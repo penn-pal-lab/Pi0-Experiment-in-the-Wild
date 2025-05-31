@@ -177,22 +177,22 @@
 
 
 
-<!-- TODO for Edward -->
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Introduction</h2>
+        <!-- <h2 class="title is-3">Introduction</h2> -->
         <div class="content has-text-justified">
           <p>
-            Pi0 is a state-of-the-art vision-language-action (VLA) model designed for general-purpose robotic manipulation, trained on internet-scale data and the Open X-Embodiment dataset. While Pi0 promises versatility across tasks like pick-and-place, articulation, dexterity and human robot interaction, we ask: how does it perform when released in the wild?
+            Pi0 is a state-of-the-art vision-language-action (VLA) model designed for general-purpose robotic manipulation, trained on internet-scale data and the Open X-Embodiment dataset. While Pi0 promises versatility across manipulation tasks, we ask: how does it perform when released in the wild?
           </p>
           <p>
-            Just like how users rank LLMs by chatting about arbitrary topics in <a href="https://huggingface.co/spaces/lmarena-ai/chatbot-arena-leaderboard">Chatbot Arena</a>, we subject Pi0 to "vibe checks" through unstructured real-world experimentation. Users interact with the policies on a whim - improvising tasks, altering camera angles, rearranging objects, and probing edge cases. By embracing the high entropy of ad-hoc human testing, we stress-test the policy's generalization capabilities, while discovering interesting phenomena that structured evaluations may miss.
+            We subject Pi0 to "vibe checks" through unstructured real world experimentation, just like how users rank LLMs by chatting about arbitrary topics in <a href="https://huggingface.co/spaces/lmarena-ai/chatbot-arena-leaderboard">Chatbot Arena</a>. Users interact with the policies on a whim - improvising tasks, altering camera angles, rearranging objects, and probing edge cases. By embracing the high entropy of ad-hoc human testing, we stress-test the policy's generalization capabilities, while discovering interesting phenomena that structured evaluations may miss.
           </p>
           <p>
-            Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. We found the setup of Pi0 to be very close to the experience of using open-source LLMs today - download the checkpoint and deploy, with no additional environment-specific instrumentation required (e.g. camera calibration, controller tuning, demo collection, etc.). We summarize our discoveries over 300+ trials of Pi0 below, exploring its strengths, limitations, unexpected quirks, and its implications for the future of robot learning. We hope that it inspires others to try out Pi0 for themselves!
+            Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. Importantly, Pi0’s ease of deployment — like open-source LLMs — makes such evaluations accessible, with no special instrumentation needed. We summarize our discoveries over 300+ trials of Pi0 below, exploring its capabilities, quirks, and its implications for the future of robot learning. We hope that it inspires others to try out Pi0 for themselves!
+            <!-- We found the setup of Pi0 to be very close to the experience of using open-source LLMs today - download the checkpoint and deploy, with no additional environment-specific instrumentation required (e.g. camera calibration, controller tuning, demo collection, etc.).  -->
           </p>
           <p>
             <strong>Key words: Evaluation, pi0, VLAs, Manipulation, Robot Learning, Imitation Learning. </strong> 
@@ -212,9 +212,9 @@
           <h3 class="title is-4 has-text-centered">TL;DR</h3>
           <div class="content">
             <ul class="is-size-5">
-              <li><strong>Overall Success:</strong> 42.3% average task completion across 300+ trials</li>
+              <li><strong>Overall Success:</strong> 42% average task completion across 300+ diverse trials</li>
               <li><strong>Key Finding:</strong> Pi0 demonstrates impressive vision-language understanding but struggles with spatial reasoning and precise manipulation</li>
-              <li><strong>Bottom Line:</strong> Pi0 works impressively in the wild without fine-tuning, but success depends heavily on prompt engineering and object familiarity</li>
+              <li><strong>Bottom Line:</strong> Pi0 can perform well in-the-wild, but level of success is dependent on prompt engineering and task familiarity.</li>
             </ul>
           </div>
         </div>
@@ -222,8 +222,6 @@
     </div>
   </div>
 </section>
-
-<!-- TODO for Edward: phrase Bottom Line, the statement is weird -->
 
 <!-- Teaser Images Section -->
 <section class="hero">
@@ -366,10 +364,10 @@
               Our evaluations were conducted using the <strong>π₀-FAST-DROID</strong> model, specifically on <strong>DROID robot setups</strong>. While the model supports prompt-based control, its <strong><i>"LLM-like-download-and-prompt"</i></strong> functionality is currently limited to <strong>embodiments similar to those seen during training</strong>—particularly setups included in the <strong>Distributed RObot Interaction Dataset (DROID)</strong>.
             </p>
             <p> 
-              The evaluation is conducted from Feb. 22 to March.22, with a focus on limited environment and tasks type. Please check the Appendix section for more details on results. 
+              The evaluation is conducted from Feb. 22 to March. 22, with a focus on limited environment and tasks type. Please check the Appendix section for more details on results. 
             </p>
             <p>
-              PAL Research Group also contributed data to the DROID dataset in late 2023, making our setup more in-distribution. However, our setup has changed significantly since late 2023 - signficant environmental changes like camera positions, robot height and calibration, new objects, lighting, etc.All results, observations, and analyses presented in this blog are based solely on  <strong>our own rollouts</strong>, and <strong>do not reflect any official performance</strong> guarantees from the model authors or dataset maintainers.
+              PAL Research Group also contributed data to the DROID dataset in late 2023, making our setup more in-distribution. However, our setup has changed significantly since late 2023 - signficant environmental changes like camera positions, robot height and calibration, new objects, lighting, etc. All results, observations, and analyses presented in this blog are based solely on  <strong>our own rollouts</strong>, and <strong>do not reflect any official performance</strong> guarantees from the model authors or dataset maintainers.
             </p>
 
           </div>
@@ -495,7 +493,7 @@
         <h3 class="title is-4">3.1 Robust Vision-Language Understanding in Complex Scenes</h3>
         <div class="content has-text-justified">
           <p>
-            Powered by <strong>PaliGemma</strong> (Google DeepMind's 3B VLM) as its vision encoder (<a href="https://arxiv.org/abs/2407.07726">Beyer etc, 2024</a>), Pi0 demonstrates robust scene comprehension and adaptability. Despite relying solely on uncalibrated monocular RGB inputs (224x224 pixels after compression), it can handle very challenging objects and environments like transparent, camouflaged and novel items. Showing the potential of End2End VLA in precision, closed loop control.
+            Powered by <strong>PaliGemma</strong> (Google DeepMind's 3B VLM) as its vision encoder (<a href="https://arxiv.org/abs/2407.07726">Beyer etc, 2024</a>), Pi0 demonstrates robust scene comprehension and adaptability. Despite relying solely on uncalibrated monocular RGB inputs (224x224 pixels after compression), it can handle very challenging objects and environments like transparent, camouflaged and novel items.            
           </p>
           
           <p><strong>1. It can grasp transparent objects</strong></p>
@@ -594,10 +592,10 @@
         </div>
         
         <!-- Behavioral Structure: pi0 is an FSM -->
-        <h3 class="title is-4">3.2 Behavioral Structure: pi0 Exhibits FSM-like Patterns</h3>
+        <h3 class="title is-4">3.2 Behavioral Sequencing in pi0</h3>
         <div class="content has-text-justified">
           <p>
-            Through our experiments, we observed that <strong>pi0 exhibits behavior resembling a Finite State Machine (FSM)</strong> across a wide range of manipulation tasks. Despite being an <strong>autoregressive model without explicit memory or state encoding</strong>, pi0 often transitions through intuitive behavioral phases such as:
+            Through our experiments, we observed that pi0 exhibits intuitive patterns in its behavior across a wide range of manipulation tasks. Despite being an autoregressive model without explicit memory or state, pi0 often transitions through intuitive behavioral phases such as:
           </p>
           
           <p style="text-align: center;">
@@ -613,7 +611,7 @@
           </p>
 
           <p>
-            <em>While this FSM-like sequencing might suggest an implicit temporal abstraction mechanism, we caution against framing pi0 having 'memory' or 'history'. These patterns may reflect properties of the task distribution (e.g., Markovian, short-horizon tasks), rather than indicating explicit task inference or memory.</em>
+            <em>While this sequencing might suggest that pi0 has learned an internal understanding of the task, we caution against such framing. These patterns may reflect properties of the data distribution (e.g., Markovian, short-horizon tasks), rather than indicating the policy has acquired explicit task inference or memory.</em>
           </p>
 
           <!-- Existing video grid -->
@@ -700,9 +698,9 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Failture Case</h2>
+        <h2 class="title is-3">Failure Cases</h2>
         <p class="has-text-justified" style="color: #666; font-style: italic;">
-          Pi0 demonstrates very impressive robustness across different lights, locations and tasks. However, it do exist some weakness, here is some examples on its cons:
+          Pi0 demonstrates very impressive robustness across different lights, locations and tasks. However, it does have failure cases:
         </p>
         <!-- Failure videos -->
         <div class="columns is-centered">
@@ -971,7 +969,7 @@
       <h3 class="title is-4">4.3 Sensitivity to Distribution Shift</h3>
         <div class="content has-text-justified">
           <p>
-            It is well-known that most robot policies are sensitive to distribution shifts. Change the camera slightly or the initial position of the objects and the success rate can plummet. We found that Pi0 displays some robustness to perturbations, but performance can be dramatically improved by moving the test distribution closer to the training dataset.
+            It is well-known that most robot policies are sensitive to distribution shifts. Change the camera slightly or the initial position of the objects and the success rate can plummet. We found that Pi0 displays some robustness, but performance can be dramatically improved by moving the test distribution closer to the training dataset.
           </p>
 
           <h5 class="title is-6">1. Orientation of objects significantly affects performance</h5>
@@ -1006,7 +1004,7 @@
           <p>
             The model doesn't actually know where & how to manipulate objects semantically - it can only reproduce patterns from demonstrations without true understanding of object affordances or functional parts. Though scaling up data may solve some scenarios, there are countless edge cases that need to be labeled.
           </p>
-
+<!-- 
           <p>
             Potential solutions might involve augmenting behavior cloning with:
           </p>
@@ -1015,7 +1013,7 @@
             <li>Explicit object-centric representations to identify functional parts</li>
             <li>Adversarial training to improve robustness to distribution shifts</li>
             <li>Incorporating physical priors about stable grasps and object affordances</li>
-          </ul>
+          </ul> -->
         </div>
     </div>
     
