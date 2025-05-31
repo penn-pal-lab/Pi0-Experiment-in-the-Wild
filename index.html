@@ -985,7 +985,7 @@
             </div>
             <div class="column is-half">
               <p>
-                As shown, when the spam can is parallel to the viewer, the robot fails consistently. When perpendicular, it succeeds consistently. This orientation bias likely stems from the distribution of demonstrations in the training data, where certain viewpoints were overrepresented.
+                As shown, when the spam can is parallel to the viewer, the robot fails consistently. When perpendicular, it succeeds consistently. This orientation bias likely stems from the viewpoint distribution in the training data, where certain viewpoints were overrepresented.
               </p>
             </div>
           </div>
@@ -998,7 +998,7 @@
 
           <ul>
             <li><strong>Demonstration Bias:</strong> The policy shows clear preferences for grasping objects in ways that mirror the training demonstrations, even when those aren't optimal for the current scenario. For example, we observed pi0 attempts to pick up cups from their edges rather than their handles.</li>
-            <li><strong>Distribution Mismatch:</strong> When objects appear in positions or orientations underrepresented in the training data, performance drops dramatically. This covariate shift is a well-known weakness of behavior cloning - the policy hasn't learned to recover from states outside its training distribution.</li>
+            <li><strong>Distribution Mismatch:</strong> When objects appear in positions or orientations underrepresented in the training data, performance drops dramatically.</li>
           </ul>
 
           <p>
