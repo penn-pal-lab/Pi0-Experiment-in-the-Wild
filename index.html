@@ -1214,81 +1214,6 @@
 </section>
 
 
-<!-- Future Directions -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">6. The Bigger Picture</h2>
-
-          <div class="content">
-          <h3 class="title is-4">6.1 Why pi0 Matters</h3>
-          
-          <div class="columns">
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Generalization</h4>
-                <p>pi0 shows decent zero-shot performance across a wide range of tasks. For centuries, humans have had a strong desire to build a generalist agent system that could work in the wild, going out of the robotics lab and assisting our daily life. With the rapid development of VLAs model, the existence of pi0 marks a milestone for robotics research.</p>
-          </div>
-        </div>
-            
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Scalability</h4>
-                <p>FAST tokenizer enables 5x faster training, which is an impressive milestone and turning point for VLA research. The effective utilization of data implies that what matters to robots is not only the scaling size of dataset, but also the representation's expressiveness.</p>
-              </div>
-            </div>
-            
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Open Source</h4>
-                <p>The open-sourcing of pi0 will be very useful and inspiring for the whole robotics industry. The impact not only is that every lab gets a very powerful manipulation baseline, but it will also push the horizon robotics manipulation capabilities with a large scale framework that somehow work in the wild. 
-                  
-                  <!-- As stated in this  <a href="https://arxiv.org/abs/2409.09491">paper</a>, a fair comparison, beyond simple success rate, may benefit the problem scoping, allowing robotics research to grow as fast as computer vision and general artificial intelligence (<a href="https://arxiv.org/abs/2409.09491">Kress-Gazit etc, 2024</a>).
-                   -->
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          <h3 class="title is-4">6.2 Future Directions</h3>
-          
-          <!-- <div class="columns">
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Better Language Grounding</h4>
-                <p>As discussed in PI's new work "Hi Robot", VLA's language understanding ability could be enhanced via a two-tiered inference framework. However, as we saw in our use cases, the 3B VLM backbone may still suffer from instruction following & generalization across language axes.</p>
-              </div>
-            </div> -->
-            
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Force Feedback</h4>
-                <p> Current models rely primarily on visual input. Incorporating force feedback could help with tasks requiring delicate pressure control and improve interaction with varied surfaces. For example, to plug in a coffee handle into an espresso machine requires a sense of force direction, it may not be solvable without force sensing. </p>
-              </div>
-            </div>
-
-
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Active Perception</h4>
-                <p>Although pi0 exhibits certain active perception ability, its searching ability is still limited to a short range of wrist camera. Adding a module to help it explore the surrounding environment could be a useful direction to augment existing generalist policies.</p>
-              </div>
-            </div>
-            
-            <div class="column">
-              <div class="content">
-                <h4 class="title is-5">Memory Modules</h4>
-                <p>Currently, pi0's memory-less system has achieved great success, but lacking history/memory is a significant limitation. Future models will likely incorporate explicit memory mechanisms to maintain task state across interruptions.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Conclusion -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -1297,8 +1222,7 @@
         <h2 class="title is-3">7. Conclusion</h2>
 
         <div class="content has-text-justified">
-          <p>pi0 represents a promising step toward generalist robots policies, but  challenges remain. <strong>Instruction following and fine-grained tasks are still very challenging </strong> As foundation models evolve, we're optimistic—soon, every robotics lab might have a pi0-like baseline, and we will get some strong VLA for real-world generalization!</p>
-          
+          <p>Through our evaluations, we conclude that Pi0 is a useful generalist policy, capable of doing sensible behavior in unseen manipulation tasks. For our lab, Pi0 will serve as a bedrock layer to build specific functionality on top of, as well as a baseline for comparison.  However, many challenges remain - our experiments showed that Pi0's performance is sensitive to its prompts and struggles with instruction following, fine-grained tasks and partial observability. We are optimistic that these areas will be improved by the robot learning community, and believe that generalist policies will be widely used in the future.</p>     
           <div class="buttons is-centered mt-5">
             <a href="#" class="button is-link is-medium">
               <span class="icon">
