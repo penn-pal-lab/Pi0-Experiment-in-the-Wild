@@ -13,38 +13,6 @@ This blog is designed to present the results of Pi0 evaluation experiments condu
 - Detailed results and insights
 - Future directions and implications
 
-## How to Use This Template
-
-### Replacing Placeholder Images
-
-All placeholder images are located in the `static/images/` directory. Replace these files with your actual images:
-
-- `robot_setup.jpg` - Image of your robot setup
-- `pi0_architecture.jpg` - Diagram of the Pi0 architecture
-- `overall_results.jpg` - Chart showing overall performance statistics
-- `pick_and_place_chart.jpg` - Chart showing pick and place performance
-- `human_interaction_chart.jpg` - Chart showing human interaction performance
-- `instruction_word_cloud.jpg` - Word cloud of instructions used in your evaluations
-
-### Adding Videos
-
-Video placeholders are referenced in the HTML but not actually included in the repository. You should add your videos to the `static/videos/` directory with these filenames:
-
-#### Success Videos:
-- `pick_and_place_success.mp4`
-- `articulation_success.mp4`
-- `human_interaction_success.mp4`
-- `dexterity_success.mp4`
-- `multistep_success.mp4`
-- `novel_objects_success.mp4`
-
-#### Failure Videos:
-- `ood_failure.mp4`
-- `ambiguous_failure.mp4`
-- `interruption_failure.mp4`
-- `spatial_failure.mp4`
-- `complex_articulation_failure.mp4`
-- `coffee_failure.mp4`
 
 ### Customizing Content
 
