@@ -129,7 +129,7 @@
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>PI Research Papers</span>
+                  <span>PI Research</span>
                 </a>
               </span>
               <span class="link-block">
@@ -144,12 +144,12 @@
 
               <!-- GitHub link -->
               <span class="link-block">
-                <a href="https://www.physicalintelligence.company/blog" target="_blank"
+                <a href="https://github.com/Physical-Intelligence/openpi" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>OpenPI Github Repo</span>
+                  <span>Openpi Github</span>
                   </a>
               </span>
             </div>
@@ -161,6 +161,15 @@
 </section>
 
 
+<!-- Citation Box -->
+<section class="section" style="padding-top:1rem; padding-bottom:1rem;">
+  <div class="container is-max-desktop">
+    <div class="box has-background-light is-size-7">
+      <p class="has-text-weight-semibold mb-1">Please Cite&nbsp;this&nbsp;work if you find it helpful!</p>
+      <pre style="white-space:pre-wrap;font-size:0.65rem;line-height:1.2em;background:transparent;border:0;padding:0;">J.&nbsp;Wang*, M.&nbsp;Leonard, K.&nbsp;Daniilidis, D.&nbsp;Jayaraman, &amp; E.&nbsp;S.&nbsp;Hu. (2025). <em>Evaluating π<sub>0</sub> in the Wild @ GRASP Lab: Strengths, Problems, and the Future of Generalist Robot Policies.</em><a href="https://penn-pal-lab.github.io/pi0-Experiment-in-the-Wild" target="_blank" rel="noopener">Blog&nbsp;</a></pre>
+    </div>
+  </div>
+</section>
 
 <section class="hero teaser">
   <div class="container is-max-desktop">
@@ -191,7 +200,7 @@
             We subject pi0 to "vibe checks" through unstructured real world experimentation, just like how users rank LLMs by chatting about arbitrary topics in <a href="https://huggingface.co/spaces/lmarena-ai/chatbot-arena-leaderboard">Chatbot Arena</a>. Users interact with the policies on a whim - improvising tasks, altering camera angles, rearranging objects, and probing edge cases. By embracing the high entropy of ad-hoc human testing, we stress-test the policy's generalization capabilities, while discovering interesting phenomena that structured evaluations may miss.
           </p>
           <p>
-            Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. Importantly, Pi0’s ease of deployment — like open-source LLMs — makes such evaluations accessible, with no special instrumentation needed. We summarize our discoveries over 300+ trials of pi0 below, exploring its capabilities, quirks, and its implications for the future of robot learning. We hope that it inspires others to try out pi0 for themselves!
+            Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. Importantly, Pi0's ease of deployment — like open-source LLMs — makes such evaluations accessible, with no special instrumentation needed. We summarize our discoveries over 300+ trials of pi0 below, exploring its capabilities, quirks, and its implications for the future of robot learning. We hope that it inspires others to try out pi0 for themselves!
             <!-- We found the setup of pi0 to be very close to the experience of using open-source LLMs today - download the checkpoint and deploy, with no additional environment-specific instrumentation required (e.g. camera calibration, controller tuning, demo collection, etc.).  -->
           </p>
           <p>
@@ -972,7 +981,7 @@
             One possible solution is to involve concepts like Vox map and planning constraints. Depth cameras would also be very helpful to implement collision avoidance.
           </p>
         </div>
-
+<!-- 
       <h3 class="title is-4">4.3 Sensitivity to Environment Change</h3>
         <div class="content has-text-justified">
           <p>
@@ -995,7 +1004,7 @@
                 As shown, when the spam can is parallel to the viewer, the robot fails consistently. When perpendicular, it succeeds consistently. This orientation bias likely stems from the viewpoint distribution in the training data, where certain viewpoints were overrepresented.
               </p>
             </div>
-          </div>
+          </div> -->
 
 <!-- 
           <p>
@@ -1294,7 +1303,7 @@
 
         <div class="content has-text-justified">
           <p>Through our evaluations, we conclude that Pi0 is a useful generalist policy, capable of doing sensible behavior in unseen manipulation tasks. For our lab, Pi0 will serve as a bedrock layer to build specific functionality on top of, as well as a baseline for comparison.  However, many challenges remain - our experiments showed that Pi0's performance is sensitive to its prompts and struggles with instruction following, fine-grained tasks and partial observability. We are optimistic that these areas will be improved by the robot learning community, and believe that generalist policies will be widely used in the future.</p>     
-          <div class="buttons is-centered mt-5">
+          <!-- <div class="buttons is-centered mt-5">
             <a href="#" class="button is-link is-medium">
               <span class="icon">
                 <i class="fas fa-table"></i>
@@ -1307,7 +1316,7 @@
                 <i class="fas fa-video"></i>
               </span>
               <span>Watch Full Videos</span>
-            </a>
+            </a> -->
           </div>
         </div>
       </div>
@@ -1323,20 +1332,95 @@
         <h2 class="title is-3">8. References</h2>
         <div class="content">
           <div class="csl-bib-body">
+            <!-- 1. pi0 -->
             <div class="csl-entry">
-              Driess, D., Xia, Z., Ha, L., Kaplan, A., Huang, H., Hausman, K., Ichter, B., Fox, D., & Levine, S. (2024). 
-              <span class="paper-title">pi0: Prompting in the Wild Enables Zero-Shot Robot Manipulation.</span>
-              <span class="paper-conference">arXiv preprint arXiv:2401.08744.</span>
-              <a href="https://arxiv.org/abs/2401.08744">[Paper]</a>
-              <a href="https://pi-zero.github.io/">[Project Page]</a>
+              K. Black, N. Brown, D. Driess, A. Esmail, M. Equi, C. Finn, N. Fusai, L. Groom, K. Hausman, B. Ichter, et al. (2024).
+              Black, o., Xia, Z., Ha, L., Kaplan, A., Huang, H., Hausman, K., Ichter, B., Fox, D., & Levine, S. (2024). 
+              <em><span class="paper-title">π0: A vision-language-action flow model for general robot control.</span></em>
+              <span class="paper-conference">arXiv preprint arXiv:2410.24164.</span>
+              <a href="https://arxiv.org/abs/2410.24164">[Paper]</a>
+              <a href="https://www.pi.website/blog/pi0">[Project Page]</a>
             </div>
+            
+            <!-- 2. FAST -->
             <div class="csl-entry">
-              Xia, Z., Driess, D., Ha, L., Kaplan, A., Huang, H., Hausman, K., Ichter, B., Fox, D., & Levine, S. (2024).
-              <span class="paper-title">DROID: Embodied Compositional Tasks Driven by Language Models.</span>
-              <span class="paper-conference">arXiv preprint arXiv:2401.08745.</span>
-              <a href="https://arxiv.org/abs/2401.08745">[Paper]</a>
-              <a href="https://droid-dataset.github.io/">[Project Page]</a>
+              K.&nbsp;Pertsch, K.&nbsp;Stachowicz, B.&nbsp;Ichter, D.&nbsp;Driess, S.&nbsp;Nair, Q.&nbsp;Vuong, O.&nbsp;Mees, C.&nbsp;Finn, &amp; S.&nbsp;Levine. (2025).
+              <span class="paper-title"><em>FAST: Efficient action tokenization for vision-language-action models.</em></span>
+              <span class="paper-conference"><em>arXiv&nbsp;preprint</em> arXiv:2501.09747.</span>
+              <a href="https://arxiv.org/abs/2501.09747">[Paper]</a>
+              <a href="https://www.pi.website/research/fast">[Project&nbsp;Page]</a>
             </div>
+
+            <!-- 9. OpenPI repository -->
+            <div class="csl-entry">
+              Physical-Intelligence. (2025).
+              <span class="paper-title"><em>OpenPI.</em></span>
+              <span class="paper-conference"><em>GitHub&nbsp;repository.</em></span>
+              <a href="https://github.com/Physical-Intelligence/openpi">[GitHub]</a>
+            </div>
+
+            <!-- 3. DROID dataset -->
+            <div class="csl-entry">
+              A.&nbsp;Khazatsky, K.&nbsp;Pertsch, S.&nbsp;Nair, A.&nbsp;Balakrishna, S.&nbsp;Dasari, S.&nbsp;Karamcheti, S.&nbsp;Nasiriany, M.&nbsp;K.&nbsp;Srirama, L.&nbsp;Y.&nbsp;Chen, K.&nbsp;Ellis, et&nbsp;al. (2024).
+              <span class="paper-title"><em>DROID: A large-scale in-the-wild robot manipulation dataset.</em></span>
+              <span class="paper-conference"><em>arXiv&nbsp;preprint</em> arXiv:2403.12945.</span>
+              <a href="https://arxiv.org/abs/2403.12945">[Paper]</a>
+            </div>
+
+            <!-- 4. Chatbot Arena -->
+            <div class="csl-entry">
+              W.-L.&nbsp;Chiang, L.&nbsp;Zheng, Y.&nbsp;Sheng, A.&nbsp;N.&nbsp;Angelopoulos, T.&nbsp;Li, D.&nbsp;Li, B.&nbsp;Zhu, H.&nbsp;Zhang, M.&nbsp;I.&nbsp;Jordan, J.&nbsp;E.&nbsp;Gonzalez, &amp; I.&nbsp;Stoica. (2024).
+              <span class="paper-title"><em>Chatbot Arena: An open platform for evaluating LLMs by human preference.</em></span>
+              <span class="paper-conference"><em>Proceedings of the 41st International Conference on Machine Learning</em> (ICML 2024).</span>
+              <a href="https://arxiv.org/abs/2403.04132">[Paper]</a>
+              <a href="https://chat.lmsys.org">[Platform]</a>
+            </div>
+            <!-- 10. Interconnects blog post -->
+            <div class="csl-entry">
+              N.&nbsp;Lambert. (2024).
+              <span class="paper-title"><em>ChatBotArena: The peoples' LLM evaluation, the future of evaluation, the incentives of evaluation, and gpt2chatbot.</em></span>
+              <span class="paper-conference"><em>Interconnects.ai&nbsp;blog.</em></span>
+              <a href="https://www.interconnects.ai/p/chatbotarena-the-future-of-llm-evaluation">[Article]</a>
+            </div>
+      
+
+            <!-- 5. Conceptual Captions -->
+            <div class="csl-entry">
+              P.&nbsp;Sharma, N.&nbsp;Ding, S.&nbsp;Goodman, &amp; R.&nbsp;Soricut. (2018).
+              <span class="paper-title"><em>Conceptual Captions: A cleaned, hypernymed, image alt-text dataset for automatic image captioning.</em></span>
+              <span class="paper-conference"><em>Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics</em> (ACL 2018), 2556 - 2565.</span>
+              <a href="https://aclanthology.org/P18-1238/">[Paper]</a>
+            </div>
+
+            <!-- 6. All You May Need for VQA are Image Captions -->
+            <div class="csl-entry">
+              S.&nbsp;Changpinyo, D.&nbsp;Kukliansy, I.&nbsp;Szpektor, X.&nbsp;Chen, N.&nbsp;Ding, &amp; R.&nbsp;Soricut. (2022).
+              <span class="paper-title"><em>All you may need for VQA are image captions.</em></span>
+              <span class="paper-conference"><em>Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics:
+              Human Language Technologies</em> (NAACL 2022), 1947 - 1963.</span>
+              <a href="https://aclanthology.org/2022.naacl-main.142/">[Paper]</a>
+            </div>
+
+            <!-- 7. Open Images V4 -->
+            <div class="csl-entry">
+              A.&nbsp;Kuznetsova, H.&nbsp;Rom, N.&nbsp;Alldrin, J.&nbsp;Uijlings, I.&nbsp;Krasin, J.&nbsp;Pont-Tuset, S.&nbsp;Kamali, S.&nbsp;Popov, M.&nbsp;Malloci, A.&nbsp;Kolesnikov, T.&nbsp;Duerig, &amp; V.&nbsp;Ferrari. (2020).
+              <span class="paper-title"><em>The Open Images Dataset V4: Unified image classification, object detection, and visual relationship detection at scale.</em></span>
+              <span class="paper-conference"><em>International Journal of Computer Vision</em>, 128, 1956 - 1981.</span>
+              <a href="https://doi.org/10.1007/s11263-020-01316-z">[Paper]</a>
+              <a href="https://storage.googleapis.com/openimages/web/index.html">[Dataset]</a>
+            </div>
+
+            <!-- 8. PaliGemma -->
+            <div class="csl-entry">
+              L.&nbsp;Beyer, A.&nbsp;Steiner, A.&nbsp;S.&nbsp;Pinto, A.&nbsp;Kolesnikov, X.&nbsp;Wang, D.&nbsp;Salz, M.&nbsp;Neumann, I.&nbsp;Alabdulmohsin, M.&nbsp;Tschannen, E.&nbsp;Bugliarello, et&nbsp;al. (2024).
+              <span class="paper-title"><em>PaliGemma: A versatile 3B VLM for transfer.</em></span>
+              <span class="paper-conference"><em>arXiv&nbsp;preprint</em> arXiv:2407.07726.</span>
+              <a href="https://arxiv.org/abs/2407.07726">[Paper]</a>
+            </div>
+
+     
+      
+
           </div>
         </div>
       </div>
@@ -1352,16 +1436,16 @@
         <h2 class="title is-3">9. Acknowledgments</h2>
         <div class="content has-text-justified">
           <p>
-            We thank Will Liang, Hungju Wang, Sam Wang for their help in setting up the pi0 environment. We also thank Kaustubh Sridhar, Tianyou Wang, Ian, Ethan Yu, Tim Song and Yiqian Li for their help in doing experiments.
+            We are grateful to Will Liang, Hungju Wang, and Sam Wang for their assistance in setting up the π0 environment. We further thank Kaustubh Sridhar, Tianyou Wang, Ian Pedroza, Ethan Yu, Tim Song, and Yiqian Li for their help doing the experiments.
           </p>
           <p>
-            We thank Junyao Shi, Aurora Qian, Leon Kim and Jason Ma for the suggestions on how to evaluate a generalist manipulation policy.
+            We also thank Junyao Shi, Aurora Qian, Leon Kim, and Jason Ma for their insightful suggestions on evaluating a generalist manipulation policy.
           </p>
           <p>
-            We are also grateful to Karl Pertsch from Physical Intelligence for comments on the blog draft.
+            We extend our appreciation to Karl Pertsch from Physical Intelligence for his constructive feedback on the blog draft.
           </p>
           <p>
-            This work is independently conducted within PennPAL Group and Daniilidis Group under GRASP Lab.
+            This work was conducted independently within the PennPAL and Daniilidis groups at the GRASP Lab.
           </p>
         </div>
       </div>
@@ -1370,7 +1454,7 @@
 </section>
 
 
-<!-- Citation TODO change site-->
+<!-- Citation change site-->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -1379,11 +1463,11 @@
         <div class="content has-text-justified">
           <p>If you find this evaluation useful for your research, please consider citing our repository:</p>
           <pre><code>@misc{pi0-experiment-wild,
-  author = {PAL Research Group},
-  title = {pi0 Experiment in the Wild},
-  year = {2024},
+  author = {J.&nbsp;Wang*, M.&nbsp;Leonard, K.&nbsp;Daniilidis, D.&nbsp;Jayaraman, &amp; E.&nbsp;S.&nbsp;Hu},
+  title = {Evaluating pi0 in the Wild @ GRASP Lab: Strengths, Problems, and the Future of Generalist Robot Policies},
+  year = {2025},
   publisher = {GitHub},
-  url = {https://github.com/penn-pal-lab/pi0-Experiment-in-the-Wild}
+  url = {https://penn-pal-lab.github.io/pi0-Experiment-in-the-Wild}
 }</code></pre>
         </div>
       </div>
@@ -1420,7 +1504,7 @@
           <p>The following are details of our experiment set up.</p>
         </div>
         
-        <h3 class="title is-4">3.1 Hardware:</h3>
+        <h3 class="title is-4">Hardware:</h3>
         <div class="content has-text-justified">
           <ul>
             <li><strong>Franka Research 3 Arm</strong>: 7-DOF force-sensitive robot with a 3 kg payload.</li>
@@ -1434,12 +1518,10 @@
             </li>
           </ul>
           
-          <figure class="image">
-            <img src="static/images/robot.png" alt="Robot setup">
-          </figure>
+      
       </div>
         
-        <h3 class="title is-4">3.2 Computing</h3>
+        <h3 class="title is-4">Compute</h3>
         <div class="content has-text-justified">
           <p><strong>GPU Server:</strong></p>
           <ul>
@@ -1463,11 +1545,11 @@
             <li><strong>FAST+</strong>: Frequency-space Action Sequence Tokenization (FAST), a universal robot action tokenizer, trained on 1M real robot action trajectories. It can be used as a black-box tokenizer for a wide range of robot action sequences, with diverse action spaces and control frequencies.
             <li><strong>Training Data</strong>: Pretrained on π cross-embodiment robot dataset & Open X-Embodiment, fine tuned on DROID dataset.</li>
           </ul>
-          
+<!--           
           <figure class="image">
             <img src="static/images/dataset.jpg" alt="Large scale robotics data for pretraining">
             <figcaption>Dataset used for pretraining pi0</figcaption>
-          </figure>
+          </figure> -->
         </div>
       </div>
     </div>
@@ -1639,7 +1721,7 @@
   <div class="container">
     <div class="content has-text-centered">
       <p>
-        <strong>pi0 Evaluation</strong> by <a href="https://www.seas.upenn.edu/~dineshj/pennpal/index.html">PAL Research Group</a>, GRASP Lab, University of Pennsylvania.
+        <strong>pi0 Evaluation</strong> by <a href="https://www.seas.upenn.edu/~dineshj/pennpal/index.html">GRASP Lab</a>, University of Pennsylvania.
       </p>
       
       <p>
