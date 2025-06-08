@@ -1106,20 +1106,31 @@
         </div>
 
 
-        <h4 class="title is-5">Quirk 2: How robust is pi0 </h4>
+        <h4 class="title is-5">Quirk 2: How robust is pi0 under partial observability?</h4>
         <div class="content has-text-justified">
           <p>
-            One of the most frequently asked questions on pi0 is, how robust it is when the sensory inputs are disrupted? We did several tests on blocking the camera and the object. Here's what we found.
+            One of the most frequently asked questions on pi0 is, how robust it is when its visual inputs are disrupted? We did several tests on blocking the camera and the object. Here's what we found.
           </p>
 
           <h5 class="title is-6">Camera Blocking Experiments</h5>
           
           <p><strong>Setup</strong>:</p>
           <ul>
-            <li><strong>Task</strong>: "Pick up the pink object and place it into the bowl."</li>
+            <li><strong>Task: "Pick up the pink object and place it into the bowl."</strong></li>
             <li><strong>Cameras</strong>: Side-view (primary) + wrist-mounted (secondary).</li>
             <li><strong>Blocking Scenarios</strong>: Partial/full occlusion of one or both cameras.</li>
+            <li><strong></strong>Test time</strong>: 4 trials per scenario, 300 rollouts per trial.</li>
           </ul>
+
+
+          <div class="column is-full-width">
+            <div>
+              <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                <source src="static/videos/quirk/AP_block_leftcamera_pick_up_the_purple_object.mp4" type="video/mp4">
+              </video>
+              <p class="is-size-6 has-text-centered"><strong>Block the left camera:</strong> pi0 can still find pink object.</p>
+            </div>
+          </div>
 
           <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
@@ -1133,12 +1144,12 @@
               <tr>
                 <td><strong>No Block</strong></td>
                 <td>100%</td>
-                <td>Flawless execution. Picks pink object, attempts secondary objects.</td>
+                <td>Baseline: Perfect execution. Picks correct object, then explores others.</td>
               </tr>
               <tr>
                 <td><strong>Block Side Camera Mid-Trial</strong></td>
                 <td>50%</td>
-                <td>Relies on wrist cam. Gripper misalignment → partial success.</td>
+                <td>Relies on wrist camera to pick up the object → success rate decreases.</td>
               </tr>
               <tr>
                 <td><strong>Block Wrist Camera Entirely</strong></td>
@@ -1147,66 +1158,126 @@
               </tr>
               <tr>
                 <td><strong>Block Both Cameras Initially → Unblock Mid-Trial</strong></td>
-                <td>70%</td>
-                <td>Chaotic exploration → stabilizes after unblocking.</td>
+                <td>75%</td>
+                <td>Chaotic exploration → can execute after unblocking.</td>
               </tr>
             </tbody>
           </table>
-
-          <h5 class="title is-6">Our Observations</h5>
-          <ul>
-            <li><strong>Active Perception</strong>:
-              <ul>
-                <li>When the side camera is blocked, pi0 uses its wrist camera to retry grasps ("hand-eye coordination").</li>
-                <li>Example: In Trial 3 (side camera blocked), pi0 adjusted its gripper position twice to finally secure the pink object.</li>
-              </ul>
-            </li>
-            <li><strong>Viewpoint Robustness</strong>:
-              <ul>
-                <li>pi0 tolerates shifted camera angles mid-task.</li>
-                <li>Blocking then unblocking cameras triggered exploratory movements (e.g., sweeping the arm to re-localize objects).</li>
-              </ul>
-            </li>
-            <li><strong>Failure Modes</strong>:
-              <ul>
-                <li>Total wrist camera blockage → robot freezes (no fallback perception).</li>
-                <li>Over-reliance on initial frames: If objects shift after blocking, pi0 struggles to update its spatial model.</li>
-              </ul>
-            </li>
-          </ul>
 
           <div class="columns is-multiline is-centered">
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="static\videos\success\close_the_drawer.mp4" type="video/mp4">
+                  <source src="static/videos/quirk/blocking_camera_0.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered"> "Close the drawer"</p>
+                <p class="is-size-6 has-text-centered"><strong>No Block:</strong> 100% execution.</p>
               </div>
             </div>
             <div class="column is-half">
               <div>
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                  <source src="static\videos\success\close_the_right_cabinet_door.mp4" type="video/mp4">
+                  <source src="static/videos/quirk/blocking_camera_1.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered"> "Close the right cabinet door"</p>
+                <p class="is-size-6 has-text-centered"><strong>Side Camera Blocked Mid-Trial:</strong> Robot is interrupted but can still complete the task.</p>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static/videos/quirk/blocking_camera_2.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered"><strong>Wrist Camera Blocked Entirely:</strong> Frozen.</p>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static/videos/quirk/blocking_camera_3.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered"><strong>Both Blocked, then Unblocked:</strong> Recovers.</p>
               </div>
             </div>
           </div>
 
+
           <h5 class="title is-6">Object Blocking Experiment</h5>
           <p><strong>Setup</strong>:</p>
           <ul>
-            <li><strong>Task</strong>: "Pick up the red box."</li>
+            <li><strong>Task</strong>: "Pick up the pineapple."</li>
             <li><strong>Occlusion Levels</strong>: None (fully visible), 50% occluded, 100% occluded.</li>
-            <li><strong>Behavior Metrics</strong>: Success rate, recovery attempts, and failure modes.</li>
+            <li><strong>Test time</strong>: 12 trials per scenario, 300 rollouts per trial.</li>
           </ul>
 
-          <p>
-            We sought to determine how the robot would respond when the target of its task was occluded. When the box was fully visible, the robot would succeed. When it was 50% occluded, the robot would generally succeed, sometimes moving the occluding object to get a better view or grasp of the target. When fully occluded, the robot would become confused and stop. During one fully occluded trial, the robot knocked over the occluder and the red box, revealing more information about the location of the target but making it impossible to proceed with a good grasp.
-          </p>
+            <div class="column is-full-width">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static/videos/quirk/AP_box_pick_up_the_pineapple.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered"><strong>From three boxes: 66.67%</strong> Pi0 can easily find the target object from different boxes on the table.</p>
+              </div>
+            </div>
+            <!-- <div class="column is-full-width">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static/videos/quirk/AP_box_moving_pick_up_the_pineapple.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered"><strong>From Boxes, but moving:</strong>Switching the boxes to make test more challenging.</p>
+              </div>
+            </div> -->
+
+            <div class="column is-full-width">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static/videos/quirk/AP_drawer_find_pineapple_inside_drawer.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered"><strong>Inside Drawer: 25%</strong> 
+                  <br>
+                  <em>Franka's collision with the drawer makes pi0 hard to pick out the pineapple.</em>
+                </p>
+              </div>
+            </div>
+  
+
+            <div class="column is-full-width">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static/videos/quirk/AP_interactive_pick_the_pineapple.mp4" type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered"><strong>Hidden under cloth: 0%</strong>
+                  <br>
+                  <em>pi0 is unable to explore the environment that requires interaction exploration:.</em>
+                </p>
+              </div>
+            </div>
+
+          
+  
         </div>
 
+
+        <h5 class="title is-6">Our Observations</h5>
+        <ul>
+          <li><strong>Active Perception</strong>:
+            <ul>
+              <li>When the side camera is blocked, pi0 can still complete the task with only wrist camera.</li>
+              <li>In most pick and place tasks, pi0 relies on wrist camera as the side-view camera may be too far.</li>
+              <li>Wrist camera plays as active perception, exploring the scene and pick up the object if it is in center-up area. </li>
+            </ul>
+          </li>
+          <li><strong>Viewpoint Robustness</strong>:
+            <ul>
+              <li>pi0 can tolerate changing side-view camera position and orientation during the task</li>
+              <li>Blocking then unblocking cameras triggered pi0 to continue movements (The image condition changes for the policy).</li>
+            </ul>
+          </li>
+          <li><strong>Common Failure Modes under Partial Observability</strong>:
+            <ul>
+              <li>Total wrist camera blockage → robot freezes and can execute, even if the side image is available.</li>
+              <li>Pi0 is memoryless, predicting the action per frame auto-regressively, so it will be able to continue executing the task if observation is available.</li>
+              <li>However, the exploration behavior of pi0 is not efficient and limited to certain area. Making it hard to actively search the environment.</li>
+            </ul>
+          </li>
+        </ul>
         
       </div>
     </div>
@@ -1251,7 +1322,6 @@
       <div class="column is-full-width">
         <h2 class="title is-3">8. References</h2>
         <div class="content">
-          Place holder for more papers TODO fix
           <div class="csl-bib-body">
             <div class="csl-entry">
               Driess, D., Xia, Z., Ha, L., Kaplan, A., Huang, H., Hausman, K., Ichter, B., Fox, D., & Levine, S. (2024). 
