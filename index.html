@@ -194,13 +194,13 @@
         <!-- <h2 class="title is-3">Introduction</h2> -->
         <div class="content has-text-justified">
           <p>
-            pi0 is a state-of-the-art vision-language-action (VLA) model designed for general-purpose robotic manipulation, trained on internet-scale data and the Open X-Embodiment dataset. While pi0 promises versatility across manipulation tasks, we ask: how does it perform when released in the wild?
+            pi0 is a state-of-the-art vision-language-action (VLA) model designed for general-purpose robotic manipulation. Developed by Physical Intelligence, it has been trained on internet-scale data and the Open X-Embodiment dataset. pi0 promises versatility across manipulation tasks, but we want to know: how does it perform when it is released in the wild?
           </p>
           <p>
-            We subject pi0 to "vibe checks" through unstructured real world experimentation, just like how users rank LLMs by chatting about arbitrary topics in <a href="https://huggingface.co/spaces/lmarena-ai/chatbot-arena-leaderboard">Chatbot Arena</a>. Users interact with the policies on a whim - improvising tasks, altering camera angles, rearranging objects, and probing edge cases. By embracing the high entropy of ad-hoc human testing, we stress-test the policy's generalization capabilities, while discovering interesting phenomena that structured evaluations may miss.
+            Inspired by how how users rank LLMs by chatting about arbitrary topics in <a href="https://huggingface.co/spaces/lmarena-ai/chatbot-arena-leaderboard">Chatbot Arena</a>, we subject pi0 to "vibe checks," which are unstructured real world experiments. Users improvise tasks, alter camera angles, rearrange objects, and try to think of edge cases where they expect the policy might fail. We want to know whether pi0's training data distribution is wide enough to cover the range of tasks that humans can come up with. So, we test the policy's generalization capabilities, and discover some interesting phenomena that structured evaluations may not have found.
           </p>
           <p>
-            Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. Importantly, Pi0's ease of deployment — like open-source LLMs — makes such evaluations accessible, with no special instrumentation needed. We summarize our discoveries over 300+ trials of pi0 below, exploring its capabilities, quirks, and its implications for the future of robot learning. We hope that it inspires others to try out pi0 for themselves!
+            Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. Like open-source LLMs, Pi0's ease of deployment makes these kinds of evaluations accessible for any robotics lab with a DROID setup. We summarize our discoveries over 300+ trials of pi0 below, exploring its capabilities, quirks, and its implications for the future of robot learning. We hope that our work inspires others to try out pi0 for themselves!
             <!-- We found the setup of pi0 to be very close to the experience of using open-source LLMs today - download the checkpoint and deploy, with no additional environment-specific instrumentation required (e.g. camera calibration, controller tuning, demo collection, etc.).  -->
           </p>
           <p>
@@ -221,9 +221,9 @@
           <h3 class="title is-4 has-text-centered">TL;DR</h3>
           <div class="content">
             <ul class="is-size-5">
-              <li><strong>Overall Success:</strong> 42% average task completion across 300+ diverse trials</li>
-              <li><strong>Key Finding:</strong> pi0 demonstrates impressive vision-language understanding but struggles with spatial reasoning and precise manipulation</li>
-              <li><strong>Bottom Line:</strong> pi0 can perform well in-the-wild, but level of success is dependent on prompt engineering and task familiarity.</li>
+              <li><strong>Overall Success:</strong> 42% average progress towards completion across 300+ diverse trials</li>
+              <li><strong>Key Finding:</strong> pi0 demonstrates impressive vision-language understanding, but it struggles with spatial reasoning and precise manipulation</li>
+              <li><strong>Bottom Line:</strong> pi0 can perform well in the wild, but its success depends on the details of the prompt, and how well the task matches the training distribution.</li>
             </ul>
           </div>
         </div>
@@ -299,52 +299,52 @@
           </div>
         </div>
         <p class="has-text-centered" style="margin-top: 0rem;">
-          <strong>Left</strong>: relationship between score and number of trials; <strong>Right</strong> the progress rate on each task.<br> <br>
+          <strong>Left</strong>: relationship between score and number of trials; <strong>Right</strong> the progress score on each task.<br> <br>
         </p>
         <!-- Hero Images End -->
 
         <div class="content has-text-justified">
           <p>
-            Through experiments across diverse manipulation tasks in the <a href="https://facilities.upenn.edu/maps/locations/levine-hall-melvin-and-claire-weiss-tech-house">Levine Hall</a> 403 & 457 at Penn Engineering School, we observed a wide range of behaviors—remarkable performances, confusing failures, and many quirks. By testing pi0 in varied environments (e.g., cluttered tables, articulated cabinets, human-involved settings), we have derived three critical insights:
+            Our experiments took place in <a href="https://facilities.upenn.edu/maps/locations/levine-hall-melvin-and-claire-weiss-tech-house">Levine Hall</a> 457 at Penn, in the DROID mock kitchen environment. The mock kitchen allows us to test the robot in diverse scenarios, such as cluttered tables, articulated cabinets, and human involvement. We observed a wide range of behaviors, including remarkable performance by the model, as well as unexpected failures and quirks. We have derived three critical insights from our testing:
           </p>
 
           <ol>
             <li>
-              <strong>pi0 Works (Mostly)</strong>: It achieves <strong>42.3% average progress</strong> across diverse, hard tasks, even in unseen environments and objects. However, it also fails in some seemingly simple tasks.
+              <strong>pi0 Works (Mostly)</strong>: It achieves <strong>42.3% average progress</strong> across diverse, difficult tasks, even in unseen environments and involving unseen objects. However, it also fails in some seemingly simple tasks.
             </li>
             <li>
-              <strong>Prompt Engineering Matters</strong>: While pi0 is good at vision-action grounding, its performance drops <strong>20~100%</strong> based on instruction phrasing. You need to carefully prompt it to make it work in some condition.
+              <strong>Prompt Engineering Matters</strong>: While pi0 is good at vision-action grounding, its performance drops <strong>20~100%</strong> depending on how the instructions are phrased. The prompt must be carefully designed, depending on the exact conditions of the environment, to make it work.
             </li>
             <li>
-              <strong>Unexpected Quirks</strong>: pi0 can recover from failures, and handle moving humans in the scene, but struggles with <strong>mid-task freezing, collision avoidance, and fine-grained manipulation etc.</strong>
+              <strong>Unexpected Quirks</strong>: pi0 can recover from failures, and handle moving humans in the scene, but it struggles with <strong>mid-task freezing, collision avoidance, and fine-grained manipulation</strong>
             </li>
           </ol>
           
           <p>
-            Below, we unpack each finding with video examples and analysis.
+            Below, we elaborate on our findings with video examples.
           </p>
 
           <h3 class="title is-4">Evaluation: Progress Score through Vibe Testing</h3>
           
           <p>
-            Evaluating large generalist robot policies like <strong>pi0</strong> remains an open challenge. Unlike classical robotics benchmarks, these models operate across diverse tasks and environments, often in open-ended settings with no binary notion of success.
+            Evaluating large generalist robot policies like <strong>pi0</strong> remains an open challenge. Unlike classical robotics benchmarks, these models operate across diverse tasks and open environments, where it is difficult to quantify a notion of success.
           </p>
 
           <p>
-            In our blog, we adopt a <strong>progress score</strong> as the main evaluation signal, which is <strong>loosely inspired by the "vibe testing" rubric</strong> proposed in the <a href="https://arxiv.org/abs/2403.04132">ChatbotArena(Chiang, etc, 2024)</a>, (<a href="https://www.interconnects.ai/p/chatbotarena-the-future-of-llm-evaluation">Lambert 2024</a>). This method has also been used in recent works such as the pi0 and pi0-FAST papers. During evaluation, we assign a continuous score from 0 to 100 to each policy rollout, reflecting the <strong>fraction of the commanded task successfully completed</strong>. For instance, a <strong>newspaper-folding</strong> task might score:
+            In our blog, we adopt a <strong>progress score</strong> as the main evaluation signal, which is <strong>loosely inspired by the "vibe testing" rubric</strong> proposed in <a href="https://arxiv.org/abs/2403.04132">ChatbotArena(Chiang, etc, 2024)</a>, (<a href="https://www.interconnects.ai/p/chatbotarena-the-future-of-llm-evaluation">Lambert 2024</a>). This method has also been used in recent works such as pi0 and pi0-FAST. During evaluation, we assign a continuous score from 0 to 100 to each policy rollout, reflecting the <strong>fraction of the commanded task successfully completed</strong>. For instance, for a <strong>newspaper-folding</strong> task, we might give the following scores:
           </p>
 
           <div class="columns"> 
             <div class="column is-half"> 
               <ul>
-                <li><strong>25%</strong>: if the robot approached and grasp a side.</li>
-                <li><strong>50%</strong>: if it fold up the newspaper in correct articulation direction.</li>
-                <li><strong>75%</strong>: if the newspaper is partially fold up.</li>
-                <li><strong>100%</strong>: if the newspaper is fold neatly in half.</li>
+                <li><strong>25%</strong>: if the robot approaches and grasps one side of the newspaper.</li>
+                <li><strong>50%</strong>: if it tries to fold the newspaper in the correct direction.</li>
+                <li><strong>75%</strong>: if it can partially fold up the newspaper.</li>
+                <li><strong>100%</strong>: if the newspaper is folded neatly in half.</li>
               </ul>
 
               <p>
-                These scores are inherently subjective and noisy, but practical for generalist policy evaluation: we try to remain <strong>consistent across trials</strong>, and use them as <strong>noisy but informative approximations of task completion</strong>.
+                These scores are inherently subjective and noisy, but practical for generalist policy evaluation; we try to remain <strong>consistent across trials</strong>, so that the overall score is an <strong>informative approximation of task completion</strong>.
               </p>
             </div>
 
@@ -355,7 +355,7 @@
           </div>
 
           <p>
-            This scalar scoring allows us to quickly assess success modes, failure modes, and emerging capabilities across the experiments. With the development of robotics evaluation, we believe more standardized, benchmark-driven evaluation methods for generalist policies will emerge. For now, <strong>vibe-informed progress scores</strong> are a reasonable and transparent compromise.
+            This scalar scoring allows us to assess success modes, failure modes, and emerging capabilities across the experiments we performed. As evaluation methods for VLAs develop further, we believe more standardized, benchmark-driven evaluation methods for generalist policies will emerge. For now, <strong>vibe-informed progress scores</strong> are a reasonable and transparent compromise.
           </p>
 
           <p>
@@ -377,13 +377,13 @@
           <h3 class="title is-4">Disclaimer</h3>
           <div class="content has-text-justified">
             <p>
-              Our evaluations were conducted using the <strong>π₀-FAST-DROID</strong> model, specifically on <strong>DROID robot setups</strong>. While the model supports prompt-based control, its <strong><i>"LLM-like-download-and-prompt"</i></strong> functionality is currently limited to <strong>embodiments similar to those seen during training</strong>—particularly setups included in the <strong>Distributed RObot Interaction Dataset (DROID)</strong>.
+              Our evaluations were conducted using the <strong>π₀-FAST-DROID</strong> model, specifically fine-tuned on <strong>DROID robot setups</strong>. While the model supports prompt-based control, its <strong><i>"LLM-like-download-and-prompt"</i></strong> functionality is currently limited to <strong>embodiments similar to those seen during training</strong>—particularly setups included in the <strong>Distributed RObot Interaction Dataset (DROID)</strong>.
             </p>
             <p> 
               The evaluation is conducted from Feb. 22 to March. 22, with a focus on limited environment and tasks type. Please check the Appendix section for more details on results. 
             </p>
             <p>
-              PAL Research Group also contributed data to the DROID dataset in late 2023, making our setup more in-distribution. However, our setup has changed significantly since late 2023 - signficant environmental changes like camera positions, robot height and calibration, new objects, lighting, etc. All results, observations, and analyses presented in this blog are based solely on  <strong>our own rollouts</strong>, and <strong>do not reflect any official performance</strong> guarantees from the model authors or dataset maintainers.
+              PAL Research Group also contributed data to the DROID dataset in late 2023, which means our setup is close to the distribution of the data pi0 was trained on. However, our setup has changed significantly since late 2023. These changes include camera positions, robot height and calibration, new objects, lighting, etc. All results, observations, and analyses presented in this blog are based solely on  <strong>our own rollouts</strong>, and <strong>do not reflect any official performance</strong> guarantees from the model authors or dataset maintainers.
             </p>
 
           </div>
@@ -417,7 +417,7 @@
       </video>
     </div>
                   <p class="is-size-6">"Place the yellow fish into the purple box"</p>
-                  <p class="is-size-6">Precise placement of camouflage fish into the box</p>
+                  <p class="is-size-6">Precise placement of the camouflage fish into the box</p>
   </div>
               </div>
               
@@ -431,7 +431,7 @@
                     </video>
                   </div>
                   <p class="is-size-6">"Open the drawer"</p>
-                  <p class="is-size-6">Opening drawer with multiple pull to make sure fully opened</p>
+                  <p class="is-size-6">Opens drawer with multiple pulls to make sure it is fully open</p>
                 </div>
               </div>
               
@@ -445,7 +445,7 @@
                     </video>
                   </div>
                   <p class="is-size-6">"Hand the pineapple to the programmer"</p>
-                  <p class="is-size-6">Safe object handover to programmer, even there is wire occlusion from side view</p>
+                  <p class="is-size-6">Safe object handover to the programmer, even with wire occlusion from the side view</p>
                 </div>
               </div>
               
@@ -459,7 +459,7 @@
                     </video>
                   </div>
                   <p class="is-size-6">"Pour water from the silver cup to the pink bowl"</p>
-                  <p class="is-size-6">Pour real water from Latte art vat into the target bowl</p>
+                  <p class="is-size-6">Pours real water from the Latte art vat into the target bowl</p>
                 </div>
               </div>
               
@@ -473,7 +473,7 @@
                     </video>
                   </div>
                   <p class="is-size-6">"Pick up all the objects into the basket"</p>
-                  <p class="is-size-6">Sequential bagging all the toys into basket</p>
+                  <p class="is-size-6">Sequential placement of all the toys into the basket</p>
                 </div>
               </div>
               
@@ -487,7 +487,7 @@
                     </video>
                   </div>
                   <p class="is-size-6">"Close the capsule lid of the coffee machine"</p>
-                  <p class="is-size-6">Handling previously unseen device</p>
+                  <p class="is-size-6">Handles previously unseen device</p>
                 </div>
               </div>
             </div>
@@ -503,19 +503,19 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">3. Remarkable Performance of PI0</h2>
+        <h2 class="title is-3">3. Remarkable Performance of pi0</h2>
 
         <!-- Vision-Language Understanding -->
         <h3 class="title is-4">3.1 Robust Vision-Language Understanding in Complex Scenes</h3>
         <div class="content has-text-justified">
           <p>
-            Powered by <strong>PaliGemma</strong> (Google DeepMind's 3B VLM) as its vision encoder (<a href="https://arxiv.org/abs/2407.07726">Beyer etc, 2024</a>), pi0 demonstrates robust scene comprehension and adaptability. Despite relying solely on uncalibrated monocular RGB inputs (224x224 pixels after compression), it can handle very challenging objects and environments like transparent, camouflaged and novel items.            
+            Powered by <strong>PaliGemma</strong> (Google DeepMind's 3B VLM) as its vision encoder (<a href="https://arxiv.org/abs/2407.07726">Beyer etc, 2024</a>), pi0 demonstrates robust scene comprehension and adaptability. Despite relying solely on uncalibrated monocular RGB inputs (224x224 pixels after compression), it can handle very challenging objects and environments, including transparent or camouflaged items, and items it has not seen during training.            
           </p>
           
           <p><strong>1. It can grasp transparent objects</strong></p>
           
           <p>
-            PI0 is capable of identifying and manipulating transparent objects, as shown below. It picks up the bottle with a stable grasp, aligns it to the small cup, and precisely drops it in. Many traditional grasp detection techniques require an accurate 2D or 3D reconstruction of the scene, and transparent objects can cause issues in reconstruction accuracy. This makes it all the more impressive that the model can detect transparent objects solely from uncalibrated, mono-RGB views from the wrist camera and one side view camera.
+            pi0 is capable of identifying and manipulating transparent objects, as shown below. It picks up the bottle with a stable grasp, aligns it to the small cup, and precisely drops it in. Many traditional grasp detection techniques require an accurate 2D or 3D reconstruction of the scene, and transparent objects can cause issues in reconstruction accuracy. This makes it even more impressive that the model can detect transparent objects solely from uncalibrated, mono-RGB views from the wrist camera and one side view camera.
           </p>
           
           <div class="columns is-centered">
@@ -540,7 +540,7 @@
           <p><strong>2. It can grasp an object even when it is camouflaged into a colorful background</strong></p>
           
           <p>
-            PI0 can identify the 'yellow fish' here even when it is placed on top of a colorful board game. This object has an unusual and difficult shape, and it blends in well with the background, but pi0 detects well with its position, and its shape, well enough to grasp it up.
+            pi0 can identify the 'yellow fish' here even when it is placed on top of a colorful board game. This object has an unusual and difficult shape, and it blends in well with the background, but pi0 detects it well enough to grasp it up.
           </p>
           
     <div class="columns is-centered">
@@ -569,7 +569,7 @@
           </p>
           
           <p>
-            We believe there are two reasons for pi0's robustness to human movement. First, the pre-trained VLM backbone of pi0 is trained on human-involved images (<a href="https://aclanthology.org/P18-1238/">Sharma et al., 2018</a>, <a href="https://aclanthology.org/2022.naacl-main.142/">Changpinyo et al., 2022a</a>, <a href="https://storage.googleapis.com/openimages/web/factsfigures_v7.html">Kuznetsova et al. 2020</a>), so humans are in-distribution. Next, as our occlusion experiments in <strong>Section 2.3.1</strong>, the policy seems to prioritize the wrist camera's images during pick-and-place tasks, so distractors in the side-view camera seem to minimally affect the policy.
+            We believe there are two reasons for pi0's robustness to human movement. First, the pre-trained VLM backbone of pi0 is trained on images involving humans (<a href="https://aclanthology.org/P18-1238/">Sharma et al., 2018</a>, <a href="https://aclanthology.org/2022.naacl-main.142/">Changpinyo et al., 2022a</a>, <a href="https://storage.googleapis.com/openimages/web/factsfigures_v7.html">Kuznetsova et al. 2020</a>), so humans are in-distribution. Next, as our occlusion experiments in <strong>Section 2.3.1</strong> show, the policy seems to prioritize the wrist camera's images during pick-and-place tasks, so distractors in the side-view camera seem to minimally affect the policy.
           </p>
           
           <p>
@@ -599,7 +599,7 @@
             
 
           <p>
-            There's plenty of work in the past in CV, Robotics that does transparent object detection and manipulation. But the nice part here is that we have a data-driven system that does it, without any special logic or care for transparent objects.
+            Many existing works in Computer Vision and Robotics focus on transparent object detection and manipulation. But the nice part here is that we have an end-to-end, data-driven system that does it, without any special logic or care for transparent objects.
           </p>
           <p class="box has-background-grey-lighter has-text-centered is-italic">
             "pi0's ability to handle transparency, clutter and distractors hints at a future where robots see the world as humans do—through semantics, not just pixels."
@@ -611,7 +611,7 @@
         <h3 class="title is-4">3.2 Behavioral Sequencing in pi0</h3>
         <div class="content has-text-justified">
           <p>
-            Through our experiments, we observed that pi0 exhibits intuitive patterns in its behavior across a wide range of manipulation tasks. Despite being an autoregressive model without explicit memory or state, pi0 often transitions through intuitive behavioral phases such as:
+            Through our experiments, we observed that pi0 exhibits intuitive patterns in its behavior across a wide range of manipulation tasks. Although it is an autoregressive model without any explicit memory or state, pi0 often progresses through distinct behavioral phases such as:
           </p>
           
           <p style="text-align: center;">
@@ -619,11 +619,11 @@
           </p>
 
           <p>
-            What's remarkable is that this structure <strong>emerges naturally from the data</strong> rather than being explicitly modeled — suggesting that pi0 learns consistent <strong>task execution priors</strong> across environments. For instance, even when pi0 is unfamiliar with an object or task, it often <strong>proactively explores</strong> near affordance-rich areas using its wrist camera to decide whether to grasp or not.
+            What's remarkable is that this structure <strong>emerges naturally from the data</strong> rather than being explicitly modeled — suggesting that pi0 learns consistent <strong>task execution priors</strong> across environments. For instance, even when pi0 is unfamiliar with an object or task, it often <strong>proactively explores</strong> near affordance-rich areas, using its wrist camera to decide whether to grasp or not.
           </p>
 
           <p>
-            In certain trials, we also observed <strong>reset-like behaviors</strong>: if pi0 perceives the task as complete (e.g., after placing an item into a bowl), it may <strong>return to its home configuration and idle</strong>. While this often indicates a well-formed task boundary, it can also lead to <strong>early stopping /freeze issues</strong>, especially in multi-object scenes — see <strong>Section 4.1</strong> for analysis of early stopping failure cases.
+            In certain trials, we also observed <strong>reset-like behaviors</strong>: if pi0 perceives the task as complete (e.g., after placing an item into a bowl), it may <strong>return to its home configuration and stop</strong>. While this often indicates a well-formed task boundary, it can also lead to <strong>early stopping/freezing</strong>, especially in multi-object scenes — see <strong>Section 4.1</strong> for analysis of early stopping failure cases.
           </p>
 
           <p>
@@ -716,7 +716,7 @@
       <div class="column is-full-width">
         <h2 class="title is-3">Failure Cases</h2>
         <p class="has-text-justified" style="color: #666; font-style: italic;">
-          pi0 demonstrates very impressive robustness across different lights, locations and tasks. However, it does have failure cases:
+          pi0 demonstrates very impressive robustness across different tasks, locations, and lighting conditions. However, we have also observed some failure cases:
         </p>
         <!-- Failure videos -->
         <div class="columns is-centered">
@@ -733,7 +733,7 @@
                     </video>
                   </div>
                   <p class="is-size-6"><i>"Pour water from teapot into bowl"</i></p>
-                  <p class="is-size-6">Cannot manipulate a new glass teapot (0% success rate)</p>
+                  <p class="is-size-6">Cannot manipulate a novel glass teapot (0% success rate)</p>
                 </div>
               </div>
               
@@ -747,7 +747,7 @@
                     </video>
                   </div>
                   <p class="is-size-6"><i>"Pick the black box on the white box"</i></p>
-                  <p class="is-size-6">Can not handle well with unseen background (0% success rate)</p>
+                  <p class="is-size-6">Cannot handle unseen background well (0% success rate)</p>
                 </div>
               </div>
               
@@ -761,7 +761,7 @@
                     </video>
                   </div>
                   <p class="is-size-6"><i>"place the yellow fish into the basket"</i></p>
-                  <p class="is-size-6">Pick up the wrong object in cluttered scene (25% success rate)</p>
+                  <p class="is-size-6">Picks up the wrong object in cluttered scenes (25% success rate)</p>
                 </div>
               </div>
               
@@ -820,14 +820,14 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">4. Problem with PI0</h2>
+        <h2 class="title is-3">4. Problems with pi0</h2>
 
         <!-- Early stopping problem -->
         <h3 class="title is-4">4.1 Early stopping</h3>
         <div class="content has-text-justified">
           <p>
-            One common failure case is that policy may <strong>freeze unexpectedly during execution</strong>, leaving tasks incomplete until human intervention. 
-            This behavior comes from two interrelated factors: semantic ambiguity and autoregressive action decoding limitations.
+            One common failure case is that policy may <strong>freeze unexpectedly during execution</strong>, leaving tasks incomplete until a human intervenes. 
+            This behavior comes from two related factors: semantic ambiguity and autoregressive action decoding limitations.
           </p>
 
 
@@ -863,14 +863,14 @@
           
           <h4 class="title is-5">Possible Causes</h4>
           
-          <p><strong>1. VLA doesn't understand the instruction</strong></p>
+          <p><strong>1. The VLA doesn't understand the instruction</strong></p>
           <p>
-            pi0 lacks LLM-like commonsense reasoning to infer unfamiliar object categories. When it does not understand a command, it gets stuck. 
-            In some experiments, we found that some objects / instructions are out of distribution(OOD), causing early stopping.
+            pi0 lacks the commonsense reasoning that LLMs can use to recognize unfamiliar object categories. When it does not understand a command, it gets stuck. 
+            In some experiments, we found that some objects / instructions are out of distribution (OOD), causing early stopping.
           </p>
           
           
-          <p><strong>2. VLAs are based on Markov Assumption, but World is not MDP</strong></p>
+          <p><strong>2. VLAs are based on Markov Assumption, but the world is not an MDP</strong></p>
           <p> 
             pi0 is a <strong>memory-less</strong> policy, meaning its next action depends only on the current observation—not past actions. When tasks involve <strong>subtle temporal dependencies</strong>, this behavior can cause <strong>valid-looking but incomplete behavior</strong>.
 
@@ -894,15 +894,15 @@
               </p>
               <p>
                 According to our discussion on <a href="https://github.com/Physical-Intelligence/openpi/issues/373">Github Issue#373</a>, sometimes the policy decoded mis-shaped actions occasionally during inference. 
-                In official implementation, <strong>pi0-fast-droid</strong> defaults to "no-motion" in these cases. Since as the robot continues querying the policy, 
-                the error gets skipped on subsequent queries, allowing the robot to quickly recover and continue decoding correctly-shaped outputs.
+                In official implementation, <strong>pi0-fast-droid</strong> defaults to "no-motion" in these cases. Because the robot continues querying the policy, 
+                the error is skipped on subsequent queries, allowing the robot to quickly recover and continue decoding correctly-shaped outputs.
               </p>
-              <p><em style="color: red;">Warning: Don't kill PI0 Inference Server when early stops, be careful the robot may continue moving before server restarts!</em></p>
+              <p><em style="color: red;">Warning: Don't kill the pi0 Inference Server when early stops occur. Be careful as the robot may continue moving before the server restarts!</em></p>
             </div>
             <div class="column is-half">
               <div>
                 <img src="static/images/eval_Articulation_open the upper drawer_visualization.png" alt="Drawer articulation visualization" width="100%" style="border-radius: 10px;">
-                <p class="is-size-6 has-text-centered">A visualization of Robot Joint and Gripper state of early stops</p>
+                <p class="is-size-6 has-text-centered">A visualization of Robot Joint and Gripper states during early stops</p>
               </div>
             </div>
           </div>
@@ -917,13 +917,13 @@
       <h3 class="title is-4">4.2 Imprecise spatial reasoning</h3>
         <div class="content has-text-justified">
           <p>
-            pi0 often struggles with spatial reasoning over height. For example, when asked to pick up an object and place it into a container, the policy cannot lift the object high enough to clear the height of the container. This suggests the drawback of <strong>vision-based policies</strong>: it does not have a metrically accurate method to know the distance between gripper and surrounding environment. 
+            pi0 often struggles with spatial reasoning about height. For example, when asked to pick up an object and place it into a container, the policy cannot lift the object high enough to clear the height of the container. This suggests one drawback of <strong>vision-based policies</strong>: the policy does not have a metrically accurate method to determine the distance between the gripper and the surrounding environment. 
           </p>
 
           <div class="columns">
             <div class="column is-half">
               <p>
-              As shown here, the robot seems to think the gripper is high enough, and so it pushes the destination container. If the policy are provided with <strong>Camera sensor</strong>, then it should be able to accurately estimate the size of the object that it holds, and that of the gap between the height of the object and the bowl, and understand that it must increase the gap, it could complete the task successfully.
+              As shown here, the robot seems to think the gripper is high enough, and so it pushes the destination container when it tries to place the object into it. Existing methods using monocular RGB images are able to accurately estimate the size of an object, and the distance between the height of the object and the bowl. The model should be able to understand that if it could increase the height of the object relative to the container, it could complete the task successfully.
               </p>
             </div>
 
@@ -932,7 +932,7 @@
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static/videos/problems/Pushing_Bowl_Fail.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Place the plastic bottle into the pink bowl" - pi0 fails to lift high enough and always collide</p>
+                <p class="is-size-6 has-text-centered">"Place the plastic bottle into the pink bowl" - pi0 fails to lift the bottle high enough and always it collides with the bowl</p>
               </div>
             </div>
         </div>
@@ -943,19 +943,19 @@
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static/videos/problems/4.2_touch_the_index_finger_of_the_outstretched_hand.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Touch the index finger of outstretched hand" - pi0 correctly touch, but with gripper force</p>
+                <p class="is-size-6 has-text-centered">"Touch the index finger of outstretched hand" - pi0 correctly touches the finger, but it uses the strong force of the gripper</p>
               </div>
             </div>
             <div class="column is-half">
               <p>
-                We also tried to prompt pi0 to raise the gripper higher. Like "raise the bottle high enough / up 10cm to avoid collision...". But it didn't learn on them.
-                When pi0 is asked to operate with an articulation object, it becomes even harder for it to estimate the distance from the side view camera, causing frequent collisions. This is particularly worth noting when the robot is intersecting with humans. As it doesn't have any safety constraint,  it will accidentally hit / grasp the user's hand, which can be hurt!. 
+                We also tried to prompt pi0 to raise the gripper higher (i.e. "raise the bottle high enough / up 10cm to avoid collision..."), but this did not help.
+                When pi0 is asked to operate with an articulated object, it becomes even harder for it to estimate the distance from the side view camera, causing frequent collisions. This is particularly worth noting when the robot is interacting with humans. Because the robot has no safety constraints,  it will sometimes accidentally hit / grasp the user's hand, which could hurt the user! 
               </p>
             </div>
           </div>
 
           <p>
-            What's more, when pi0 is required to manipulate a new household appliance, it will tend to collide with the device or stop during inference trials. As shown below, pi0 can not use the Coffee Machine in our lab.
+            What's more, when pi0 is told to manipulate a household appliance that it did not see during training, it will tend to collide with the device or stop during trials. As shown below, pi0 can not use the coffee machine in our lab.
           </p>
 
           <div class="columns is-multiline is-centered">
@@ -972,13 +972,13 @@
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static/videos/problems/4.3_raise the lever of coffee machine.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Raise the lever of coffee machine" → didn't understand where is lever.</p>
+                <p class="is-size-6 has-text-centered">"Raise the lever of coffee machine" → didn't understand where the lever is.</p>
               </div>
             </div>
           </div>
 
           <p>
-            One possible solution is to involve concepts like Vox map and planning constraints. Depth cameras would also be very helpful to implement collision avoidance.
+            One possible solution is to use techniques such as voxel maps and planning constraints. Including depth information with a depth camera could also be helpful to implement collision avoidance.
           </p>
         </div>
 <!-- 
@@ -1027,16 +1027,16 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">5. Quirk: Some interesting behavior of pi0</h2>
+        <h2 class="title is-3">5. Quirk: Some interesting behaviors of pi0</h2>
 
         <h4 class="title is-5">Quirk 1: Prompt Engineering matters</h4>
         <div class="content has-text-justified">
           <p>
-            pi0's performance heavily depends on instruction, leaving space for prompt engineering. Let's look at two interesting aspects:
+            We investigated how variations in the prompts provided affect the policy's behavior, and found that pi0's performance heavily depends on the instructions given by the user, leaving space for prompt engineering.
           </p>
 
           <h5 class="title is-6">1.1 You need to tune your prompt carefully to operate the robot</h5>
-          pi0 freezes or fails when instructions contain typos, grammatical errors, or ambiguous phrasing. Here for example, when we are trying to let pi0 manipulate the articulated objects, we may need to try multiple different prompt to find the <em>'in-distribution'</em> instructions.
+          pi0 freezes or fails when instructions contain typos, grammatical errors, or ambiguous phrasing. For example, when we try to let pi0 manipulate the articulated objects, we may need to try multiple different prompts to find the <em>'in-distribution'</em> instructions.
 
           <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
@@ -1091,7 +1091,7 @@
           </ul>
 
           <p>
-            As in DROID dataset, marker pens comprise 16.67% of objects, so it probably make pi0 tend to pick it up with only vision guidance.  Default behaviors are heavily influenced by training data distribution. How to overcome this ambiguity and reject invalid instruction is still an ongoing problems. 
+            In the DROID dataset, marker pens comprise 16.67% of objects, which could influence pi0 to pick the pen up when it is only given vision guidance.  Default behaviors are heavily influenced by training data distribution. Overcoming this ambiguity and rejecting invalid instructions is still an ongoing problem. 
           </p>
 
 
@@ -1109,7 +1109,7 @@
               <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                 <source src="static\videos\quirk\nonsense-block.mp4" type="video/mp4">
               </video>
-              <p class="is-size-6 has-text-centered">xxx<br>(nonsense, go back and forth)</p>
+              <p class="is-size-6 has-text-centered">xxx<br>(nonsense, the policy will back and forth)</p>
             </div>
           </div>
         </div>
@@ -1118,7 +1118,7 @@
         <h4 class="title is-5">Quirk 2: How robust is pi0 under partial observability?</h4>
         <div class="content has-text-justified">
           <p>
-            One of the most frequently asked questions on pi0 is, how robust it is when its visual inputs are disrupted? We did several tests on blocking the camera and the object. Here's what we found.
+            One of the most frequently asked questions about pi0 is, how robust is it when its visual inputs are disrupted? We ran several tests on blocking the camera and the object.
           </p>
 
           <h5 class="title is-6">Camera Blocking Experiments</h5>
@@ -1128,7 +1128,7 @@
             <li><strong>Task: "Pick up the pink object and place it into the bowl."</strong></li>
             <li><strong>Cameras</strong>: Side-view (primary) + wrist-mounted (secondary).</li>
             <li><strong>Blocking Scenarios</strong>: Partial/full occlusion of one or both cameras.</li>
-            <li><strong></strong>Test time</strong>: 4 trials per scenario, 300 rollouts per trial.</li>
+            <li><strong></strong>Test time</strong>: 4 trials per scenario, 300 steps of rollouts per trial.</li>
           </ul>
 
 
@@ -1268,22 +1268,22 @@
         <ul>
           <li><strong>Active Perception</strong>:
             <ul>
-              <li>When the side camera is blocked, pi0 can still complete the task with only wrist camera.</li>
-              <li>In most pick and place tasks, pi0 relies on wrist camera as the side-view camera may be too far.</li>
-              <li>Wrist camera plays as active perception, exploring the scene and pick up the object if it is in center-up area. </li>
+              <li>When the side camera is blocked, pi0 can still complete the task using only the wrist camera.</li>
+              <li>In most pick and place tasks, pi0 relies on the wrist camera, as the side-view camera may be too far.</li>
+              <li>The wrist camera facilitates active perception, exploring the scene and providing the policy information on whether a grasp would be successful at any given time. </li>
             </ul>
           </li>
           <li><strong>Viewpoint Robustness</strong>:
             <ul>
-              <li>pi0 can tolerate changing side-view camera position and orientation during the task</li>
-              <li>Blocking then unblocking cameras triggered pi0 to continue movements (The image condition changes for the policy).</li>
+              <li>pi0 can tolerate changes to the side-view camera position and orientation during the task</li>
+              <li>If the camera is blocked and then unblocked, pi0 can recover.</li>
             </ul>
           </li>
           <li><strong>Common Failure Modes under Partial Observability</strong>:
             <ul>
-              <li>Total wrist camera blockage → robot freezes and can execute, even if the side image is available.</li>
+              <li>Total wrist camera blockage → robot freezes and cannot execute, even if the side image is available.</li>
               <li>Pi0 is memoryless, predicting the action per frame auto-regressively, so it will be able to continue executing the task if observation is available.</li>
-              <li>However, the exploration behavior of pi0 is not efficient and limited to certain area. Making it hard to actively search the environment.</li>
+              <li>However, the exploration behavior of pi0 is not efficient and is limited to certain areas of the scene. This makes it difficult to actively search the environment.</li>
             </ul>
           </li>
         </ul>
@@ -1302,7 +1302,7 @@
         <h2 class="title is-3">7. Conclusion</h2>
 
         <div class="content has-text-justified">
-          <p>Through our evaluations, we conclude that Pi0 is a useful generalist policy, capable of doing sensible behavior in unseen manipulation tasks. For our lab, Pi0 will serve as a bedrock layer to build specific functionality on top of, as well as a baseline for comparison.  However, many challenges remain - our experiments showed that Pi0's performance is sensitive to its prompts and struggles with instruction following, fine-grained tasks and partial observability. We are optimistic that these areas will be improved by the robot learning community, and believe that generalist policies will be widely used in the future.</p>     
+          <p>Through our evaluations, we conclude that Pi0 is a useful generalist policy, capable of intelligent behavior in unseen manipulation tasks. For our lab, Pi0 will serve as a bedrock layer to build specific functionality on top of, as well as a baseline for comparison.  However, many challenges remain - our experiments showed that Pi0's performance is sensitive to its prompts, and that the policy struggles with instruction following, fine-grained tasks and partial observability. We are optimistic that these areas will be improved by the robot learning community, and believe that generalist policies will be widely used in the future.</p>     
           <!-- <div class="buttons is-centered mt-5">
             <a href="#" class="button is-link is-medium">
               <span class="icon">
@@ -1446,6 +1446,9 @@
           </p>
           <p>
             This work was conducted independently within the PennPAL and Daniilidis groups at the GRASP Lab.
+          </p>
+          <p>
+            This material is based upon work supported by the National Science Foundation Graduate Research Fellowship Program under Grant No DGE-2236662. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
           </p>
         </div>
       </div>
