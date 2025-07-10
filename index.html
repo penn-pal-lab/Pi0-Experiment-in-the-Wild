@@ -78,14 +78,12 @@
 
   </div>
 </nav>
-
-
 <section class="hero">
-  <div class="hero-body">
+  <!-- <div class="hero-body"> -->
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Evaluating pi0 in the Wild @ GRASP Lab: Strengths, Problems, and the Future of Generalist Robot Policies</h1>
+          <h1 class="title is-1 publication-title">Evaluating π₀ in the Wild:<br>Strengths, Problems, and the Future of Generalist Robot Policies</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://everloom-129.github.io/">Jie Wang</a><sup>*</sup>,</span>
@@ -99,121 +97,49 @@
               <a href="https://edwardshu.com/">Edward S. Hu</a> 
             </span>
           </div>
-
           <div class="is-size-5 publication-authors">
             <span class="author-block">GRASP Lab, University of Pennsylvania</span>
           </div>
-          <!-- TODO ADD formal note -->
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">Published:June 14, 2025</span> 
-          </div>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">*Corresponding author: tonyw3@seas.upenn.edu</span> 
-          </div>
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- Paper links -->
-              <!-- <span class="link-block">
-                <a href="https://arxiv.org/abs/2501.09747" target="_blank"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>pi0-FAST Paper</span>
-                </a>
-              </span> -->
-              <!-- Paper links -->
-              <span class="link-block">
-                <a href="https://www.physicalintelligence.company/blog" target="_blank"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>PI Research</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://droid-dataset.github.io/droid/" target="_blank"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-database"></i>
-                  </span>
-                  <span>DROID Dataset</span>
-                </a>
-              </span>
-
-              <!-- GitHub link -->
-              <span class="link-block">
-                <a href="https://github.com/Physical-Intelligence/openpi" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Openpi Github</span>
-                  </a>
-              </span>
-            </div>
+          <div class="is-size-10 publication-authors">
+            <span class="author-block">*Corresponding author</span> 
           </div>
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </section>
 
 
 <!-- Citation Box -->
-<section class="section" style="padding-top:1rem; padding-bottom:1rem;">
+<!-- <section class="section" style="padding-top:1rem; padding-bottom:1rem;">
   <div class="container is-max-desktop">
     <div class="box has-background-light is-size-7">
       <p class="has-text-weight-semibold mb-1">Please Cite&nbsp;this&nbsp;work if you find it helpful!</p>
       <pre style="white-space:pre-wrap;font-size:0.65rem;line-height:1.2em;background:transparent;border:0;padding:0;">J.&nbsp;Wang*, M.&nbsp;Leonard, K.&nbsp;Daniilidis, D.&nbsp;Jayaraman, &amp; E.&nbsp;S.&nbsp;Hu. (2025). <em>Evaluating π<sub>0</sub> in the Wild @ GRASP Lab: Strengths, Problems, and the Future of Generalist Robot Policies.</em><a href="https://penn-pal-lab.github.io/pi0-Experiment-in-the-Wild" target="_blank" rel="noopener">Blog&nbsp;</a></pre>
     </div>
   </div>
-</section>
+</section> -->
 
-<section class="hero teaser">
+<!-- <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video id="teaser" autoplay muted loop playsinline height="100%">
         <source src="static/videos/success/success_novel_fold_newspaper.mp4" type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        "Fold up the newspaper"
+      pi0 commanded to fold a newspaper, having never seen this particular workspace before.
       </h2>
     </div>
   </div>
 </section>
+<script>
+  const video = document.getElementById('teaser');
+  video.playbackRate = 3.0;
+</script> -->
 
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <!-- <h2 class="title is-3">Introduction</h2> -->
-        <div class="content has-text-justified">
-          <p>
-            pi0 is a state-of-the-art vision-language-action (VLA) model designed for general-purpose robotic manipulation. Developed by Physical Intelligence, it has been trained on internet-scale data and the Open X-Embodiment dataset. pi0 promises versatility across manipulation tasks, but we want to know: how does it perform when it is released in the wild?
-          </p>
-          <p>
-            Inspired by how how users rank LLMs by chatting about arbitrary topics in <a href="https://huggingface.co/spaces/lmarena-ai/chatbot-arena-leaderboard">Chatbot Arena</a>, we subject pi0 to "vibe checks," which are unstructured real world experiments. Users improvise tasks, alter camera angles, rearrange objects, and try to think of edge cases where they expect the policy might fail. We want to know whether pi0's training data distribution is wide enough to cover the range of tasks that humans can come up with. So, we test the policy's generalization capabilities, and discover some interesting phenomena that structured evaluations may not have found.
-          </p>
-          <p>
-            Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. Like open-source LLMs, Pi0's ease of deployment makes these kinds of evaluations accessible for any robotics lab with a DROID setup. We summarize our discoveries over 300+ trials of pi0 below, exploring its capabilities, quirks, and its implications for the future of robot learning. We hope that our work inspires others to try out pi0 for themselves!
-            <!-- We found the setup of pi0 to be very close to the experience of using open-source LLMs today - download the checkpoint and deploy, with no additional environment-specific instrumentation required (e.g. camera calibration, controller tuning, demo collection, etc.).  -->
-          </p>
-          <p>
-            <strong>Key words: Evaluation, pi0, VLAs, Manipulation, Robot Learning, Imitation Learning. </strong> 
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- TL;DR Box -->
-<section class="section">
+<!-- <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
@@ -230,63 +156,17 @@
       </div>
     </div>
   </div>
-</section>
-
-<!-- Teaser Images Section -->
-<section class="hero">
-  <div class="container" style="width: 50%; max-width: 50%;">
-    <div class="hero-body" style="padding: 1.5rem 1.5rem;">
-      <div class="columns is-centered">
-        <div class="column">
-          <div class="content">
-            <!-- First row - three images side by side -->
-            <div class="columns is-vcentered is-gapless" style="margin-bottom: 1rem;">
-              <div class="column is-one-third">
-                <figure class="image" style="margin: 0;">
-                  <img src="static/images/lab_setup.jpg" alt="GRASP Lab Setup" style="object-fit: cover; height: 200px; width: 100%;">
-                </figure>
-            </div>
-              <div class="column is-one-third">
-                <figure class="image" style="margin: 0;">
-                  <img src="static/images/robot_workspace.jpg" alt="Robot Workspace" style="object-fit: cover; height: 200px; width: 100%;">
-                </figure>
-            </div>
-              <div class="column is-one-third">
-                <figure class="image" style="margin: 0;">
-                  <img src="static/images/lab_setup_2.jpg" alt="Levine Setup 2" style="object-fit: cover; height: 200px; width: 100%;">
-                </figure>
-              </div>
-            </div>
-            
-            <!-- Second row - manipulation scene (full width) -->
-            <div class="columns is-centered" style="margin-top: 0.5rem;">
-              <div class="column is-12">
-                <figure class="image">
-                  <img src="static/images/wild-newsppaper.png" alt="Three Camera View" style="width: 100%;">
-                </figure>
-              </div>
-            </div>
-            
-            <p class="has-text-centered" style="margin-top: 1rem;">
-              Our evaluation setup at GRASP Lab, showing the robot workspace, test objects, and typical manipulation scenes.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+</section> -->
 
 <!-- Key Findings Section -->
-<section class="section">
+<section class="section" style="padding-top: 1rem;">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">2. Key Findings</h2>
+        <!-- <h2 class="title is-3">2. Key Findings</h2> -->
 
         <!-- Hero Images -->
-        <div class="columns is-centered">
+        <!-- <div class="columns is-centered">
           <div class="column is-half">
             <figure class="image">
               <img src="static/images/pi0-FAST-in-the-wild-@-GRASP-scatter.png" alt="Scatter plot showing performance distribution">
@@ -297,23 +177,102 @@
               <img src="static/images/pi0-FAST-in-the-wild-@-GRASP-bar.png" alt="Bar plot showing performance distribution">
             </figure>
           </div>
-        </div>
-        <p class="has-text-centered" style="margin-top: 0rem;">
+        </div> -->
+        <!-- <p class="has-text-centered" style="margin-top: 0rem;">
           <strong>Left</strong>: relationship between score and number of trials; <strong>Right</strong> the progress score on each task.<br> <br>
-        </p>
+        </p> -->
         <!-- Hero Images End -->
+        <div class="content has-text-justified">
+          Robotics, particularly manipulation, has never had learned models that work out of the box on new objects, locations, and tasks. Roboticists have had the unsatisfying experience of going through tedious engineering and data collection to acquire robot policies, and then finding that even small environmental changes break those policies.
+          One promising direction is to train generalist models on large datasets, in the hope that they will produce sensible behavior in new situations, reducing the burden on the end user.
+          This last year has been exciting because of the first wave of models that are beginning to promise that this dream of generalist robots is possible.
+          So, when Physical Intelligence made their models public,  we were keen to try it out ourselves, and we were largely impressed and excited about the possibilities as these models continue to improve.
+        </div>
+        <div class="hero-body">
+          <video id="teaser" autoplay muted loop playsinline height="100%">
+            <source src="static/videos/success/success_novel_fold_newspaper.mp4" type="video/mp4">
+          </video>
+          <p class="subtitle has-text-centered">
+          pi0 commanded to fold a newspaper, having never seen this particular workspace before.
+          </p>
+        </div>
 
+
+        <!-- 
+        We evaluated the pi0 fast model.description of the workspace, and the evaluation setup.
+         -->
+        <div class="content has-text-justified">
+          Our evaluations were conducted using the <strong>π₀-FAST-DROID</strong> model, specifically fine-tuned on <strong>DROID robot setup</strong>, which consists of the Franka Panda robot with side and wrist cameras. We found it refreshingly easy to setup the platform for policy inference  - no camera / controller calibration, or workspace-specific tuning was required. To output actions, the model requires a prompt from the user, describing the task, and images from the wrist and side cameras (see video above).
+        </div>
+              <div class="hero-body" style="padding: 1.5rem 1.5rem;">
+                <div class="columns is-centered">
+                  <div class="column">
+                    <div class="content">
+                      <!-- First row - three images side by side -->
+                      <div class="columns is-vcentered is-gapless" style="margin-bottom: 1rem;">
+                        <div class="column is-one-third">
+                          <figure class="image" style="margin: 0;">
+                            <img src="static/images/lab_setup.jpg" alt="GRASP Lab Setup" style="object-fit: cover; height: 200px; width: 100%;">
+                          </figure>
+                      </div>
+                        <div class="column is-one-third">
+                          <figure class="image" style="margin: 0;">
+                            <img src="static/images/robot_workspace.jpg" alt="Robot Workspace" style="object-fit: cover; height: 200px; width: 100%;">
+                          </figure>
+                      </div>
+                        <div class="column is-one-third">
+                          <figure class="image" style="margin: 0;">
+                            <img src="static/images/lab_setup_2.jpg" alt="Levine Setup 2" style="object-fit: cover; height: 200px; width: 100%;">
+                          </figure>
+                        </div>
+                      </div>
+                      
+                      <!-- Second row - manipulation scene (full width) -->
+                      <div class="columns is-centered" style="margin-top: 0.5rem;">
+                        <div class="column is-12">
+                          <figure class="image">
+                            <img src="static/images/wild-newsppaper.png" alt="Three Camera View" style="width: 100%;">
+                          </figure>
+                        </div>
+                      </div>
+                    
+                      <p class="has-text-centered" style="margin-top: 1rem;">
+                        Our evaluation setup showing the robot workspace, test objects, and typical manipulation scenes.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
         <div class="content has-text-justified">
           <p>
-            Our experiments took place in <a href="https://facilities.upenn.edu/maps/locations/levine-hall-melvin-and-claire-weiss-tech-house">Levine Hall</a> 457 at Penn, in the DROID mock kitchen environment. The mock kitchen allows us to test the robot in diverse scenarios, such as cluttered tables, articulated cabinets, and human involvement. We observed a wide range of behaviors, including remarkable performance by the model, as well as unexpected failures and quirks. We have derived three critical insights from our testing:
+            Our experiments took place in Levine Hall 457 at Penn in a mock kitchen environment, see images above. The environment has a diverse selection of objects, backgrounds and lighting conditions, making it ideal for coming up with a large variety of tasks.
+            <!-- talk about the vibe-based evaluation here. -->
+            <!-- Inspired by how how users rank LLMs by chatting about arbitrary topics in Chatbot Arena, we subject pi0 to "vibe checks," which are unstructured real world experiments. Users improvise tasks, alter camera angles, rearrange objects, and try to think of edge cases where they expect the policy might fail. We want to know whether pi0's training data distribution is wide enough to cover the range of tasks that humans can come up with. So, we test the policy's generalization capabilities, and discover some interesting phenomena that structured evaluations may not have found.
+            Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. Like open-source LLMs, Pi0's ease of deployment makes these kinds of evaluations accessible for any robotics lab with a DROID setup. We summarize our discoveries over 300+ trials of pi0 below, exploring its capabilities, quirks, and its implications for the future of robot learning. We hope that our work inspires others to try out pi0 for themselves! -->
+            Evaluating robot policies is difficult because it is hard to come up with a selection of tasks that cover the wide range of behaviors an arbitrary user would find useful. 
+          </p>
+          <div class="columns"> 
+            <div class="column is-half"> 
+              We take inspiration from the NLP community, by adopting their "vibe checks" approach. Vibe-checking involves the user directly evaluating the LLMs themselves by chatting about whatever topic comes into mind, rather than relying on a standard benchmark. Similarly, we subject pi0 to "vibe checks," which are unstructured real world tasks generated by users. Our users improvise tasks, alter camera angles, rearrange objects, and try to think of edge cases to stress-test the model. By letting our users come up with whatever tasks that come into mind, we can test the policy's generalization capabilities, and discover some interesting phenomena that structured evaluations may not have found.
+            </div>
+
+            <div class="column is-half">  
+              <img src="static/images/worldcloud.png" alt="Word cloud visualization" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+              <figcaption style="text-align: center; margin-top: 0.5em;">Word cloud of task prompts from our users.</figcaption>
+            </div> 
+          </div>
+
+
+          <p>
+          We conducted over 300 trials of pi0, and for the impatient reader, summarize our findings below:
           </p>
 
           <ol>
             <li>
-              <strong>pi0 Works (Mostly)</strong>: It achieves <strong>42.3% average progress</strong> across diverse, difficult tasks, even in unseen environments and involving unseen objects. However, it also fails in some seemingly simple tasks.
+              <strong>Strong Prior for Sensible Behaviors</strong>: pi0 produces sensible behaviors across a wide variety of our tasks, although it is important to note that sensible behaviors are often insufficient for task completion.
             </li>
             <li>
-              <strong>Prompt Engineering Matters</strong>: While pi0 is good at vision-action grounding, its performance drops <strong>20~100%</strong> depending on how the instructions are phrased. The prompt must be carefully designed, depending on the exact conditions of the environment, to make it work.
+              <strong>Prompt Engineering Matters</strong>: While pi0 can produce sensible actions from a wide variety of prompt and camera views, its performance varies <strong>20~100%</strong> depending on prompt phrasing and camera viewpoint. Therefore to maximize performance, the policy inputs should be carefully designed for the exact task.
             </li>
             <li>
               <strong>Unexpected Quirks</strong>: pi0 can recover from failures, and handle moving humans in the scene, but it struggles with <strong>mid-task freezing, collision avoidance, and fine-grained manipulation</strong>
@@ -321,55 +280,35 @@
           </ol>
           
           <p>
-            Below, we elaborate on our findings with video examples.
+            Below, we elaborate on our findings in detail, going through success and failure behavior of pi0, as well as some additional interesting phenomena we discovered.
           </p>
 
-          <h3 class="title is-4">Evaluation: Progress Score through Vibe Testing</h3>
+          <!-- <h3 class="title is-4">Evaluation: Progress Score through Vibe Testing</h3> -->
           
-          <p>
+          <!-- <p>
             Evaluating large generalist robot policies like <strong>pi0</strong> remains an open challenge. Unlike classical robotics benchmarks, these models operate across diverse tasks and open environments, where it is difficult to quantify a notion of success.
-          </p>
+          </p> -->
 
-          <p>
+          <!-- <p>
             In our blog, we adopt a <strong>progress score</strong> as the main evaluation signal, which is <strong>loosely inspired by the "vibe testing" rubric</strong> proposed in <a href="https://arxiv.org/abs/2403.04132">ChatbotArena(Chiang, etc, 2024)</a>, (<a href="https://www.interconnects.ai/p/chatbotarena-the-future-of-llm-evaluation">Lambert 2024</a>). This method has also been used in recent works such as pi0 and pi0-FAST. During evaluation, we assign a continuous score from 0 to 100 to each policy rollout, reflecting the <strong>fraction of the commanded task successfully completed</strong>. For instance, for a <strong>newspaper-folding</strong> task, we might give the following scores:
-          </p>
+          </p> -->
 
-          <div class="columns"> 
-            <div class="column is-half"> 
-              <ul>
-                <li><strong>25%</strong>: if the robot approaches and grasps one side of the newspaper.</li>
-                <li><strong>50%</strong>: if it tries to fold the newspaper in the correct direction.</li>
-                <li><strong>75%</strong>: if it can partially fold up the newspaper.</li>
-                <li><strong>100%</strong>: if the newspaper is folded neatly in half.</li>
-              </ul>
-
-              <p>
-                These scores are inherently subjective and noisy, but practical for generalist policy evaluation; we try to remain <strong>consistent across trials</strong>, so that the overall score is an <strong>informative approximation of task completion</strong>.
-              </p>
-            </div>
-
-            <div class="column is-half">  
-              <img src="static/images/worldcloud.png" alt="Word cloud visualization" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
-              <figcaption style="text-align: center; margin-top: 0.5em;">Word cloud of task instructions</figcaption>
-            </div> 
-          </div>
-
-          <p>
+   
+          <!-- <p>
             This scalar scoring allows us to assess success modes, failure modes, and emerging capabilities across the experiments we performed. As evaluation methods for VLAs develop further, we believe more standardized, benchmark-driven evaluation methods for generalist policies will emerge. For now, <strong>vibe-informed progress scores</strong> are a reasonable and transparent compromise.
-          </p>
+          </p> -->
 
-          <p>
+          <!-- <p>
             For more details, see <a href="#appendix">Appendix B: Results</a>.
-          </p>
+          </p> -->
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
 <!-- Disclaimer Section -->
-<section class="section">
+<!-- <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
@@ -391,12 +330,12 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 
 <!-- Success Video -->
-<section class="section">
+<section class="section" style="padding-top: 1rem;">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
