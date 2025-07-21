@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Evaluating \( \pi_0 \) in the Wild @ GRASP Lab: Strengths, Problems, and the Future of Generalist Robot Policies">
+        content="Evaluating pi0 in the Wild @ GRASP Lab: Strengths, Problems, and the Future of Generalist Robot Policies">
   <meta name="keywords" content="pi0, Robotics, VLA, Vision-Language-Action, PennPAL, Kostas Daniilidis, GRASP Lab">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Evaluating \( \pi_0 \) in the Wild @ GRASP Lab: Strengths, Problems, and the Future of Generalist Robot Policies</title>
+  <title>Evaluating \( \pi_0 \) in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -126,22 +126,6 @@
   </div>
 </section>
 
-<!-- <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="static/videos/success/success_novel_fold_newspaper.mp4" type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-      \( \pi_0 \) commanded to fold a newspaper, having never seen this particular workspace before.
-      </h2>
-    </div>
-  </div>
-</section>
-<script>
-  const video = document.getElementById('teaser');
-  video.playbackRate = 3.0;
-</script> -->
 
 
 <!-- TL;DR Box -->
@@ -216,7 +200,7 @@
                     <div class="content">
                       <!-- First row - three images side by side -->
                       <div class="columns is-vcentered is-gapless" style="margin-bottom: 1rem;">
-                        <div class="column is-one-third">
+                        <!-- <div class="column is-one-third">
                           <figure class="image" style="margin: 0;">
                             <img src="static/images/lab_setup.jpg" alt="GRASP Lab Setup" style="object-fit: cover; height: 200px; width: 100%;">
                           </figure>
@@ -230,7 +214,10 @@
                           <figure class="image" style="margin: 0;">
                             <img src="static/images/lab_setup_2.jpg" alt="Levine Setup 2" style="object-fit: cover; height: 200px; width: 100%;">
                           </figure>
-                        </div>
+                        </div> -->
+                        <figure class="image" style="margin: 0;">
+                          <img src="static/images/lab_setup_stack.png" alt="GRASP Lab Setup" style="object-fit: cover; width: 100%;">
+                        </figure>
                       </div>
                       
                       <!-- Second row - manipulation scene (full width) -->
@@ -251,7 +238,7 @@
               </div>
         <div class="content has-text-justified">
           <p>
-            Our experiments took place in <a href="https://facilities.upenn.edu/maps/locations/levine-hall-melvin-and-claire-weiss-tech-house">Levine Hall 457</a> at Penn in a mock kitchen environment, see images above. The environment has a diverse selection of objects, backgrounds and lighting conditions, making it ideal for coming up with a large variety of tasks.
+            Our experiments took place in <a href="https://facilities.upenn.edu/maps/locations/levine-hall-melvin-and-claire-weiss-tech-house">Levine Hall 457</a> at Penn in a mock kitchen environment and levine 403 besides our workbench, see images above. The environment has a diverse selection of objects, backgrounds and lighting conditions, making it ideal for coming up with a large variety of tasks.
             <!-- talk about the vibe-based evaluation here. -->
             <!-- Inspired by how how users rank LLMs by chatting about arbitrary topics in Chatbot Arena, we subject \( \pi_0 \) to "vibe checks," which are unstructured real world experiments. Users improvise tasks, alter camera angles, rearrange objects, and try to think of edge cases where they expect the policy might fail. We want to know whether pi0's training data distribution is wide enough to cover the range of tasks that humans can come up with. So, we test the policy's generalization capabilities, and discover some interesting phenomena that structured evaluations may not have found.
             Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. Like open-source LLMs, Pi0's ease of deployment makes these kinds of evaluations accessible for any robotics lab with a DROID setup. We summarize our discoveries over 300+ trials of \( \pi_0 \) below, exploring its capabilities, quirks, and its implications for the future of robot learning. We hope that our work inspires others to try out \( \pi_0 \) for themselves! -->
@@ -270,7 +257,7 @@
 
 
           <p>
-          We conducted over 300 trials of pi0, and for the impatient reader, summarize our findings below:
+          We conducted over 300 trials of \( \pi_0 \), and for the impatient reader, summarize our findings below:
           </p>
 
           <ol>
@@ -278,7 +265,7 @@
               <strong>Strong Prior for Sensible Behaviors</strong>: \( \pi_0 \) produces sensible behaviors across a wide variety of our tasks, although it is important to note that sensible behaviors are often insufficient for task completion.
             </li>
             <li>
-              <strong>Prompt Engineering Matters</strong>: While \( \pi_0 \) can produce sensible actions from a wide variety of prompt and camera views, its success rate ranged from 20&nbsp;% to 100&nbsp;% for the *same* task depending solely on prompt phrasing and camera viewpoint. Therefore, to maximize performance, the policy inputs should be carefully designed for the exact task.
+              <strong>Prompt Engineering Matters</strong>: Although \( \pi_0 \) can produce reasonable actions for many prompts and camera viewpoints, we observed that its success rate for the same task can fluctuate dramatically when the phrasing or viewpoint changes. To achieve consistent performance, use <i>canonical prompts(verb + object)</i> and select camera angles that clearly shows the target object.
             </li>
             <li>
               <strong>Unexpected Quirks</strong>: \( \pi_0 \) can recover from failures, and handle moving humans in the scene, but it struggles with <strong>mid-task freezing, collision avoidance, and fine-grained manipulation</strong>
@@ -286,7 +273,7 @@
           </ol>
           
           <p>
-            Below, we elaborate on our findings in detail, going through success and failure behavior of pi0, as well as some additional interesting phenomena we discovered.
+            Below, we elaborate on our findings in detail, going through success and failure behavior of \( \pi_0 \), as well as some additional interesting phenomena we discovered.
           </p>
 
           <!-- <h3 class="title is-4">Evaluation: Progress Score through Vibe Testing</h3> -->
@@ -326,7 +313,7 @@
           <div class="container is-max-desktop">
             <div class="columns is-centered">
               <div class="column is-full-width">
-                <p class="content has-text-justified">Below we showcase six cherry-picked rollouts that highlight \( \pi_0 \)'s strengths. We then discuss two particularly impressive properties—its robust vision-language understanding and its emergent behavioural sequencing—in the subsections that follow.</p>
+                <p class="content has-text-justified">Below we showcase six cherry-picked rollouts that highlight \( \pi_0 \)'s strengths. We found two impressive points: (1) \( \pi_0 \) has good vision-language understanding and (2) can imitate sequential behaviors in any scene, which we will discuss in detail in the rest of this section. </p>
 
                 <!-- Success videos -->
                 <div class="columns is-centered">
@@ -435,7 +422,7 @@
           <p><strong>1. It can grasp transparent objects</strong></p>
           
           <p>
-            \( \pi_0 \) is capable of identifying and manipulating transparent objects, as shown below. It picks up the bottle with a stable grasp, aligns it to the small cup, and precisely drops it in. Many traditional grasp detection techniques require an accurate 2D or 3D reconstruction of the scene, and transparent objects can cause issues in reconstruction accuracy. This makes it even more impressive that the model can detect transparent objects solely from uncalibrated, mono-RGB views from the wrist camera and one side view camera.
+            \( \pi_0 \) is capable of identifying and manipulating transparent objects, as shown below. It picks up the bottle with a stable grasp, aligns it to the small cup, and precisely drops it in. Many traditional grasp detection techniques require an accurate 2D or 3D reconstruction of the scene, and transparent objects can cause issues in reconstruction accuracy. What makes it even more impressive is that the model can detect transparent objects solely from uncalibrated, mono-RGB images. 
           </p>
           
           <div class="columns is-centered">
@@ -489,7 +476,7 @@
           </p>
           
           <p>
-            We believe there are two reasons for pi0's robustness to human movement. First, the pre-trained VLM backbone of \( \pi_0 \) is trained on images involving humans (<a href="https://aclanthology.org/P18-1238/">Sharma et al., 2018</a>, <a href="https://aclanthology.org/2022.naacl-main.142/">Changpinyo et al., 2022a</a>, <a href="https://storage.googleapis.com/openimages/web/factsfigures_v7.html">Kuznetsova et al. 2020</a>), so humans are in-distribution. Next, as our occlusion experiments in <strong>Section 2.3.1</strong> show, the policy seems to prioritize the wrist camera's images during pick-and-place tasks, so distractors in the side-view camera seem to minimally affect the policy.
+            We believe there are two reasons for \( \pi_0 \)'s robustness to human movement. First, the pre-trained VLM backbone of \( \pi_0 \) is trained on images involving humans (<a href="https://aclanthology.org/P18-1238/">Sharma et al., 2018</a>, <a href="https://aclanthology.org/2022.naacl-main.142/">Changpinyo et al., 2022a</a>, <a href="https://storage.googleapis.com/openimages/web/factsfigures_v7.html">Kuznetsova et al. 2020</a>), so humans are in-distribution. Next, as our occlusion experiments in <strong>Section 2.3.1</strong> show, the policy seems to prioritize the wrist camera's images during pick-and-place tasks, so distractors in the side-view camera seem to minimally affect the policy.
           </p>
           
           <p>
@@ -522,24 +509,29 @@
             Many existing works in Computer Vision and Robotics focus on transparent object detection and manipulation. But the nice part here is that we have an end-to-end, data-driven system that does it, without any special logic or care for transparent objects.
           </p>
           <p class="box has-background-grey-lighter has-text-centered is-italic">
-            "pi0's ability to handle transparency, clutter and distractors hints at a future where robots see the world as humans do—through semantics, not just pixels."
+            "\( \pi_0 \)'s ability to handle transparency, clutter and distractors hints at a future where robots see the world as humans do—through semantics, not just pixels."
           </p>
           
         </div>
         
         <!-- Behavioral Structure: \( \pi_0 \) is an FSM -->
-        <h3 class="title is-4">3.2 Behavioral Sequencing in pi0</h3>
+        <h3 class="title is-4">3.2 \( \pi_0 \) can imitate behaviors step by step </h3>
         <div class="content has-text-justified">
           <p>
-            Through our experiments, we observed that \( \pi_0 \) exhibits intuitive patterns in its behavior across a wide range of manipulation tasks. Although it is an autoregressive model without any explicit memory or state, \( \pi_0 \) often progresses through distinct behavioral phases such as:
+            If you are a human, you can easily imitate the behavior of the robot in the videos above. This is because the robot's behavior is sequential, and each step is independent of the previous step. However, it was not true for the history of robotics. Traditional behavior-cloning models may be able to memorize one exact path; But changing a scene and or start from different height could cause model fails. This is because the variance of the data could cause robot learning very bad behaviors, like collision and failure. 
+
+            Through our experiments, we observed that \( \pi_0 \) exhibits similar behaviorpatterns across a wide range of manipulation tasks. Although it is an autoregressive model without any memory or history, \( \pi_0 \) often executes the tasks step by step like:
           </p>
           
           <p style="text-align: center;">
-            <strong>Search → Reach → Grasp → Transfer → Release → Reset → Idle</strong>
+            <strong>Reach → Grasp → Transfer → Release → Reset → Idle</strong>
           </p>
 
           <p>
-            What's remarkable is that this structure <strong>emerges naturally from the data</strong> rather than being explicitly modeled — suggesting that \( \pi_0 \) learns consistent <strong>task execution priors</strong> across environments. For instance, even when \( \pi_0 \) is unfamiliar with an object or task, it often <strong>proactively explores</strong> near affordance-rich areas, using its wrist camera to decide whether to grasp or not.
+            What's remarkable is that this pattern is not hard-coded in model strucutre, but <strong>emerges naturally from millions of demonstration data</strong>  — suggesting that \( \pi_0 \) learns consistent <strong>task execution priors</strong> across environments. 
+            
+            
+            For instance, even when \( \pi_0 \) is unfamiliar with an object or task, it often <strong>proactively explores</strong> near affordance-rich areas, using its wrist camera to decide whether to grasp or not.
           </p>
 
           <p>
@@ -557,7 +549,8 @@
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static\videos\success\left_remove_the_pink_bowl_from_the_tray.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Remove the pink bowl from the tray"</p>
+                <p class="is-size-6 has-text-centered"><i>"Remove the pink bowl from the tray"</i></p>
+                <p class="is-size-6 has-text-centered">Reach bowl's edge -> Grasp -> Lift away -> Release -> Reset</p>
               </div>
             </div>
             <div class="column is-one-third">
@@ -565,7 +558,8 @@
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static\videos\success\left_stack_the_wooden_blocks.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Stack the wooden blocks"</p>
+                <p class="is-size-6 has-text-centered"><i>"Stack the wooden blocks"</i></p>
+                <p class="is-size-6 has-text-centered">Reach cube's top-> Grasp -> Transfer -> Stack -> Release -> Repeat</p>
               </div>
             </div>
             <div class="column is-one-third">
@@ -573,14 +567,20 @@
                 <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                   <source src="static\videos\success\success_fold_the_cloth_from_left_to_right.mp4" type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered">"Fold the cloth from left to right"</p>
+                <p class="is-size-6 has-text-centered"><i>"Fold the cloth from left to right"</i></p>
+                <p class="is-size-6 has-text-centered">Reach a corner -> Pinch -> Pull -> Release -> Reset</p>
               </div>
             </div>
           </div>
           
-          <!-- <p class="box has-background-grey-lighter has-text-centered is-italic">
-            "pi0's FSM pattern indicates it is a strong meta learning algorithm being able to generalize across environments with pretrained data."
-          </p> -->
+          <p class="box has-background-grey-lighter has-text-centered is-italic">
+            Traditional imitation learning often need a separate model—and new data—for every single task. \( \pi_0 \) can follow same similiar pattern, doing tasks step by step, even with unfamiliar objects in new scenes.  
+          </p>
+          <p>
+            However, it doesn't mean we have solved imitation learning. \( \pi_0 \) follows subtask sequences in a sensible way is maybe more of an observation about the task family rather than the algorithm at hand — many of the tested tasks may be sufficiently markovian that a history-less policy can follow a sensible chain of subtasks.
+
+            We will discuss more in the <strong>Section 4</strong>.
+          </p>
         </div>
         
         <!-- Failure Recovery -->
@@ -635,7 +635,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">4. Problems with pi0</h2>
+        <h2 class="title is-3">4. Problems with \( \pi_0 \)</h2>
           <!-- Failiure Video -->
             <div class="container is-max-desktop">
               <div class="columns is-centered">
@@ -683,11 +683,11 @@
                             <h3 class="title is-5">Task Misunderstanding</h3>
                             <div>
                               <video id="failure-video-3" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                                <source src="static\videos\failure\right_place_the_fish_into_the_basket.mp4" type="video/mp4">
+                                <source src="static/videos/failure/pour_water_into_the_pot.mp4" type="video/mp4">
                               </video>
                             </div>
-                            <p class="is-size-6"><i>"place the yellow fish into the basket"</i></p>
-                            <p class="is-size-6">Picks up the wrong object in cluttered scenes (25% success rate)</p>
+                            <p class="is-size-6"><i>"Pour water into the pot"</i></p>
+                            <p class="is-size-6">Pick up the pot instead of water bottle (20% success rate)</p>
                           </div>
                         </div>
                         
@@ -708,7 +708,7 @@
                         <!-- Video 5 -->
                         <div class="column is-one-third">
                           <div class="content">
-                            <h3 class="title is-5">General Articulation</h3>
+                            <h3 class="title is-5">Articulation Task</h3>
                             <div>
                               <video id="failure-video-5" autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                                 <source src="static\videos\failure\video_close_the_right_cabinet_door.mp4" type="video/mp4">
@@ -780,26 +780,36 @@
           
           <h4 class="title is-5">Possible Causes</h4>
           
-          <p><strong>1. The VLA doesn't understand the instruction</strong></p>
+          <p><strong>1. The VLM part doesn't understand the instruction</strong></p>
           <p>
-            \( \pi_0 \) lacks the commonsense reasoning that LLMs can use to recognize unfamiliar object categories. When it does not understand a command, it gets stuck. 
-            In some experiments, we found that some objects / instructions are out of distribution (OOD), causing early stopping.
+            Unlike those commercial chatbot with large parameters, \( \pi_0 \) is built upon PaliGemma, a very small VLM model. Therefore, itlacks the commonsense reasoning that LLMs can use to recognize unfamiliar object categories. When it does not understand a command, it gets stuck. 
+            In some experiments, we found that some objects / instructions are out of distribution (OOD), causing early stopping. 
+            To show how bad the PaliGemma model performs, we attached a Vision-Question-Answering (VQA) example in Appendix C. 
           </p>
           
           
-          <p><strong>2. \( \pi_0 \) is memory-less, but the world is not Markovian</strong></p>
+          <p><strong>2. \( \pi_0 \) remembers only the <i>now</i>, but many tasks need a sense of <i>before-and-after</i></strong></p>
           <p> 
-            \( \pi_0 \) is a <strong>memory-less</strong> policy, meaning its next action depends only on the current observation—not past actions. When tasks involve <strong>subtle temporal dependencies</strong>, this behavior can cause <strong>valid-looking but incomplete behavior</strong>.
+            \( \pi_0 \) is a <strong>memory-less</strong> policy, meaning its next move depends only on the current camera images, it never "remembers" what it did a moment ago. That works for single, snap-shot actions(e.g. pick up a cup), but can fail when a task needs several coordinated steps. For example, here is an articulation task that requires multiple steps and freeze in the middle:
 
           </p>
           <ul>
             <li><strong>Case</strong>: "Open the drawer" → stops after grasping the handle.</li>
-            <li><strong>Behavior</strong>: \( \pi_0 \) grasps the handle, then does nothing. The output actions are very small. </li>
+            <li><strong>Behavior</strong>: \( \pi_0 \) reaches out, grabs the handle... and then freezes.  </li>
           </ul>
           <p>
-            VLA assumes task completion after the initial grasp, unaware that <strong>drawer articulation is a multi-step process</strong>. \( \pi_0 \) always picks the most likely (mode) action. It is the failure you'd expect when the Markovian property does not hold for a given task. If the majority of training data in a given context (e.g. robot in home position, grasped drawer handle) corresponds to no motion, \( \pi_0 \) will always output "zero joint velocity"—and get stuck.
+            <b>Why?</b> 
+            In the training data, most frames showing a robot holding a handle are idle frames—nothing moves.
+            \( \pi_0 \)  always chooses the most common action it has seen for a given image. So when it sees “hand-on-handle,” the safest bet in its experience is “do nothing.”
           </p>
-          
+          <p>
+            <b>How could we fix this?</b>
+            We asked folks from Physical Intelligence, and the answer is: <i>Shake the dice a little</i>. Instead of always taking the single most likely (arg-max) action, we can allow a bit of randomness—called “sampling with temperature.” By letting  \( \pi_0 \) occasionally pick the second-most likely action, it may start pulling instead of freezing, and the drawer finally slides open.
+          </p>
+
+
+
+          </p>
           
 
         
@@ -947,12 +957,12 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">5. Quirk: Some interesting behaviors of pi0</h2>
+        <h2 class="title is-3">5. Quirk: Some interesting behaviors of\( \pi_0 \)</h2>
 
         <h4 class="title is-5">Quirk 1: Prompt Engineering matters</h4>
         <div class="content has-text-justified">
           <p>
-            We investigated how variations in the prompts provided affect the policy's behavior, and found that pi0's performance heavily depends on the instructions given by the user, leaving space for prompt engineering.
+            We investigated how variations in the prompts provided affect the policy's behavior, and found that\( \pi_0 \)'s performance heavily depends on the instructions given by the user, leaving space for prompt engineering.
           </p>
 
           <h5 class="title is-6">1.1 You need to tune your prompt carefully to operate the robot</h5>
@@ -999,7 +1009,7 @@
             </div>
           </div>
 
-          <h5 class="title is-6">1.2 pi0's behavior without language goals</h5>
+          <h5 class="title is-6">1.2\( \pi_0 \)'s behavior without language goals</h5>
           
           <p>
             When given no specific language instruction, \( \pi_0 \) defaults to interacting with the most familiar objects from its training data:
@@ -1437,7 +1447,7 @@
         <div class="content has-text-centered">
           <figure class="image">
             <img src="static/images/robot_workspace.jpg" alt="Robot Workspace">
-            <figcaption>Our robot workspace setup used for evaluating pi0.</figcaption>
+            <figcaption>Our robot workspace setup used for evaluating \( \pi_0 \).</figcaption>
           </figure>
         </div>
       </div>
@@ -1480,7 +1490,7 @@
           <ul>
             <li><strong>GPUs:</strong> 1x NVIDIA RTX A6000 (48GB VRAM)</li>
             <li><strong>CUDA Version:</strong> 12.3</li>
-            <li><strong>Usage:</strong> VLA model inference.</li>
+            <li><strong>Usage:</strong> \( \pi_0 \) model inference.</li>
           </ul>
           
           <p><strong>Workstation</strong></p>
@@ -1491,7 +1501,7 @@
           </ul>
         </div>
         
-        <h3 class="title is-4">3.3 pi0-FAST-DROID:</h3>
+        <h3 class="title is-4">3.3\( \pi_0 \)-FAST-DROID:</h3>
         <div class="content has-text-justified">
           <ul>
             <li><strong>Vision-Language Model</strong>: <em>Paligemma 3B</em> for spatial and semantic understanding.</li>
