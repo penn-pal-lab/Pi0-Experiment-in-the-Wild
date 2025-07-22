@@ -116,17 +116,6 @@
 </section>
 
 
-<!-- Citation Box -->
-<section class="section" style="padding-top:1rem; padding-bottom:1rem;">
-  <div class="container is-max-desktop">
-    <div class="box has-background-light is-size-7">
-      <p class="has-text-weight-semibold mb-1">Please Cite&nbsp;this&nbsp;work if you find it helpful!</p>
-      <pre style="white-space:pre-wrap;font-size:0.65rem;line-height:1.2em;background:transparent;border:0;padding:0;">J.&nbsp;Wang*, M.&nbsp;Leonard, K.&nbsp;Daniilidis, D.&nbsp;Jayaraman, &amp; E.&nbsp;S.&nbsp;Hu. (2025). <em>Evaluating \( \pi_0 \) in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies.</em><a href="https://penn-pal-lab.github.io/pi0-Experiment-in-the-Wild" target="_blank" rel="noopener">Blog&nbsp;</a></pre>
-    </div>
-  </div>
-</section>
-
-
 
 <!-- TL;DR Box -->
 <!-- <section class="section">
@@ -173,7 +162,7 @@
         </p> -->
         <!-- Hero Images End -->
         <div class="content has-text-justified">
-          Robotics, particularly manipulation, has never had learned models that work out of the box on new objects, locations, and tasks. Roboticists have had the unsatisfying experience of going through tedious engineering and data collection to acquire robot policies, and then finding that even small environmental changes break those policies.
+          Robotics, particularly manipulation, has never had trained models that work out of the box on new objects, locations, and tasks. Roboticists have had the unsatisfying experience of going through tedious engineering and data collection to acquire robot policies, and then finding that even small environmental changes break those policies.
           One promising direction is to train generalist models on large datasets, in the hope that they will produce sensible behavior in new situations, reducing the burden on the end user.
           This last year has been exciting because of the first wave of models that are beginning to promise that this dream of generalist robots is possible.
           So, when Physical Intelligence made their models public,  we were keen to try it out ourselves, and we were largely impressed and excited about the possibilities as these models continue to improve.
@@ -192,7 +181,7 @@
         We evaluated the \( \pi_0 \) fast model.description of the workspace, and the evaluation setup.
          -->
         <div class="content has-text-justified">
-          Our evaluations were conducted using the <strong>π₀-FAST-DROID</strong> model, specifically fine-tuned on <strong>DROID robot setup</strong>, which consists of the Franka Panda robot with side and wrist cameras. We found it refreshingly easy to setup the platform for policy inference  - no camera / controller calibration, or workspace-specific tuning was required. To output actions, the model requires a prompt from the user, describing the task, and images from the wrist and side cameras (see video above).
+          Our evaluations were conducted using the <strong>π₀-FAST-DROID</strong> model, specifically fine-tuned on the DROID robot setup, which consists of the Franka Panda robot with side and wrist cameras. We found it refreshingly easy to setup the platform for policy inference  - no camera / controller calibration, or workspace-specific tuning was required. To output actions, the model requires a prompt from the user, describing the task, and images from the wrist and side cameras (see video above).
         </div>
               <div class="hero-body" style="padding: 1.5rem 1.5rem;">
                 <div class="columns is-centered">
@@ -200,7 +189,7 @@
                     <div class="content">
                       <!-- First row - three images side by side -->
                       <div class="columns is-vcentered is-gapless" style="margin-bottom: 1rem;">
-                        <!-- <div class="column is-one-third">
+                        <div class="column is-one-third">
                           <figure class="image" style="margin: 0;">
                             <img src="static/images/lab_setup.jpg" alt="GRASP Lab Setup" style="object-fit: cover; height: 200px; width: 100%;">
                           </figure>
@@ -214,21 +203,22 @@
                           <figure class="image" style="margin: 0;">
                             <img src="static/images/lab_setup_2.jpg" alt="Levine Setup 2" style="object-fit: cover; height: 200px; width: 100%;">
                           </figure>
-                        </div> -->
-                        <figure class="image" style="margin: 0;">
+                        </div>
+                        <!-- This image is too big. The original image looks better.  -->
+                        <!-- <figure class="image" style="margin: 0;">
                           <img src="static/images/lab_setup_stack.png" alt="GRASP Lab Setup" style="object-fit: cover; width: 100%;">
-                        </figure>
+                        </figure> -->
                       </div>
                       
                       <!-- Second row - manipulation scene (full width) -->
-                      <div class="columns is-centered" style="margin-top: 0.5rem;">
+                      <!-- <div class="columns is-centered" style="margin-top: 0.5rem;">
                         <div class="column is-12">
                           <figure class="image">
                             <img src="static/images/wild-newsppaper.png" alt="Three Camera View" style="width: 100%;">
                           </figure>
                         </div>
                       </div>
-                    
+                     -->
                       <p class="has-text-centered" style="margin-top: 1rem;">
                         Our evaluation setup showing the robot workspace, test objects, and typical manipulation scenes.
                       </p>
@@ -238,7 +228,8 @@
               </div>
         <div class="content has-text-justified">
           <p>
-            Our experiments took place in <a href="https://facilities.upenn.edu/maps/locations/levine-hall-melvin-and-claire-weiss-tech-house">Levine Hall 457</a> at Penn in a mock kitchen environment and levine 403 besides our workbench, see images above. The environment has a diverse selection of objects, backgrounds and lighting conditions, making it ideal for coming up with a large variety of tasks.
+            <!-- no need to mention levine 403, or link it. the reader will not care. only important detail is that it is a kitchen environemnt. -->
+            Our experiments took place in a kitchen environment, see images above. The kitchen has a diverse selection of objects, backgrounds and lighting conditions, making it ideal for coming up with a large variety of tasks.
             <!-- talk about the vibe-based evaluation here. -->
             <!-- Inspired by how how users rank LLMs by chatting about arbitrary topics in Chatbot Arena, we subject \( \pi_0 \) to "vibe checks," which are unstructured real world experiments. Users improvise tasks, alter camera angles, rearrange objects, and try to think of edge cases where they expect the policy might fail. We want to know whether pi0's training data distribution is wide enough to cover the range of tasks that humans can come up with. So, we test the policy's generalization capabilities, and discover some interesting phenomena that structured evaluations may not have found.
             Critically, vibe-based evaluation only becomes trustworthy when people can easily try out and verify the models themselves. Like open-source LLMs, Pi0's ease of deployment makes these kinds of evaluations accessible for any robotics lab with a DROID setup. We summarize our discoveries over 300+ trials of \( \pi_0 \) below, exploring its capabilities, quirks, and its implications for the future of robot learning. We hope that our work inspires others to try out \( \pi_0 \) for themselves! -->
@@ -246,8 +237,11 @@
           </p>
           <div class="columns"> 
             <div class="column is-half"> 
-              We take inspiration from the NLP community, by adopting their "vibe checks" approach. Vibe-checking involves the user directly evaluating the LLMs themselves by chatting about whatever topic comes into mind, rather than relying on a standard benchmark. Similarly, we subject \( \pi_0 \) to "vibe checks," which are unstructured real world tasks generated by users. Our users improvise tasks, alter camera angles, rearrange objects, and try to think of edge cases to stress-test the model. By letting our users come up with whatever tasks that come into mind, we can test the policy's generalization capabilities, and discover some interesting phenomena that structured evaluations may not have found.
+              <p>
+              We take inspiration from the NLP community, by adopting their "vibe-checking" approach. Vibe-checking involves the user directly evaluating the LLMs themselves by chatting about whatever topic comes into mind, rather than relying on a standard benchmark. Similarly, we subject \( \pi_0 \) to "vibe checks," which are unstructured real world tasks generated by the end user. We improvise tasks, alter camera angles, rearrange objects, and try to think of edge cases to stress-test the model.
+            </p>
             </div>
+              <!-- By letting our users come up with whatever tasks that come into mind, we can test the policy's generalization capabilities, and discover some interesting phenomena that structured evaluations may not have found. -->
 
             <div class="column is-half">  
               <img src="static/images/worldcloud.png" alt="Word cloud visualization" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
@@ -255,9 +249,10 @@
             </div> 
           </div>
 
+          
 
           <p>
-          We conducted over 300 trials of \( \pi_0 \), and for the impatient reader, summarize our findings below:
+          We conducted over 300 trials of \( \pi_0 \) on various manipulation tasks. It is important to stress that our evaluations were conducted to satisfy our own curiosity about the capabilities of the model (e.g. how does \( \pi_0 \) handle articulated objects, or occluded viewpoints), and <b>do not provide a comprehensive evaluation of the model's capabilities.</b> We summarize our findings below:
           </p>
 
           <ol>
