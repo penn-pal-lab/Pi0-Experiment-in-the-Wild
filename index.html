@@ -795,11 +795,11 @@
           <p>
             <b>Why?</b> 
             In the training data, most frames showing a robot holding a handle are idle frames—nothing moves.
-            \( \pi_0 \)  always chooses the most common action it has seen for a given image. So when it sees “hand-on-handle,” the safest bet in its experience is “do nothing.”
+            \( \pi_0 \)  always chooses the most common action it has seen for a given image. So when it sees "hand-on-handle," the safest bet in its experience is "do nothing."
           </p>
           <p>
             <b>How could we fix this?</b>
-            We asked folks from Physical Intelligence, and the answer is: <i>Shake the dice a little</i>. Instead of always taking the single most likely (arg-max) action, we can allow a bit of randomness—called “sampling with temperature.” By letting  \( \pi_0 \) occasionally pick the second-most likely action, it may start pulling instead of freezing, and the drawer finally slides open.
+            We asked folks from Physical Intelligence, and the answer is: <i>Shake the dice a little</i>. Instead of always taking the single most likely (arg-max) action, we can allow a bit of randomness—called "sampling with temperature." By letting  \( \pi_0 \) occasionally pick the second-most likely action, it may start pulling instead of freezing, and the drawer finally slides open.
           </p>
 
 
@@ -1531,17 +1531,15 @@
                     <div class="columns">
                         <img src="static/images/PI0-FAST-DROID-in-the-Wild-@-GRASP-bar.png" alt="Chart showing overall performance statistics">
                     </div>
-                    <figcaption>Performance across 240+ trials (42% average progress)</figcaption>
+                    <figcaption>Performance across 300+ trials (42% average progress)</figcaption>
                   </figure>
                 </div>
                 <div class="column is-half">
           <div class="content">
-                    <p>Across our 300+ test trials, \( \pi_0 \) achieved varying degrees of success:</p>
-                    <ul>
-                      <li><strong>Complete Success:</strong> 38%</li>
-                      <li><strong>Partial Success:</strong> 28%</li>
-                      <li><strong>Complete Failure:</strong> 34%</li>
-            </ul>
+                    <p>Across our 300+ test trials, \( \pi_0 \) achieved varying degrees of progress.</p>
+                    <p>
+                      For each category, we list some example rollouts and instructions as below.
+                    </p>
                     <p>We observed that performance varied significantly based on task type, environmental conditions, and most importantly, the task instructions.</p>
 
           </div>
@@ -1556,20 +1554,20 @@
         
         <!-- Pick and Place -->
         <div class="box">
-          <h4 class="title is-5">1. Pick-and-Place (38.4% Success)</h4>
+          <h4 class="title is-5">1. Pick-and-Place (38.4% Progress, 24% Success)</h4>
           <div class="columns">
             <div class="column is-8">
               <div class="content">
                 <p><strong>Strengths:</strong></p>
                 <ul>
-                  <li>Familiar objects (e.g., pineapple toy, markers) - 90% success</li>
-                  <li>Clear spatial targets ("in the pink bowl") - 85% success</li>
+                  <li>Familiar objects (e.g., pineapple toy, markers) - 90% progress</li>
+                  <li>Clear spatial targets ("in the pink bowl") - 85% progress</li>
                 </ul>
                 <p><strong>Weaknesses:</strong></p>
                 <ul>
-                  <li>Large objects (black cube) - 35% success</li>
-                  <li>Vague targets ("inside the bowl") - 40% success</li>
-                  <li>Multi-object tasks ("Put all objects into the basket") - 33% success</li>
+                  <li>Large objects (black cube) - 35% progress</li>
+                  <li>Vague targets ("inside the bowl") - 40% progress</li>
+                  <li>Multi-object tasks ("Put all objects into the basket") - 33% progress</li>
                 </ul>
                 <div class="columns is-multiline">
                   <div class="column is-12">
@@ -1580,7 +1578,7 @@
               </div>
             </div>
             <div class="column is-4">
-              <video autoplay muted loop playsinline width="90%" height="100px" style="border-radius: 10px;">
+              <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                 <source src="static/videos/success/first pi0 trial.mp4" type="video/mp4">
               </video>
            
@@ -1589,21 +1587,181 @@
           </div>
         </div>
         
+
+        <!-- Pour -->
+        <div class="box">
+          <h4 class="title is-5">2. Pour (52.3% Progress, 24% Success)</h4>
+          <div class="columns">
+            <div class="column is-8">
+              <div class="content">
+                <p><strong>Pour Toy Items (73.3% Progress)</strong></p>
+                <ul>
+                  <li>Pour the sausepot(air) - 78.3% progress</li>
+                  <li>Pour coffee bean into the bowl - 63% progress</li>
+
+                </ul>
+                <p><strong>Pour Real Items (20% Progress)</strong></p>
+                <ul>
+                  <li>Pour water from teapot into the bowl - 0% progress</li>
+                  <li>Pour water from the silver cup to the pink bowl- 70% progress</li>
+                </ul>
+              </div>
+            </div>
+            <div class="column is-4">
+              <div class="columns is-multiline">
+                <div class="column is-12">
+                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                    <source src="static/videos/success/appendix-Pour_coffeebean.mp4" type="video/mp4">
+                  </video>
+                  <p class="is-size-6 has-text-centered">"Pour coffee bean into the bowl"</p>
+                </div>
+                <div class="column is-12">
+                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                    <source src="static/videos/failure/appendix_pour_the_tea_into_cup.mp4" type="video/mp4">
+                  </video>
+                  <p class="is-size-6 has-text-centered">"Pour the tea into cup."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Articulation -->
+        <div class="box">
+          <h4 class="title is-5">3. Articulated Objects (37.8% Progress, 28.5% Success)</h4>
+          <div class="columns">
+            <div class="column is-8">
+              <div class="content">
+                <p><strong>Drawer Manipulation</strong></p>
+                <ul>
+                  <li>Open the drawer - 63% progress</li>
+                  <li>Close the drawer - 75% progress</li>
+                  <li>Close the drawer on table - 0% progress (toy drawer)</li>
+                </ul>
+                <p><strong>Cabinet Manipulation</strong></p>
+                <ul>
+                  <li>Open the cabinet - 14% progress</li>
+                  <li>Close the cabinet - 62.5% progress</li>
+                  <li>Open the fridge - 25% progress</li>
+                </ul>
+                <p><strong>Toy Toilet Manipulation</strong></p>
+                <ul>
+                  <li>Open the toilet lid - N/A, not feasible for robot</li>
+                  <li>Close the toilet - 0% progress</li>
+                  <li>Close the white lid for the toilet - 100% progress</li>
+                </ul>
+              </div>
+            </div>
+            <div class="column is-4">
+              <div class="columns is-multiline">
+                <div class="column is-12">
+                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                    <source src="static/videos/failure/appendx-open-the-fridge.mp4" type="video/mp4">
+                  </video>
+                  <p class="is-size-6 has-text-centered">"Open the fridge"</p>
+                </div>
+                <div class="column is-12">
+                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                    <source src="static/videos/success/appendix_close_the_cabinet_door.mp4" type="video/mp4">
+                  </video>
+                  <p class="is-size-6 has-text-centered">"Close the cabinet door."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <!-- Fabric -->
+        <div class="box">
+          <h4 class="title is-5">4. Fabric Manipulation (47.0% Progress, 19.4% Success)</h4>
+          <div class="columns">
+            <div class="column is-8">
+              <div class="content">
+                <p><strong>Fold Newspaper</strong></p>
+                <ul>
+                  <li>fold the newspaper from right to left - 0% progress</li>
+                  <li>fold up the newspaper- 62% progress (always try to fold from left to right)</li>
+                </ul>
+                <p><strong>Fold Cloth</strong></p>
+                <ul>
+                  <li>fold the green, square cloth diagonally - 63% progress</li>
+                  <li>fold the cloth in hamburger / hotdog style - 0% progress</li>
+                  <li>fold the cloth from left to right - 50% progress</li>
+
+                </ul>
+                <p><strong>Fold Tshirt (35% Progress)</strong></p>
+                <ul>
+                  <li>fold up the T-shirt from right to left - 80% progress</li>
+                  <li>finish the task of folding up the T-shirt - 0% progress</li>
+                </ul>
+              </div>
+            </div>
+            <div class="column is-4">
+              <div class="columns is-multiline">
+                <div class="column is-12">
+                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                    <source src="static/videos/failur.mp4" type="video/mp4">
+                  </video>
+                  <p class="is-size-6 has-text-centered">"Place the capsule into the coffee machine"</p>
+                </div>
+                <div class="column is-12">
+                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                    <source src="static/videos/success/right_Close_the_capsule_lid_of_the_coffee_machine_left.mp4" type="video/mp4">
+                  </video>
+                  <p class="is-size-6 has-text-centered">"Close the capsule lid of the coffee machine"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
         <!-- Human Interaction -->
         <div class="box">
-          <h4 class="title is-5">Human Interaction (53.5% Success)</h4>
+          <h4 class="title is-5">5. YCB Benchmark (53.5% Progress, 24% Success)</h4>
+          <div class="columns">
+            <div class="column is-8">
+              <div class="content">
+                TODO
+            </div>
+      
+            <div class="column is-4">
+              <div class="columns is-multiline">
+                <div class="column is-12">
+                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                    <source src="static\videos\success\human_3_Pick up the pineapple and give it to the programmer.mp4" type="video/mp4">
+      </video>
+                  <p class="is-size-6 has-text-centered">"Give the pineapple to the programmer"</p>
+    </div>
+                <div class="column is-12">
+                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                    <source src="static\videos\failure\human_7_Pick up the whiteboard eraser and give it to the programmer.mp4" type="video/mp4">
+                  </video>
+                  <p class="is-size-6 has-text-centered">"Give the whiteboard eraser to the programmer"</p>
+  </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Human Interaction -->
+        <div class="box">
+          <h4 class="title is-5">6. Human Interaction (53.5% Progress, 24% Success)</h4>
           <div class="columns">
             <div class="column is-8">
               <div class="content">
                 <p><strong>Strengths:</strong></p>
                 <ul>
-                  <li>Object handovers - 46.67% success</li>
-                  <li>Following a moving human - 65% success</li>
+                  <li>Object handovers - 46.67% progress</li>
+                  <li>Following a moving human - 65% progress</li>
                 </ul>
                 <p><strong>Weaknesses:</strong></p>
                 <ul>
-                  <li>Precision interactions ("Shake hands") - 30% success</li>
-                  <li>Recovery after interruption - 40% success</li>
+                  <li>Precision interactions ("Shake hands") - 30% progress</li>
+                  <li>Recovery after interruption - 40% progress</li>
                 </ul>
               </div>
             </div>
@@ -1631,36 +1789,36 @@
 
         <!-- Coffee Machine -->
         <div class="box">
-          <h4 class="title is-5">Coffee Machine (8.00% Success)</h4>
+          <h4 class="title is-5">7. Coffee Machine (8.00% Progress)</h4>
           <div class="columns">
             <div class="column is-8">
               <div class="content">
                 <p><strong>Capsule Coffee Machine:</strong></p>
                 <ul>
-                  <li>Close the capsule lid of coffee machine - 50% success</li>
-                  <li>Pick up the capsule from the coffee machine - 0% success</li>
-                  <li>Place the capsule into the coffee machine - 0% success</li>
+                  <li>Close the capsule lid of coffee machine - 50% progress</li>
+                  <li>Pick up the capsule from the coffee machine - 0% progress</li>
+                  <li>Place the capsule into the coffee machine - 0% progress</li>
 
                 </ul>
                 <p><strong>Espresso Coffee Machine:</strong></p>
                 <ul>
-                  <li>Pick up the coffee portafilter - 0% success</li>
-                  <li>Pour the coffee into the cup - 0% success</li>
-                  <li>Pick up the silver milk frothing pitcher- 33% success</li>
+                  <li>Pick up the coffee portafilter - 0% progress</li>
+                  <li>Pour the coffee into the cup - 0% progress</li>
+                  <li>Pick up the silver milk frothing pitcher- 33% progress</li>
                 </ul>
               </div>
             </div>
             <div class="column is-4">
-              <div class="columns">
-                <div class="column is-half">
+              <div class="columns is-multiline">
+                <div class="column is-12">
                   <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                     <source src="static/videos/failure/coffee_failure.mp4" type="video/mp4">
                   </video>
                   <p class="is-size-6 has-text-centered">"Place the capsule into the coffee machine"</p>
                 </div>
-                <div class="column is-half">
+                <div class="column is-12">
                   <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                    <source src="static/videos/right_Close_the_capsule_lid_of_the_coffee_machine.mp4" type="video/mp4">
+                    <source src="static/videos/success/right_Close_the_capsule_lid_of_the_coffee_machine_left.mp4" type="video/mp4">
                   </video>
                   <p class="is-size-6 has-text-centered">"Close the capsule lid of the coffee machine"</p>
                 </div>
