@@ -244,8 +244,8 @@
               <!-- By letting our users come up with whatever tasks that come into mind, we can test the policy's generalization capabilities, and discover some interesting phenomena that structured evaluations may not have found. -->
 
             <div class="column is-half">  
-              <img src="static/images/worldcloud.png" alt="Word cloud visualization" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
-              <figcaption style="text-align: center; margin-top: 0.5em;">Word cloud of task prompts from our evaluations.</figcaption>
+              <img src="static/images/word_cloud_2.png" alt="Word cloud visualization" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+              <figcaption style="text-align: center; margin-top: 0.5em;">Word cloud of task instruction in evaluations.</figcaption>
             </div> 
           </div>
 
@@ -263,7 +263,7 @@
               <strong>Prompt Engineering Matters</strong>: Although \( \pi_0 \) can produce reasonable actions for many prompts and camera viewpoints, we observed that its success rate for the same task can fluctuate dramatically when the phrasing or viewpoint changes. To achieve consistent performance, use <i>canonical prompts(verb + object)</i> and select camera angles that clearly shows the target object.
             </li>
             <li>
-              <strong>Unexpected Quirks</strong>: \( \pi_0 \) can recover from failures, and handle moving humans in the scene, but it struggles with <strong>mid-task freezing, collision avoidance, and fine-grained manipulation</strong>
+              <strong>Unexpected Quirks</strong>: \( \pi_0 \) can recover from failures, and handle moving humans in the scene, but it struggles with <i>mid-task freezing, collision avoidance, and fine-grained manipulation</i>.
             </li>
           </ol>
           
@@ -411,7 +411,7 @@
         <h3 class="title is-4">3.1 Robust Vision-Language Understanding in Complex Scenes</h3>
         <div class="content has-text-justified">
           <p>
-            Powered by <strong>PaliGemma</strong> (Google DeepMind's 3B VLM) as its vision encoder (<a href="https://arxiv.org/abs/2407.07726">Beyer etc, 2024</a>), \( \pi_0 \) demonstrates robust scene comprehension and adaptability. Despite relying solely on uncalibrated monocular RGB inputs (224x224 pixels after compression), it can handle very challenging objects and environments, including transparent or camouflaged items, and items it has not seen during training.            
+            Powered by <strong>PaliGemma</strong>, Google DeepMind's 3B VLM, as its vision encoder (<a href="https://arxiv.org/abs/2407.07726">Beyer etc, 2024</a>), \( \pi_0 \) demonstrates robust scene comprehension and adaptability. Despite relying solely on uncalibrated monocular RGB inputs (224x224 pixels after compression), it can handle very challenging objects and environments, including transparent or camouflaged items, and items it has not seen during training.            
           </p>
           
           <p><strong>1. It can grasp transparent objects</strong></p>
@@ -475,7 +475,7 @@
           </p>
           
           <p>
-            Here are two side-view videos involving humans in the scene. Please refer to <strong>Appendix B.6</strong> for more experiments on <strong>human-robot interaction</strong>.
+            Here are two side-view videos involving humans in the scene. Please refer to <strong>Appendix B.6</strong> for more experiments on <i>human-robot interaction</i>.
           </p>
 
           <p><em>(All videos featuring humans were uploaded with permission from the individuals involved.)</em></p>
@@ -523,14 +523,14 @@
           </p>
 
           <p>
-            What's remarkable is that this pattern is not hard-coded in model strucutre, but <strong>emerges naturally from millions of demonstration data</strong>  — suggesting that \( \pi_0 \) learns consistent <strong>task execution priors</strong> across environments. 
+            What's remarkable is that this pattern is not hard-coded in model strucutre, but emerges naturally from millions of demonstration data — suggesting that \( \pi_0 \) learns consistent task execution priors across environments. 
             
             
-            For instance, even when \( \pi_0 \) is unfamiliar with an object or task, it often <strong>proactively explores</strong> near affordance-rich areas, using its wrist camera to decide whether to grasp or not.
+            For instance, even when \( \pi_0 \) is unfamiliar with an object or task, it often proactively explores near affordance-rich areas, using its wrist camera to decide whether to grasp or not.
           </p>
 
           <p>
-            In certain trials, we also observed <strong>reset-like behaviors</strong>: if \( \pi_0 \) perceives the task as complete (e.g., after placing an item into a bowl), it may <strong>return to its home configuration and stop</strong>. While this often indicates a well-formed task boundary, it can also lead to <strong>early stopping/freezing</strong>, especially in multi-object scenes — see <strong>Section 4.1</strong> for analysis of early stopping failure cases.
+            In certain trials, we also observed reset-like behaviors: if \( \pi_0 \) perceives the task as complete (e.g., after placing an item into a bowl), it may return to its home configuration and stop. While this often indicates a well-formed task boundary, it can also lead to early stopping/freezing, especially in multi-object scenes — see <strong>Section 4.1</strong> for analysis of early stopping failure cases.
           </p>
 
           <p>
@@ -1357,6 +1357,7 @@
 
 
 <!-- Disclaimer Section -->
+<!--  
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -1379,7 +1380,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 <!-- Acknowledgments -->
@@ -1398,9 +1399,7 @@
           <p>
             We extend our appreciation to Karl Pertsch from Physical Intelligence for his constructive feedback on the early blog draft. 
           </p>
-          <p>
-            This work was conducted independently within the PennPAL and Daniilidis groups at the GRASP Lab.
-          </p>
+          
           <p>
             This project was supported in part by the National Science Foundation Graduate Research Fellowship Program under Grant No DGE-2236662. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
           </p>
@@ -1530,25 +1529,21 @@
                 <div class="column is-half">
                   <figure class="image">
                     <div class="columns">
-                      <div class="column is-half">
-                        <img src="static/images/pi0-FAST-in-the-wild-@-GRASP-scatter.png" alt="Scatter plot showing performance distribution">
-                      </div>
-                      <div class="column is-half">
-                        <img src="static/images/pi0-FAST-in-the-wild-@-GRASP-bar.png" alt="Chart showing overall performance statistics">
-                      </div>
+                        <img src="static/images/PI0-FAST-DROID-in-the-Wild-@-GRASP-bar.png" alt="Chart showing overall performance statistics">
                     </div>
-                    <figcaption>Performance across 240+ trials (52% average progress)</figcaption>
+                    <figcaption>Performance across 240+ trials (42% average progress)</figcaption>
                   </figure>
                 </div>
                 <div class="column is-half">
           <div class="content">
-                    <p>Across our 240+ test trials, \( \pi_0 \) achieved varying degrees of success:</p>
+                    <p>Across our 300+ test trials, \( \pi_0 \) achieved varying degrees of success:</p>
                     <ul>
                       <li><strong>Complete Success:</strong> 38%</li>
                       <li><strong>Partial Success:</strong> 28%</li>
                       <li><strong>Complete Failure:</strong> 34%</li>
             </ul>
-                    <p>We observed that performance varied significantly based on task type, environmental conditions, and most importantly, the phrasing of instructions.</p>
+                    <p>We observed that performance varied significantly based on task type, environmental conditions, and most importantly, the task instructions.</p>
+
           </div>
         </div>
       </div>
@@ -1561,7 +1556,7 @@
         
         <!-- Pick and Place -->
         <div class="box">
-          <h4 class="title is-5">Pick-and-Place (44% Success)</h4>
+          <h4 class="title is-5">1. Pick-and-Place (38.4% Success)</h4>
           <div class="columns">
             <div class="column is-8">
               <div class="content">
@@ -1576,11 +1571,19 @@
                   <li>Vague targets ("inside the bowl") - 40% success</li>
                   <li>Multi-object tasks ("Put all objects into the basket") - 33% success</li>
                 </ul>
+                <div class="columns is-multiline">
+                  <div class="column is-12">
+                    <p class="is-size-6"><strong>"Place the pineapple into the basket."</strong></p>
+                    <p> Our first trial with \( \pi_0 \), very impressive that it runs without any adjustment.</p>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="column is-4">
-              <figure class="image">
-                <img src="static/images/pick_and_place_chart.jpg" alt="Chart showing pick and place performance">
+              <video autoplay muted loop playsinline width="90%" height="100px" style="border-radius: 10px;">
+                <source src="static/videos/success/first pi0 trial.mp4" type="video/mp4">
+              </video>
+           
               </figure>
             </div>
           </div>
