@@ -1,0 +1,30 @@
+sec_by_sec/
+0222-PI0 in the Wild Blog.md
+todo.md
+generate_placeholders.py
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE/OS specific
+.DS_Store
+.idea/
