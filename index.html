@@ -730,30 +730,35 @@
 
             <!-- 3 video examples of early stopping -->
             <div class="columns is-multiline is-centered">
-              <div class="column is-one-third">
+              <div class="column is-one-half">
                 <div>
                   <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                     <source src="static\videos\problems\4.1_hand_the_pineapple_to_human.mp4" type="video/mp4">
                   </video>
-                  <p class="is-size-6 has-text-centered">"Hand the pineapple to human"</p>
+                  <p class="is-size-6 has-text-centered"><i>"Hand the pineapple to human"</i></p>
+                  <p class="is-size-6 has-text-centered">Freezes in the air</p>
                 </div>
               </div>
-              <div class="column is-one-third">
+              <div class="column is-one-half">
                 <div>
                   <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                     <source src="static\videos\problems\4.1_open the drawer.mp4" type="video/mp4">
                   </video>
-                  <p class="is-size-6 has-text-centered">"Open the drawer"</p>
+                  <p class="is-size-6 has-text-centered"><i>"Open the drawer"</i></p>
+                  <p class="is-size-6 has-text-centered">Freezes after grasping the handle</p>
                 </div>
               </div>
-              <div class="column is-one-third">
-                <div>
-                  <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                    <source src="static\videos\problems\4.1_pour coffee bean into the coffee grinder.mp4"
-                      type="video/mp4">
-                  </video>
-                  <p class="is-size-6 has-text-centered">"Pour coffee bean into the coffee grinder"</p>
-                </div>
+
+            </div>
+
+            <div class="columns is-multiline is-centered">
+              <div>
+                <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
+                  <source src="static/videos/problems/4.1_place_the_book_into_bookshelf.mp4"
+                    type="video/mp4">
+                </video>
+                <p class="is-size-6 has-text-centered"><i>"Place the book into the bookshelf"</i></p>
+                <p class="is-size-6 has-text-centered">Hold book horizontally in the air, move very slowly</p>
               </div>
             </div>
 
@@ -817,7 +822,7 @@
                   According to our discussion on <a
                     href="https://github.com/Physical-Intelligence/openpi/issues/373">Github Issue#373</a>, sometimes
                   the policy decoded mis-shaped actions occasionally during inference.
-                  In official implementation, <strong>pi0-fast-droid</strong> defaults to "no-motion" in these cases.
+                  In official implementation, \( \pi_0 \)-fast-droid defaults to "no-motion" in these cases.
                   Because the robot continues querying the policy,
                   the error is skipped on subsequent queries, allowing the robot to quickly recover and continue
                   decoding correctly-shaped outputs.
@@ -1540,7 +1545,6 @@
                         <img src="static/images/PI0-FAST-DROID-in-the-Wild-@-GRASP-bar.png"
                           alt="Chart showing overall performance statistics">
                       </div>
-                      <figcaption>Performance across 300+ trials (42% average progress)</figcaption>
                     </figure>
                   </div>
                   <div class="column is-half">
@@ -1551,7 +1555,7 @@
                       </p>
                       <p>We observed that performance varied significantly based on task type, environmental conditions,
                         and most importantly, the task instructions.</p>
-
+                      <p><strong>Left: Performance across 300+ trials, average progress 42%.</strong></p>
                     </div>
                   </div>
                 </div>
@@ -1561,6 +1565,11 @@
 
           <!-- Task Specific Results -->
           <h3 class="title is-4">Task-Specific Performance</h3>
+          <p>We divide the tasks into 7 categories: Pick-and-Place, Pour, Articulated Objects, Fabric Manipulation, YCB Benchmark, Human Robot Interaction and Coffee Machine Challenge.</p>
+
+          <p>For each task, we list the progress score and success rate.</p>
+          <p>Note here is vibe-check, not a rigorous evaluation, which still shows some strengths and weaknesses of \( \pi_0 \).</p>
+          <p>For each category, we list the example rollouts and instructions./p>
 
           <!-- Pick and Place -->
           <div class="box">
@@ -1740,39 +1749,39 @@
               <div class="column is-8">
                 <div class="content">
                   <p>We also evaluate \( \pi_0 \) on the <a href="https://www.ycbbenchmarks.com/" target="_blank">YCB
-                      benchmark</a>, which includes many daily life object in the kitchen.</p>
+                      benchmark</a>, which includes many daily life objects in the kitchen.</p>
                   <p>We select spam can, Cheez-it box, sugar box and mustard bottle, doing pick and place under similar
-                    but different initial condition. </p>
-                  <p> Variation: vertical position, horizontal position, different color box, different trays.</p>
+                    but different initial conditions.</p>
+                  <p>Variation: vertical position, horizontal position, different color box, different trays.</p>
                   <p>"Place the can into the purple box": 16.7% success rate</p>
                   <p>"Place the bottle into the purple box": 16.7% success rate</p>
                   <p>"Place the red box into the purple box": 0% success rate</p>
                   <p>"Place the can into the red tray": 58.3% success rate</p>
-                  <p> Place the can into the tray: 0% success rate</p>
-                  <p> We found \( \pi_0 \) can not follow the brand name of object, so we use color to identify the
+                  <p>"Place the can into the tray": 0% success rate</p>
+                  <p>We found \( \pi_0 \) cannot follow the brand name of object, so we use color to identify the
                     object.</p>
-                  <p> Result shows that \( \pi_0 \) on Franka Arm failed to handle YCB Benchmark.</p>
-
+                  <p>Result shows that \( \pi_0 \) on Franka Arm failed to handle YCB Benchmark.</p>
                 </div>
-
-                <div class="column is-12">
-                  <div class="columns is-multiline">
-                    <div class="column is-8">
-                      <img src="static/images/ycb_behavior_distribution.png" alt="YCB Behavior Distribution"
-                        width="100%" height="250px" style="border-radius: 10px;">
-                      <p class="is-size-6 has-text-centered">YCB Behavior Distribution, most tasks are just trying to
-                        grasp but didn't hold object firmly </p>
-                    </div>
-                    <div class="column is-12">
-                      <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
-                        <source
-                          src="static/videos/success/static/videos/failure/ycb_place_the_bottle_into_the_purple_box.mp4"
-                          type="video/mp4">
-                      </video>
-                    </div>
-
+              </div>
+              <!-- Image right -->
+              <div class="column is-4">
+                <div class="columns is-multiline">
+                  <div class="column is-12">
+                    <img src="static/images/ycb_behavior_distribution.png" alt="YCB Behavior Distribution"
+                      width="100%" height="250px" style="border-radius: 10px;">
+                    <p class="is-size-6 has-text-centered">YCB Behavior Distribution, most tasks are just trying to
+                      grasp but didn't hold object firmly</p>
                   </div>
+                  <div class="column is-12">
+                    <img src="static/images/ycb_all_objects.jpg" alt="YCB All Objects"
+                      width="100%" height="250px" style="border-radius: 10px;">
+                    <p class="is-size-6 has-text-centered">All objects in YCB Benchmark</p>
+                  </div>
+
+
                 </div>
+              </div>
+            </div>
 
               </div>
             </div>
