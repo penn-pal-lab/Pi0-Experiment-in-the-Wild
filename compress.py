@@ -66,7 +66,7 @@ def compress_video(input_path, output_path, target_size_mb=10):
 
 def main():
     videos_dir = 'static/videos/success'
-    size_threshold_mb = 10
+    size_threshold_mb = 5
     
     # Check if ffmpeg is installed
     try:

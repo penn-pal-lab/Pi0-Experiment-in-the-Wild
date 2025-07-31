@@ -1238,14 +1238,19 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column is-full-width">
-          <h2 class="title is-3">Conclusion</h2>
+          <h2 class="title is-3">6. Conclusion</h2>
 
           <div class="content has-text-justified">
-            <p>Through our evaluations, we conclude that \( \pi_0 \) is a promising generalist policy that has learned
-              to perform intelligent behaviour in unseen manipulation scenes. However, many challenges remain—--our
-              experiments show that its performance is sensitive to prompt phrasing and that the policy struggles with
-              instruction following, fine-grained manipulation and partial observability. We are optimistic that
-              continued research will address these issues and make generalist robot policies increasingly practical.
+            <p>Our evaluations show that \( \pi_0 \) is a promising generalist policy: it demonstrates intelligent behaviour in unseen manipulation scenes. However, many challenges remain —-- saying we are "very impressed" is true, but only with right context. Remember, we've had roughly 50 years of robotics research. Until now, you couldn't just download someone else's controller, load it onto your own robot, and expect it to do even simple things. If \( \pi_0 \) can do that --- <strong>even at 20 - 50 % success on simple tasks straight out of the box</strong>, that alone marks a major leap forward.
+            </p>
+            <p>
+              As discussed in section <strong>Problems</strong> and <strong>Quirks</strong>, our experiments reveals that performance is sensitive to prompt phrasing, and the policy still struggles with
+              instruction following, fine-grained manipulation and partial observability. 
+              
+              We don't expect \( \pi_0 \) to be installed in everyone's home tomorrow, but we hope to see more advancement. Let robot go and run , let it do reasonable things step by step, which may not finish task every time, but it moves in the right direction.
+              
+              We are optimistic that continued research will address these issues and bring truly generalist robot policies closer to the practical reality.
+
             </p>
           </div>
         </div>
@@ -1260,12 +1265,12 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column is-full-width">
-          <h2 class="title is-3">References</h2>
+          <h2 class="title is-3"> References</h2>
           <div class="content">
             <div class="csl-bib-body">
               <!-- 1. \( \pi_0 \) -->
               <div class="csl-entry">
-                K. Black, N. Brown, D. Driess, A. Esmail, M. Equi, C. Finn, N. Fusai, L. Groom, K. Hausman, B. Ichter,
+                [1] K. Black, N. Brown, D. Driess, A. Esmail, M. Equi, C. Finn, N. Fusai, L. Groom, K. Hausman, B. Ichter,
                 et al. (2024).
                 Black, o., Xia, Z., Ha, L., Kaplan, A., Huang, H., Hausman, K., Ichter, B., Fox, D., & Levine, S.
                 (2024).
@@ -1278,7 +1283,7 @@
 
               <!-- 2. FAST -->
               <div class="csl-entry">
-                K.&nbsp;Pertsch, K.&nbsp;Stachowicz, B.&nbsp;Ichter, D.&nbsp;Driess, S.&nbsp;Nair, Q.&nbsp;Vuong,
+                [2] K.&nbsp;Pertsch, K.&nbsp;Stachowicz, B.&nbsp;Ichter, D.&nbsp;Driess, S.&nbsp;Nair, Q.&nbsp;Vuong,
                 O.&nbsp;Mees, C.&nbsp;Finn, &amp; S.&nbsp;Levine. (2025).
                 <span class="paper-title"><em>FAST: Efficient action tokenization for vision-language-action
                     models.</em></span>
@@ -1289,7 +1294,7 @@
 
               <!-- 9. OpenPI repository -->
               <div class="csl-entry">
-                Physical-Intelligence. (2025).
+                [3] Physical-Intelligence. (2025).
                 <span class="paper-title"><em>OpenPI.</em></span>
                 <span class="paper-conference"><em>GitHub&nbsp;repository.</em></span>
                 <a href="https://github.com/Physical-Intelligence/openpi">[GitHub]</a>
@@ -1297,7 +1302,7 @@
 
               <!-- 3. DROID dataset -->
               <div class="csl-entry">
-                A.&nbsp;Khazatsky, K.&nbsp;Pertsch, S.&nbsp;Nair, A.&nbsp;Balakrishna, S.&nbsp;Dasari,
+                [4] A.&nbsp;Khazatsky, K.&nbsp;Pertsch, S.&nbsp;Nair, A.&nbsp;Balakrishna, S.&nbsp;Dasari,
                 S.&nbsp;Karamcheti, S.&nbsp;Nasiriany, M.&nbsp;K.&nbsp;Srirama, L.&nbsp;Y.&nbsp;Chen, K.&nbsp;Ellis,
                 et&nbsp;al. (2024).
                 <span class="paper-title"><em>DROID: A large-scale in-the-wild robot manipulation dataset.</em></span>
@@ -1307,7 +1312,7 @@
 
               <!-- 4. Chatbot Arena -->
               <div class="csl-entry">
-                W.-L.&nbsp;Chiang, L.&nbsp;Zheng, Y.&nbsp;Sheng, A.&nbsp;N.&nbsp;Angelopoulos, T.&nbsp;Li, D.&nbsp;Li,
+                [5] W.-L.&nbsp;Chiang, L.&nbsp;Zheng, Y.&nbsp;Sheng, A.&nbsp;N.&nbsp;Angelopoulos, T.&nbsp;Li, D.&nbsp;Li,
                 B.&nbsp;Zhu, H.&nbsp;Zhang, M.&nbsp;I.&nbsp;Jordan, J.&nbsp;E.&nbsp;Gonzalez, &amp; I.&nbsp;Stoica.
                 (2024).
                 <span class="paper-title"><em>Chatbot Arena: An open platform for evaluating LLMs by human
@@ -1319,7 +1324,7 @@
               </div>
               <!-- 10. Interconnects blog post -->
               <div class="csl-entry">
-                N.&nbsp;Lambert. (2024).
+                [6] N.&nbsp;Lambert. (2024).
                 <span class="paper-title"><em>ChatBotArena: The peoples' LLM evaluation, the future of evaluation, the
                     incentives of evaluation, and gpt2chatbot.</em></span>
                 <span class="paper-conference"><em>Interconnects.ai&nbsp;blog.</em></span>
@@ -1329,7 +1334,7 @@
 
               <!-- 5. Conceptual Captions -->
               <div class="csl-entry">
-                P.&nbsp;Sharma, N.&nbsp;Ding, S.&nbsp;Goodman, &amp; R.&nbsp;Soricut. (2018).
+                [7] P.&nbsp;Sharma, N.&nbsp;Ding, S.&nbsp;Goodman, &amp; R.&nbsp;Soricut. (2018).
                 <span class="paper-title"><em>Conceptual Captions: A cleaned, hypernymed, image alt-text dataset for
                     automatic image captioning.</em></span>
                 <span class="paper-conference"><em>Proceedings of the 56th Annual Meeting of the Association for
@@ -1339,7 +1344,7 @@
 
               <!-- 6. All You May Need for VQA are Image Captions -->
               <div class="csl-entry">
-                S.&nbsp;Changpinyo, D.&nbsp;Kukliansy, I.&nbsp;Szpektor, X.&nbsp;Chen, N.&nbsp;Ding, &amp;
+                [8] S.&nbsp;Changpinyo, D.&nbsp;Kukliansy, I.&nbsp;Szpektor, X.&nbsp;Chen, N.&nbsp;Ding, &amp;
                 R.&nbsp;Soricut. (2022).
                 <span class="paper-title"><em>All you may need for VQA are image captions.</em></span>
                 <span class="paper-conference"><em>Proceedings of the 2022 Conference of the North American Chapter of
@@ -1350,7 +1355,7 @@
 
               <!-- 7. Open Images V4 -->
               <div class="csl-entry">
-                A.&nbsp;Kuznetsova, H.&nbsp;Rom, N.&nbsp;Alldrin, J.&nbsp;Uijlings, I.&nbsp;Krasin, J.&nbsp;Pont-Tuset,
+                [9] A.&nbsp;Kuznetsova, H.&nbsp;Rom, N.&nbsp;Alldrin, J.&nbsp;Uijlings, I.&nbsp;Krasin, J.&nbsp;Pont-Tuset,
                 S.&nbsp;Kamali, S.&nbsp;Popov, M.&nbsp;Malloci, A.&nbsp;Kolesnikov, T.&nbsp;Duerig, &amp;
                 V.&nbsp;Ferrari. (2020).
                 <span class="paper-title"><em>The Open Images Dataset V4: Unified image classification, object
@@ -1363,13 +1368,12 @@
 
               <!-- 8. PaliGemma -->
               <div class="csl-entry">
-                L.&nbsp;Beyer, A.&nbsp;Steiner, A.&nbsp;S.&nbsp;Pinto, A.&nbsp;Kolesnikov, X.&nbsp;Wang, D.&nbsp;Salz,
+                [10] L.&nbsp;Beyer, A.&nbsp;Steiner, A.&nbsp;S.&nbsp;Pinto, A.&nbsp;Kolesnikov, X.&nbsp;Wang, D.&nbsp;Salz,
                 M.&nbsp;Neumann, I.&nbsp;Alabdulmohsin, M.&nbsp;Tschannen, E.&nbsp;Bugliarello, et&nbsp;al. (2024).
                 <span class="paper-title"><em>PaliGemma: A versatile 3B VLM for transfer.</em></span>
                 <span class="paper-conference"><em>arXiv&nbsp;preprint</em> arXiv:2407.07726.</span>
                 <a href="https://arxiv.org/abs/2407.07726">[Paper]</a>
               </div>
-
 
 
 
