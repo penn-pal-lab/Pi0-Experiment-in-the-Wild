@@ -1577,6 +1577,14 @@
             <div class="columns">
               <div class="column is-8">
                 <div class="content">
+                  Pick-and-place is an easy but necessary task for robot to learn.
+                  <p>
+                    We let \( \pi_0 \) plays with over 50 different objects, where most of them are not toy but daily usage items. 
+                  </p>
+                  <p>
+                   We don't expect \( \pi_0 \) to pick up all objects, becausse some of them are just out of scope for our franka panda arm. But it should show an intuition to decide which object to pick up. Here are some observation about \( \pi_0 \)'s performance.
+                  
+                  </p>
                   <p><strong>Strengths:</strong></p>
                   <ul>
                     <li>Small objects (pineapple toy, pen markers) - 90% progress</li>
@@ -1610,6 +1618,11 @@
             <div class="columns">
               <div class="column is-8">
                 <div class="content">
+                  <p>
+                    Pour is an interesting task for robotics researchers, as it requires robot to keep the container upright while transporting it, align the spout with the target container, and then tilt the cup at the correct angle to pour the liquid.
+                  </p>
+                  <p>
+                    Here are some observation about \( \pi_0 \)'s performance.
                   <p><strong>Pour Toy Items (73.3% Progress)</strong></p>
                   <ul>
                     <li>Pour the sausepot(air) - 78.3% progress</li>
@@ -1621,12 +1634,11 @@
                     <li>Pour water from teapot into the bowl(with water) - 0% progress</li>
                     <li>Pour water from the silver cup to the pink bowl(no liquid)- 70% progress</li>
                   </ul>
-                  <p>Pour is actually a very challenging task for robotics, as it requires precise control of the
-                    pouring motion and the amount of liquid to be poured.</p>
                   <p> \( \pi_0 \) can exectute pour behavior on toy, empty and light container. But when you demand it
                     to pour real liquid, it will fail.</p>
-                  <p>However, this could also be limited by robot's physical capabilities. The robot's gripper is not
-                    strong enough to pick up the teapot.</p>
+                    <p>
+                      However, this could also be limited by robot's physical capabilities. The robot's gripper is not suitable to grasp the teapot firmly.
+                    </p>
                 </div>
               </div>
 
@@ -1656,6 +1668,12 @@
             <div class="columns">
               <div class="column is-8">
                 <div class="content">
+                  <p>
+                    Articulated objects are common in daily life, such as drawer, cabinet, toilet, etc.
+                  </p>
+                  <p>
+                    We evaluate \( \pi_0 \) on our mock kitchen, which contains many fully-size, real in use articulated objects.
+                  </p>
                   <p><strong>Drawer Manipulation</strong></p>
                   <ul>
                     <li>Open the drawer - 63% progress</li>
@@ -1702,6 +1720,11 @@
             <div class="columns">
               <div class="column is-8">
                 <div class="content">
+                  People have been keen to let robot do housework for a long time. Folding clothes, towel and t-shirts can not only demonstrate the dexterity of policy, but also ability to handle the object's shape and texture.
+                  <p>
+                    Because pi0-fast-droid is trained on single franka arm, folding fabric becomes very challenging for it zero-shot. We evaluate \( \pi_0 \) on some simple fabric manipulation tasks, where the robot need to fold the fabric into a specific shape.
+                  </p>
+       
                   <p><strong>Fold Newspaper</strong></p>
                   <ul>
                     <li>fold the newspaper from right to left - 0% progress</li>
@@ -1750,14 +1773,18 @@
                 <div class="content">
                   <p>We also evaluate \( \pi_0 \) on the <a href="https://www.ycbbenchmarks.com/" target="_blank">YCB
                       benchmark</a>, which includes many daily life objects in the kitchen.</p>
-                  <p>We select spam can, Cheez-it box, sugar box and mustard bottle, doing pick and place under similar
-                    but different initial conditions.</p>
+                  <p>We select spam can, Cheez-it box, sugar box and mustard bottle, doing pick and place under similar but different initial conditions.</p>
+                  <p>
+                    For each task, we performed three trials, to determine how consistent the model is. We evaluated whether the robot succeeded in placing the object in the receptacle, and wrote short notes analyzing behavior and failure reasons. 
+                  </p>
                   <p>Variation: vertical position, horizontal position, different color box, different trays.</p>
-                  <p>"Place the can into the purple box": 16.7% success rate</p>
-                  <p>"Place the bottle into the purple box": 16.7% success rate</p>
-                  <p>"Place the red box into the purple box": 0% success rate</p>
-                  <p>"Place the can into the red tray": 58.3% success rate</p>
-                  <p>"Place the can into the tray": 0% success rate</p>
+                  <ul>
+                    <li>"Place the can into the purple box": 16.7% success rate</li>
+                    <li>"Place the bottle into the purple box": 16.7% success rate</li>
+                    <li>"Place the red box into the purple box": 0% success rate</li>
+                    <li>"Place the can into the red tray": 58.3% success rate</li>
+                    <li>"Place the can into the tray": 0% success rate</li>
+                  </ul>
                   <p>We found \( \pi_0 \) cannot follow the brand name of object, so we use color to identify the
                     object.</p>
                   <p>Result shows that \( \pi_0 \) on Franka Arm failed to handle YCB Benchmark.</p>
@@ -1766,6 +1793,12 @@
               <!-- Image right -->
               <div class="column is-4">
                 <div class="columns is-multiline">
+
+                  <div class="column is-12">
+                    <img src="static/images/YCB-success-failure-orientation.png" alt="YCB Success and Failure Orientation"
+                      width="100%" height="250px" style="border-radius: 10px;">
+                    <p class="is-size-6 has-text-centered">YCB Success and Failure Orientation</p>
+                  </div>
                   <div class="column is-12">
                     <img src="static/images/ycb_behavior_distribution.png" alt="YCB Behavior Distribution"
                       width="100%" height="250px" style="border-radius: 10px;">
@@ -1777,7 +1810,7 @@
                       width="100%" height="250px" style="border-radius: 10px;">
                     <p class="is-size-6 has-text-centered">All objects in YCB Benchmark</p>
                   </div>
-
+         
 
                 </div>
               </div>
@@ -1795,16 +1828,27 @@
               <div class="columns">
                 <div class="column is-8">
                   <div class="content">
-                    <p><strong>Strengths:</strong></p>
+                    <p>
+                      We evaluated \( \pi_0 \) on some simple human interaction scenarios, where the robot need to work with a human without hurting them.
+                    </p>
+                    <p>
+                      We evaluated the robot's ability to hand over objects to human, pick up objects, and perform precision interactions.
+                    </p>
+                 
                     <ul>
-                      <li>Object handovers - 46.67% progress</li>
-                      <li>Following a moving human - 65% progress</li>
+                      <li>Pick up the pineapple and give it to the programmer - 62.5% progress</li>
+                      <li>Give the whiteboard eraser to the programmer - 25% progress</li>
+                      <li>touch the index finger of the outstretched hand - 76.7% progress</li>
+                      <li>Shake hands with the human - 0% progress</li>
                     </ul>
-                    <p><strong>Weaknesses:</strong></p>
-                    <ul>
-                      <li>Precision interactions ("Shake hands") - 30% progress</li>
-                      <li>Recovery after interruption - 40% progress</li>
-                    </ul>
+
+                    <p>
+                      How to collect robotics data with human involved, how to execute tasks without hurting human, how to make human feel comfortable with robot? There are still many space for those open questions. We tests these scenarios to see how \( \pi_0 \) performs, whether it can safely work with human involved. 
+                    </p>
+                    <p>
+                      If we want robots to work in people's home, we need to design the policy in a way that is safe for both human and robot.
+                    </p>
+                    
                   </div>
                 </div>
 
