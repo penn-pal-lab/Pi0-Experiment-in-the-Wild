@@ -12,7 +12,7 @@ Here is a blog on the evaluation of Pi0, a vision-language-action (VLA) model fo
 
 ## Overview
 
-This blog is designed to present the results of Pi0 evaluation experiments conducted by the PAL Research Group at GRASP Lab, University of Pennsylvania. It includes sections for:
+This blog is designed to present the results of Pi0 evaluation experiments conducted by the PennPAL Research Group & Kostas Daniilidis Research Group at GRASP Lab, University of Pennsylvania. It includes:
 
 - Introduction to Pi0 and its capabilities
 - Successful examples with videos
@@ -25,6 +25,8 @@ This blog is designed to present the results of Pi0 evaluation experiments condu
 ## Acknowledgments
 
 This template is adapted from the [Nerfies project website](https://github.com/nerfies/nerfies.github.io).
+
+
 We are grateful to Will Liang, Hungju Wang, and Sam Wang for their assistance in setting up the π0 environment. We further thank Kaustubh Sridhar, Tianyou Wang, Ian Pedroza, Ethan Yu, Tim Song, and Yiqian Li for their help doing the experiments.
 
 We also thank Junyao Shi, Aurora Qian, Leon Kim, and Jason Ma for their insightful suggestions on evaluating a generalist manipulation policy.
