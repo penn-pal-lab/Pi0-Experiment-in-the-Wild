@@ -39,10 +39,10 @@ This project was supported in part by the National Science Foundation Graduate R
 If you find this evaluation useful for your research, please consider citing our repository:
 ```Bash
 @misc{pi0-experiment-wild,
-  author = {J. Wang*, M. Leonard, K. Daniilidis, D. Jayaraman, & E. S. Hu},
-  title = {Evaluating pi0 in the Wild @ GRASP Lab: Strengths, Problems, and the Future of Generalist Robot Policies},
+  author = {J. Wang, M. Leonard, K. Daniilidis, D. Jayaraman, & E. S. Hu},
+  title = {Evaluating pi0 in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies},
   year = {2025},
-  publisher = {GitHub},
+  publisher = {GRASP Lab, University of Pennsylvania},
   url = {https://penn-pal-lab.github.io/pi0-Experiment-in-the-Wild}
 }
 ```

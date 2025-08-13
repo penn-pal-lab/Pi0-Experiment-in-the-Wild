@@ -1431,10 +1431,10 @@
           <div class="content has-text-justified">
             <p>If you find this evaluation useful for your research, please consider citing our repository:</p>
             <pre><code>@misc{pi0-experiment-wild,
-  author = {J.&nbsp;Wang*, M.&nbsp;Leonard, K.&nbsp;Daniilidis, D.&nbsp;Jayaraman, &amp; E.&nbsp;S.&nbsp;Hu},
-  title = {Evaluating pi0 in the Wild @ GRASP Lab: Strengths, Problems, and the Future of Generalist Robot Policies},
+  author = {J.&nbsp;Wang, M.&nbsp;Leonard, K.&nbsp;Daniilidis, D.&nbsp;Jayaraman, &amp; E.&nbsp;S.&nbsp;Hu},
+  title = {Evaluating pi0 in the Wild: Strengths, Problems, and the Future of Generalist Robot Policies},
   year = {2025},
-  publisher = {GitHub},
+  publisher = {GRASP Lab, University of Pennsylvania},
   url = {https://penn-pal-lab.github.io/pi0-Experiment-in-the-Wild}
 }</code></pre>
           </div>
@@ -1553,7 +1553,7 @@
                       </p>
                       <p>We observed that performance varied significantly based on task type, environmental conditions,
                         and most importantly, the task instructions.</p>
-                      <p><strong>Left: Performance across 300+ trials, average progress 42%.</strong></p>
+                      <p><strong>Left: Performance across 300+ trials, average progress 42.3%.</strong></p>
                     </div>
                   </div>
                 </div>
@@ -1563,15 +1563,33 @@
 
           <!-- Task Specific Results -->
           <h3 class="title is-4">Task-Specific Performance</h3>
-          <p>We divide the tasks into 7 categories: Pick-and-Place, Pour, Articulated Objects, Fabric Manipulation, YCB Benchmark, Human Robot Interaction and Coffee Machine Challenge.</p>
-
-          <p>For each task, we list the progress score and success rate.</p>
-          <p>Note here is vibe-check, not a rigorous evaluation, which still shows some strengths and weaknesses of \( \pi_0 \).</p>
-          <p>For each category, we list the example rollouts and instructions. </p>
-
-         <p>If you want to see more policy rollouts, please check our recent CoRL paper: <a href="https://robo-arena.github.io/" target="_blank">RoboArena</a>, which will hold a workshop this year and welcome to submit your policy for competition!</p>
-
-
+          <div class="content has-text-justified">
+          <ul>
+            <li>We divide the tasks into 7 categories:
+              <ul>
+                <li><b>Pick-and-Place</b></li>
+                <li><b>Pour</b></li>
+                <li><b>Articulated Objects</b></li>
+                <li><b>Fabric Manipulation</b></li>
+                <li><b>YCB Benchmark</b></li>
+                <li><b>Human Robot Interaction</b></li>
+                <li><b>Coffee Machine Challenge</b></li>
+              </ul>
+            </li>
+            <li>For each task:
+              <ul>
+                <li>We list the progress score and success rate for a group of similar trials.</li>
+                <li>Example rollouts and instructions are provided for each category.</li>
+              </ul>
+            </li>
+            <li>
+              Note: This is a "vibe-check" style evaluation, not a rigorous benchmark. It can indicate some strengths and weaknesses of \( \pi_0 \), but does not reflect the full capabilities of the model.
+            </li>
+            <li>
+              If you want to see more policy rollouts, please check our recent CoRL paper: <a href="https://robo-arena.github.io/" target="_blank">RoboArena</a>!
+            </li>
+          </ul>
+          </div>
           <!-- Pick and Place -->
           <div class="box">
             <h4 class="title is-5">1. Pick-and-Place (38.4% Progress, 24% Success)</h4>
