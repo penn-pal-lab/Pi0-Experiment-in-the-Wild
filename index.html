@@ -638,10 +638,10 @@
                           <div>
                             <video id="failure-video-2" autoplay muted loop playsinline width="100%" height="250px"
                               style="border-radius: 10px;">
-                              <source src="static\videos\failure\upenn_pick_block.mp4" type="video/mp4">
+                              <source src="static\videos\failure\upenn_place_cubes.mp4" type="video/mp4">
                             </video>
                           </div>
-                          <p class="is-size-6"><i>"Pick the black box on the white box"</i></p>
+                          <p class="is-size-6"><i>"Place the black cube on the white cube"</i></p>
                           <p class="is-size-6">Cannot handle unseen background well (0% success rate)</p>
                         </div>
                       </div>
@@ -719,9 +719,9 @@
           <h3 class="title is-4" style="margin-top: 1.5rem;">4.1 Early stopping</h3>
           <div class="content has-text-justified">
             <p>
-              One common failure case is that policy may <strong>freeze unexpectedly during execution</strong>, leaving
+              One common failure case is that policy may <strong>freeze unexpectedly or move very slowly during execution</strong>, leaving
               tasks incomplete until a human intervenes.
-              This behavior comes from two related factors: semantic ambiguity and autoregressive action decoding
+              This behavior may come from three  factors: semantic ambiguity for language following, markovian property and autoregressive action decoding
               limitations.
             </p>
 
@@ -733,8 +733,8 @@
                   <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                     <source src="static\videos\problems\4.1_hand_the_pineapple_to_human.mp4" type="video/mp4">
                   </video>
-                  <p class="is-size-6 has-text-centered"><i>"Hand the pineapple to human"</i></p>
-                  <p class="is-size-6 has-text-centered">Freezes in the air</p>
+                  <p class="is-size-6 has-text-centered"><i>Instruction: "Hand the pineapple to human"</i></p>
+                  <p class="is-size-6 has-text-centered">Behavior: Freezes in the air</p>
                 </div>
               </div>
               <div class="column is-one-half">
@@ -742,8 +742,8 @@
                   <video autoplay muted loop playsinline width="100%" height="250px" style="border-radius: 10px;">
                     <source src="static\videos\problems\4.1_open the drawer.mp4" type="video/mp4">
                   </video>
-                  <p class="is-size-6 has-text-centered"><i>"Open the drawer"</i></p>
-                  <p class="is-size-6 has-text-centered">Freezes after grasping the handle</p>
+                  <p class="is-size-6 has-text-centered"><i>Instruction: "Open the drawer"</i></p>
+                  <p class="is-size-6 has-text-centered">Behavior: Freezes after grasping the handle</p>
                 </div>
               </div>
 
@@ -755,8 +755,8 @@
                   <source src="static/videos/problems/4.1_place_the_book_into_bookshelf.mp4"
                     type="video/mp4">
                 </video>
-                <p class="is-size-6 has-text-centered"><i>"Place the book into the bookshelf"</i></p>
-                <p class="is-size-6 has-text-centered">Hold book horizontally in the air, move very slowly</p>
+                <p class="is-size-6 has-text-centered"><i>Instruction: "Place the book into the bookshelf"</i></p>
+                <p class="is-size-6 has-text-centered">Behavior: Hold book horizontally in the air, move very slowly</p>
               </div>
             </div>
 
